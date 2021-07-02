@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{optidef}
+
+\begin{document}
+
+
+\begin{mini!}{}{\sum_{(i,j)\in \Theta} \sum_{v \in V\setminus\{i\}}  f_{(i,v)}^{(i,j)} \cdot d_{(i,j)} \cdot r - \sum_{e\in E} u_e\cdot c_e}{}{}
+\addConstraint{\sum_{v \in V\setminus\{z\}} f_{(v,z)}^{(i,j)}-\sum_{w \in V\setminus\{z\}} f_{(z,w)}^{(i,j)}}{=0,\quad \label{eq:SingleAgentB}}{\forall\ z\in V\setminus\{i,j\},\ \forall (i,j)\in\Theta}
+\addConstraint{\sum_{v \in V\setminus\{i\}} f_{(i,v)}^{(i,j)}}{\leq 1,\quad \label{eq:SingleAgentC}}{\forall\ (i,j)\in \Theta}
+\addConstraint{\sum_{v \in V\setminus\{j\}} f_{(j,v)}^{(i,j)}}{= 0,\quad \label{eq:SingleAgentD}}{\forall\ (i,j)\in \Theta}
+\addConstraint{\sum_{(i,j) \in \Theta} f_e^{(i,j)}\cdot d_{(i,j)}}{\leq u_e\cdot q,\quad \label{eq:SingleAgentE}}{\forall\ e \in E}
+\addConstraint{f_e^{(i,j)}}{\in \{0,1\},\quad \label{eq:SingleAgentF}}{\forall\ e \in E,\ \forall (i,j)\in \Theta}
+\addConstraint{u_e}{\in \{0,1\},\quad}{\forall\ e \in E}
+\end{mini!}
+
+Constraint (\ref{eq:SingleAgentB}) ensures that, for any commodity, the flow that enters and leaves transit nodes (neither the origin neither the terminal) is equal.
+
+
+Constraint (\ref{eq:SingleAgentC}), together with (\ref{eq:SingleAgentF}), ensures that any commodity, in case of be send, is completely send and only through and edge from its origin node.
+It could be substituted by:
+\[\sum_{v \in V\setminus\{i\}} f_{(z,v)}^{(i,j)}\leq 1,\quad \forall\ z\in V\setminus\{j\},\ \forall\ (i,j)\in \Theta\]
+To do it would avoid possible sub-tours. This sub-tours could not affect the objective value in any case, but to avoid them seems reasonable.
+
+Constraint (\ref{eq:SingleAgentD}) ensures that none commodity is send from its terminal node. Constraint (\ref{eq:SingleAgentE}) ensures that the capacity of any edge is exceed.
+
+\end{document}
