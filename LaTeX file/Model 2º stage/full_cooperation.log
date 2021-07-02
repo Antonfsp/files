@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  2 JUL 2021 10:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  2 JUL 2021 10:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**single_agent_notinfo.tex
-(./single_agent_notinfo.tex
+**full_cooperation.tex
+(./full_cooperation.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -169,8 +169,8 @@ Package: xparse 2020-02-14 L3 Experimental document command parser
 )
 \widthInit=\skip56
 )
-(./single_agent_notinfo.aux)
-\openout1 = `single_agent_notinfo.aux'.
+(./full_cooperation.aux)
+\openout1 = `full_cooperation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -239,30 +239,30 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (10.2339pt too wide) detected at line 15
+Overfull \hbox (28.57541pt too wide) detected at line 14
 []
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./single_agent_notinfo.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./full_cooperation.aux) )
+ 
 Here is how much of TeX's memory you used:
  3893 strings out of 482503
- 60718 string characters out of 5947228
- 308820 words of memory out of 5000000
+ 60698 string characters out of 5947228
+ 306816 words of memory out of 5000000
  18927 multiletter control sequences out of 15000+600000
  534037 words of font info for 32 fonts, out of 8000000 for 9000
  398 hyphenation exceptions out of 8191
- 43i,16n,39p,810b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on single_agent_notinfo.pdf (1 page, 69072 bytes).
+ 43i,16n,39p,806b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy7.pfb>
+Output written on full_cooperation.pdf (1 page, 67094 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream

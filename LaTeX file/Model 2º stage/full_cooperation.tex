@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{optidef}
+
+\begin{document}
+
+
+\begin{mini!}{}{\sum_{(o,t,i) \in \Theta} \sum_{v \in V\setminus\{o\}}  f_{(o,v)}^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r}{}{}
+\addConstraint{\sum_{v \in V\setminus\{z\}} f_{(v,z)}^{(o,t,i)}-\sum_{w \in V\setminus\{z\}} f_{(z,w)}^{(o,t,i)}}{=0,\quad \label{eq:FullCooperationB}}{\forall\ z\in V\setminus\{o,t\},\ \forall (o,t,i)\in\Theta}
+\addConstraint{\sum_{v \in V\setminus\{o\}} f_{(o,v)}^{(o,t,i)}}{\leq 1,\quad \label{eq:FullCooperationC}}{\forall\ (o,t,i)\in \Theta}
+\addConstraint{\sum_{v \in V\setminus\{t\}} f_{(t,v)}^{(o,t,i)}}{= 0,\quad \label{eq:FullCooperationD}}{\forall\ (o,t,i)\in \Theta}
+\addConstraint{\sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)}}{\leq \sum_{i\in N} q_e^i,\quad \label{eq:FullCooperationE}}{\forall\ e \in E}
+\addConstraint{f_e^{(o,t,i)}}{\in \{0,1\},\quad \label{eq:FullCooperationF}}{\forall\ e \in E,\ \forall (o,t,i)\in \Theta}
+\end{mini!}
+
+Constraint (\ref{eq:FullCooperationE}) ensures that the commodities sent through an edge doesn't exceed the total capacity available in that edge (the sum of the capacities each agent has for that edge).
+\end{document}
