@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage[nocomma]{optidef}
+
+\begin{document}
+
+\textbf{If Splitable demand}
+
+\begin{maxi!}{}{\sum_{(o,t,i) \in \Theta} \sum_{e \in OE(o)}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r}{}{}
+\addConstraint{\sum_{e \in IE(z)} f_e^{(o,t,i)}-\sum_{e' \in OE(z)} f_{e'}^{(o,t,i)}}{=0,\quad \label{eq:FullCooperationB}}{\forall\ z\in V\setminus\{o,t\},\ \forall (o,t,i)\in\Theta}
+\addConstraint{\sum_{e \in OE(o)} f_e^{(o,t,i)}}{\leq d_{(o,t,i)},\quad \label{eq:FullCooperationC}}{\forall\ (o,t,i)\in \Theta}
+\addConstraint{\sum_{e \in OE(t)} f_e^{(o,t,i)}}{= 0,\quad \label{eq:FullCooperationD}}{\forall\ (o,t,i)\in \Theta}
+\addConstraint{\sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}}{\leq q_e^*,\quad \label{eq:FullCooperationE}}{\forall\ e \in E}
+\nonumber\addConstraint{\sum_{(o,t,i)\in \Theta}\sum_{\substack{e=(v,w,z)\\ \in E \colon z\not = i}} f_e^{(o,t,i)}\cdot \frac{c_e}{q_e}}{\leq}{}
+\nonumber\addConstraint{\leq \sum_{(o,t,i)\in \Theta}\sum_{e\in OE(o)} f_e^{(o,t,i)}\cdot r }{+}{}
+\addConstraint{+ \sum_{j\in N\setminus{i}} \sum_{\substack{e \in E\colon\\e=(v,w,i)}} f_e^(o,t,j) \cdot \frac{c_e}{q_e}\quad\label{eq:FullCooperationF}}{,}{\forall\ i \in N}
+\addConstraint{f_e^{(o,t,i)}}{\in \mathbb{N}_0,\quad \label{eq:FullCooperationG}}{\forall\ e \in E,\ \forall (o,t,i)\in \Theta}
+\end{maxi!}
+
+Constraint (\ref{eq:FullCooperationE}) ensures that the commoditiese sent through an edge doesn't exceed the total capacity available in that edge (the sum of the capacities each agent has for that edge).
+Constraint (\ref{eq:FullCooperationF}) ensures that any agent looses in the cooperative stage. A possible alternative, maybe better, to \ref{eq:FullCooperationF} is
+\[\sum_{\substack{e=(v,w,z)\\ \in E \colon z\not = i}} f_e^{(o,t,i)}\cdot \frac{c_e}{q_e} \leq \sum_{e\in OE(o)} f_e^{(o,t,i)}\cdot r \quad \forall\ (o,t,i) \in \Theta,\ \forall i \in N \]
+
+In this model, $e \in E$ is a tuple (v,w,i) for $v,w\ \in N$ and $i \in N$ (multiple agents can have an active edge between the same two nodes).
+\bigskip
+
+
+
+
+REMARKS:
+\begin{enumerate}
+\item Constraints ensuring that every agent would end up with profitable payoff from this cooperation? For example, only route a commodity if the payment for it is smaller than the revenue from satisfying it.
+\item Seems necessary to know the revenue associate with each commodity to be able to route the flow in the cooperation stage. The motivation of sharing the costs of using edges from other agents with a proportional rule was to avoid it. But it seems necessary in any case, maybe we could comeback to an allocation of the total profits?
+\end{enumerate}
+
+
+\end{document}

@@ -5,7 +5,7 @@
 \begin{document}
 
 
-\begin{mini!}{}{\sum_{(o,t)\in \Theta} \sum_{v \in V\setminus\{o\}}  f_{(o,v)}^{(o,t)} \cdot d_{(o,t)} \cdot r - \sum_{e\in E} u_e\cdot c_e}{}{}
+\begin{mini!}{}{\sum_{(o,t)\in \Theta} \sum_{v \in V\setminus\{t\}}  f_{(v,t)}^{(o,t)} \cdot d_{(o,t)} \cdot r - \sum_{e\in E} u_e\cdot c_e}{}{}
 \addConstraint{\sum_{v \in V\setminus\{z\}} f_{(v,z)}^{(o,t)}-\sum_{w \in V\setminus\{z\}} f_{(z,w)}^{(o,t)}}{=0,\quad \label{eq:SingleAgentB}}{\forall\ z\in V\setminus\{o,t\},\ \forall (o,t)\in\Theta}
 \addConstraint{\sum_{v \in V\setminus\{o\}} f_{(o,v)}^{(o,t)}}{\leq 1,\quad \label{eq:SingleAgentC}}{\forall\ (o,t)\in \Theta}
 \addConstraint{\sum_{v \in V\setminus\{t\}} f_{(o,v)}^{(o,t)}}{= 0,\quad \label{eq:SingleAgentD}}{\forall\ (o,t)\in \Theta}
