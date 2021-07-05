@@ -1,0 +1,27 @@
+PWD /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Document
+INPUT /etc/texmf/web2c/texmf.cnf
+INPUT /usr/share/texmf/web2c/texmf.cnf
+INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
+INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Document/thesis.tex
+OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Document/build/thesis.log
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+INPUT /usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+INPUT /usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+INPUT /usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+INPUT /usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+INPUT /usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+INPUT /usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+INPUT /usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Document/build/thesis.aux
+INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Document/build/thesis.aux
+OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Document/build/thesis.aux
+OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Document/build/thesis.pdf
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Document/build/thesis.aux
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
