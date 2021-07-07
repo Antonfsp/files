@@ -96,12 +96,18 @@ def build_no_info_problem(V, E, q, c, r, demands, **kwargs):
     mdl.add_kpi(mdl.demands_revenues, "Demands revenue")
     mdl.edges_costs = mdl.sum(mdl.u[e]*c for e in E)
     mdl.add_kpi(mdl.edges_costs, "Edges costs")
-    mdl.maximize(mdl.demands_revenues - mdl.edges_costs )
+    mdl.profit = mdl.demands_revenues - mdl.edges_costs
+    mdl.add_kpi(mdl.profit, 'Profit agent')
+    mdl.used_capacity = mdl.sum(mdl.sum(mdl.f[e,d]*demands[d] for d in demands) for e in E)
+    mdl.add_kpi(mdl.used_capacity, 'Used capacity')
+    mdl.maximize_static_lex([mdl.profit, - mdl.used_capacity])
+
 
     return mdl
 
 def print_no_info_solution(mdl):
     obj = mdl.objective_value
+    model.report_kpis()
     print("* Single agent model solved with objective: {:g}".format(obj))
     print("* Total demands revenue=%g" % mdl.demands_revenues.solution_value)
     print("* Total edges costs=%g" % mdl.edges_costs.solution_value, '\n')
