@@ -4,32 +4,7 @@ Modeling the situation where multiple agents have to decide how to route their f
  The agents have some demands between nodes
 """
 
-import numpy as np # Basic functions, as random 
-import matplotlib.pyplot as plt #For plotting
 from docplex.mp.model import Model # For modeling the LP problem and solving it with CPLEX
-
-
-#Setting a seed
-np.random.seed(1)
-
-# --------------------------------------
-# ------- AGENTS CLASS --------
-# --------------------------------------
-class Agent:
-
-    def __init__(self,id,E,q):
-        self.id = id
-        self.demands = {i:np.random.randint(0,q) for i in E}  # Random demands between pairs of nodes
-        self.used_edges = None
-        self.satisfied_demands= None
-        self.unsatisfied_demands = None
-        self.edges_free_capacity = None
-        self.profit_first_stage = 0
-        self.profit_second_stage = 0
-
-    @property
-    def total_profit(self):
-        return self.profit_first_stage + self.profit_second_stage
 
 # -------------------------------------------------------
 # FUNCTIONS FOR CREATING THE NO INFORMATION MODEL
@@ -55,12 +30,18 @@ def build_no_info_problem(V, E, q, c, r, demands, **kwargs):
     mdl.add_kpi(mdl.demands_revenues, "Demands revenue")
     mdl.edges_costs = mdl.sum(mdl.u[e]*c for e in E)
     mdl.add_kpi(mdl.edges_costs, "Edges costs")
-    mdl.maximize(mdl.demands_revenues - mdl.edges_costs )
+    mdl.profit = mdl.demands_revenues - mdl.edges_costs
+    mdl.add_kpi(mdl.profit, 'Profit agent')
+    mdl.used_capacity = mdl.sum(mdl.sum(mdl.f[e,d]*demands[d] for d in demands) for e in E)
+    mdl.add_kpi(mdl.used_capacity, 'Used capacity')
+    mdl.maximize_static_lex([mdl.profit, - mdl.used_capacity])
+
 
     return mdl
 
 def print_no_info_solution(mdl):
     obj = mdl.objective_value
+    mdl.report_kpis()
     print("* Single agent model solved with objective: {:g}".format(obj))
     print("* Total demands revenue=%g" % mdl.demands_revenues.solution_value)
     print("* Total edges costs=%g" % mdl.edges_costs.solution_value, '\n')
@@ -101,61 +82,3 @@ def recover_data_no_info(mdl,E,demands,q):
             edges_free_capacity[e] = q - active_edges[e]
 
     return served_demands, active_edges, unserved_demands, edges_free_capacity
-
-
-
-# -------------------------------------------------------------------------
-#  INSTANCE DATA
-# -------------------------------------------------------------------------
-
-N = 2 # Number of agents
-V = {0:(0,0), 1:(1,0), 2:(1,1), 3:(0,1)} # Dictionary with the nodes and their location
-E = {(i,j) for j in range(len(V)) for i in range(len(V)) if i!=j} # Dictionary with all possible edges between nodes
-# We use dictionaries for V and E because it is handy when creting the model with Model()
-q = 5 # Capacity of each edge is q
-c = 3 # Cost of stablishing one edge is 3
-#demands = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random demands between pairs of nodes
-r = 2 # Revenue of satisfying each unit of demand
-
-
-# ------ Creating the agents objects ----------
-
-agents = []
-for i in range(N):
-    agents.append(Agent(i,E,q))
-
-
-# ----------------------------------------------------------------------------
-# Solving the model and display the result for each agent
-# ----------------------------------------------------------------------------
-
-for agent in agents:
-
-    # Build the model
-    model = build_no_info_problem(V,E,q,c,r,agent.demands)
-    # model.print_information()
-
-    # Solve the model.
-    if model.solve():
-        print_no_info_solution(model)
-        agent.satisfied_demands, agent.used_edges, agent.unsatisfied_demands, agent.edges_free_capacity = recover_data_no_info(model,E,agent.demands,q)
-        agent.profit_first_stage = model.objective_value
-    else:
-        print("Problem has no solution")
-
-
-    print('Satisfied demands:', agent.satisfied_demands)
-    print('Used edges:', agent.used_edges)
-    print('Unsatisfied demand:', agent.unsatisfied_demands)
-    print('Edges with free capacity:', agent.edges_free_capacity, '\n')
-
-
-    # Now we pass to the full cooperation model with leftovers (edges and demands) from each agent. 
-    # The agents will pay the proportional cost of the fraction of edge capacity they use respect to the total capacity of the edge
-    # For this, it will be necessary to keep track of who is the owner of each edge and commodity. 
-    # Conflics can happen if a commodity can be routed for multiple paths (always choose shortest 
-    # path as it will make the owner to pay less). Also if multiple commodities (but not all together) can
-    # be route in the same edge. This could be solved including some kind of extra payment for routing the
-    # commodity which doesn't fit. Also a commodity could be route at the same price for the customer, at different paths. How to choose?
-
-
