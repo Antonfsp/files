@@ -21,7 +21,7 @@ def build_full_cooperation_problem(N,V, E, q, c, r, demands, **kwargs):
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] in S and e[1] in S) <= len(S) -1 for S in powerset(V,2) for d in demands) # Subtour elimination constraints
 
     # --- objective ---
-    mdl.revenues = mdl.sum(mdl.sum(mdl.f[e,d] * r for e in E if e[1] == d[1]) - mdl.sum(mdl.f[e,d] * c/q for e in E if e[2]!=d[2]) for d in demands)
+    mdl.revenues = mdl.sum(mdl.sum(mdl.f[e,d] * demands[d] * r for e in E if e[1] == d[1]) - mdl.sum(mdl.f[e,d] * demands[d] * c/q for e in E if e[2]!=d[2]) for d in demands)
     mdl.add_kpi(mdl.revenues, "Demands revenue")
     mdl.maximize(mdl.revenues)
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  5 JUL 2021 19:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  8 JUL 2021 12:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -206,23 +206,28 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (24.56544pt too wide) detected at line 18
+Overfull \hbox (27.54924pt too wide) detected at line 16
 []
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (27.54924pt too wide) detected at line 38
+[]
+ []
+
+[2] (/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.aux) ) 
 Here is how much of TeX's memory you used:
- 3898 strings out of 482503
- 61570 string characters out of 5947228
- 312831 words of memory out of 5000000
- 18929 multiletter control sequences out of 15000+600000
+ 3904 strings out of 482503
+ 61702 string characters out of 5947228
+ 308885 words of memory out of 5000000
+ 18935 multiletter control sequences out of 15000+600000
  534345 words of font info for 33 fonts, out of 8000000 for 9000
  398 hyphenation exceptions out of 8191
- 43i,16n,39p,887b,307s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,16n,39p,887b,304s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.pdf" (2 pages, 95999 bytes).
+Output written on "/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.pdf" (2 pages, 97280 bytes).
 PDF statistics:
  51 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream

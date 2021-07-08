@@ -27,15 +27,15 @@ def build_no_info_problem(V, E, q, c, r, demands, **kwargs):
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] in S and e[1] in S) <= len(S) -1 for S in powerset(V,2) for d in demands) # Subtour elimination constraints
 
     # --- objective ---
-    mdl.demands_revenues = mdl.sum(mdl.sum(mdl.f[((v,d[1]),d)]*demands[d]*r for v in V if v != d[1]) for d in demands)
+    mdl.demands_revenues = mdl.sum(mdl.sum(mdl.f[e,d]*demands[d]*r for e in E if e[1] == d[1]) for d in demands)
     mdl.add_kpi(mdl.demands_revenues, "Demands revenue")
     mdl.edges_costs = mdl.sum(mdl.u[e]*c for e in E)
     mdl.add_kpi(mdl.edges_costs, "Edges costs")
     mdl.profit = mdl.demands_revenues - mdl.edges_costs
     mdl.add_kpi(mdl.profit, 'Profit agent')
-    mdl.used_capacity = mdl.sum(mdl.sum(mdl.f[e,d]*demands[d] for d in demands) for e in E)
-    mdl.add_kpi(mdl.used_capacity, 'Used capacity')
-    mdl.maximize_static_lex([mdl.profit, - mdl.used_capacity])
+    mdl.free_capacity = mdl.sum(q - mdl.sum(mdl.f[e,d]*demands[d] for d in demands) for e in E)
+    mdl.add_kpi(mdl.free_capacity, 'Free capacity')
+    mdl.maximize_static_lex([mdl.profit, mdl.free_capacity])
     # mdl.maximize(mdl.profit)
 
     return mdl
