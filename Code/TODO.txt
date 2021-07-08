@@ -1,0 +1,2 @@
+Different optimal solution to the 2º stage model could have different specific profits for the different agents.
+Think about this and how could be solved.

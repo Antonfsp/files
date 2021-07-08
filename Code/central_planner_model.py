@@ -16,8 +16,7 @@ def build_full_cooperation_problem(N,V, E, q, c, r, demands, **kwargs):
     # --- constraints ---
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[1] == z) == mdl.sum(mdl.f[e,d] for e in E if e[0]==z) for d in demands for z in V if z!=d[0] and z!=d[1]) # First constraints: Flow over transit nodes
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] == d[0]) <= 1 for d in demands) # Second constraint: Flow from source can only be one at max   (*)
-    # mdl.add_constraints(mdl.sum(mdl.f[(z,v),d] for v in V if v !=z) <= 1 for z in V if z!=d[1] for d in demands) # Second'' constraint: A commodity can leave a node only once at max (similar to (*) but avoid subtours. No difference in objective value, but seems more reasonable)
-    mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] ==d[1]) == 0 for d in demands) # Third constraint: Commodities dont flow from terminal to other nodes
+    mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] == d[1]) == 0 for d in demands) # Third constraint: Commodities dont flow from terminal to other nodes
     mdl.add_constraints(mdl.sum(mdl.f[e,d] * demands[d] for d in demands) <= E[e] for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] in S and e[1] in S) <= len(S) -1 for S in powerset(V,2) for d in demands) # Subtour elimination constraints
 

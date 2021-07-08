@@ -5,23 +5,23 @@
 \begin{document}
 
 
-\begin{mini!}{}{\sum_{(o,t)\in \Theta} \sum_{v \in V\setminus\{t\}}  f_{(v,t)}^{(o,t)} \cdot d_{(o,t)} \cdot r - \sum_{e\in E} u_e\cdot c_e}{}{}
-\addConstraint{\sum_{v \in V\setminus\{z\}} f_{(v,z)}^{(o,t)}-\sum_{w \in V\setminus\{z\}} f_{(z,w)}^{(o,t)}}{=0,\quad \label{eq:SingleAgentB}}{\forall\ z\in V\setminus\{o,t\},\ \forall (o,t)\in\Theta}
-\addConstraint{\sum_{v \in V\setminus\{o\}} f_{(o,v)}^{(o,t)}}{\leq 1,\quad \label{eq:SingleAgentC}}{\forall\ (o,t)\in \Theta}
-\addConstraint{\sum_{v \in V\setminus\{t\}} f_{(o,v)}^{(o,t)}}{= 0,\quad \label{eq:SingleAgentD}}{\forall\ (o,t)\in \Theta}
+\begin{mini!}{}{\sum_{(o,t)\in \Theta} \sum_{e \in IE(t)}  f_e^{(o,t)} \cdot d_{(o,t)} \cdot r - \sum_{e'\in E} u_{e'}\cdot c_{e'}}{}{}
+\addConstraint{\sum_{e \in IE(z)} f_e^{(o,t)}-\sum_{e' \in OE(z)} f_{e'}^{(o,t)}}{=0,\quad \label{eq:SingleAgentB}}{\forall\ z\in V\setminus\{o,t\},\ \forall (o,t)\in\Theta}
+\addConstraint{\sum_{e \in OE(o)} f_e^{(o,t)}}{\leq 1,\quad \label{eq:SingleAgentC}}{\forall\ (o,t)\in \Theta}
+\addConstraint{\sum_{e \in OE(t)} f_e^{(o,t)}}{= 0,\quad \label{eq:SingleAgentD}}{\forall\ (o,t)\in \Theta}
 \addConstraint{\sum_{(o,t) \in \Theta} f_e^{(o,t)}\cdot d_{(o,t)}}{\leq u_e\cdot q,\quad \label{eq:SingleAgentE}}{\forall\ e \in E}
-\addConstraint{f_e^{(o,t)}}{\in \{0,1\},\quad \label{eq:SingleAgentF}}{\forall\ e \in E,\ \forall (o,t)\in \Theta}
-\addConstraint{u_e}{\in \{0,1\},\quad}{\forall\ e \in E}
+\addConstraint{\sum_{v \in S} \sum_{w \in S} f_{(v,w)}^d}{\leq |S| -1,\quad \label{eq:SingleAgentF}}{\forall\; S \subset V,\ \forall\; d \in \Theta}
+\addConstraint{f_e^{(o,t)}}{\in \{0,1\},\quad \label{eq:SingleAgentG}}{\forall\ e \in E,\ \forall (o,t)\in \Theta}
+\addConstraint{u_e}{\in \{0,1\},\quad}{\forall\; e \in E}
 \end{mini!}
 
 Constraint (\ref{eq:SingleAgentB}) ensures that, for any commodity, the flow that enters and leaves transit nodes (neither the origin neither the terminal) is equal.
 
 
 Constraint (\ref{eq:SingleAgentC}), together with (\ref{eq:SingleAgentF}), ensures that any commodity, in case of be send, is completely send and only through and edge from its origin node.
-It could be substituted by:
-\[\sum_{v \in V\setminus\{o\}} f_{(z,v)}^{(o,t)}\leq 1,\quad \forall\ z\in V\setminus\{t\},\ \forall\ (o,t)\in \Theta\]
-To do it would avoid possible sub-tours. This sub-tours could not affect the objective value in any case, but to avoid them seems reasonable.
 
 Constraint (\ref{eq:SingleAgentD}) ensures that none commodity is send from its terminal node. Constraint (\ref{eq:SingleAgentE}) ensures that the capacity of edges is not exceed.
+
+Constraint (\ref{eq:SingleAgentF}) is a subtour elimination constraint.
 
 \end{document}
