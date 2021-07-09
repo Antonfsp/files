@@ -32,7 +32,7 @@ r = 2 # Revenue of satisfying each unit of demand
 
 agents = []
 for i in range(N):
-    agents.append(Agent(i,E,q))
+    agents.append(Agent(i,E,q,c,r))
 
 
 # ----------------------------------------------------------------------------
@@ -42,25 +42,25 @@ for i in range(N):
 for agent in agents:
 
     # Build the model
-    model = samdl.build_no_info_problem(V,E,q,c,r,agent.demands)
+    model = samdl.build_single_agent_model(V,agent.edges,agent.demands)
     # model.print_information()
 
     # Solve the model.
     if model.solve():
-        samdl.print_no_info_solution(model)
-        agent.satisfied_demands, agent.used_edges, agent.unsatisfied_demands, agent.edges_free_capacity = samdl.recover_data_no_info(model,E,agent.demands,q)
-        agent.profit_first_stage = model.objective_value
+        # samdl.print_no_info_solution(model)
+        agent.satisfied_demands, agent.used_edges, agent.unsatisfied_demands, agent.edges_free_capacity = samdl.recover_data_no_info(model,agent.edges,agent.demands)
+        agent.profit_first_stage_partial_cooperation = model.objective_value
     else:
         print("Problem has no solution")
 
 
-    print('Satisfied demands:', agent.satisfied_demands)
-    print('Used edges:', agent.used_edges)
-    print('Unsatisfied demand:', agent.unsatisfied_demands)
-    print('Edges with free capacity:', agent.edges_free_capacity, '\n')
+    # print('Satisfied demands:', agent.satisfied_demands)
+    # print('Used edges:', agent.used_edges)
+    # print('Unsatisfied demand:', agent.unsatisfied_demands)
+    # print('Edges with free capacity:', agent.edges_free_capacity, '\n')
 
 
-# Now we pass to the full cooperation model with leftovers (edges and demands) from each agent. 
+# Now we pass to the partial cooperation model with leftovers (edges and demands) from each agent. 
 # The agents will pay the proportional cost of the fraction of edge capacity they use respect to the total capacity of the edge
 # For this, it will be necessary to keep track of who is the owner of each edge and commodity. 
 # Conflics can happen if a commodity can be routed for multiple paths (always choose shortest 
@@ -70,40 +70,44 @@ for agent in agents:
 
 
 
-# ------ Creating central planner object based in the agents situation
+# ------ Creating central planner object for the PARTIAL COOPERATION scenario
 
-central_planner = CentralizedSystem(agents)
-
-
-
-# ----------------------------------------
-# SOLVING THE FULL COOPERATION MODEL
-# ----------------------------------------
+central_planner = CentralizedSystem(agents,'partial_cooperation')
 
 
-print(central_planner.demands)
-print(central_planner.edges)
+
+# # ----------------------------------------
+# # SOLVING THE PARTIAL COOPERATION MODEL
+# # ----------------------------------------
+
+# print(central_planner.demands)
+# print(central_planner.edges)
 
 # Build the model
-model = cpmdl.build_full_cooperation_problem(N,V,central_planner.edges,q,c,r,central_planner.demands)
-model.print_information()
+model = cpmdl.build_partial_cooperation_model(V,central_planner.edges,central_planner.demands)
+# model.print_information()
 
 # Solve the model.
 if model.solve():
-    cpmdl.print_full_cooperation_solution(model)
-    central_planner.satisfied_demands, central_planner.unsatisfied_demands = cpmdl.recover_data_full_cooperation(model, central_planner.edges, central_planner.demands, q)
+    # cpmdl.print_partial_cooperation_solution(model)
+    central_planner.satisfied_demands = cpmdl.recover_data_partial_cooperation(model, central_planner.edges, central_planner.demands)
 else:
     print("Problem has no solution")
 
 # ------ Recover how much each agent earn in the second stage
 for d in central_planner.satisfied_demands:
-    agents[d[2]].profit_second_stage += agents[d[2]].demands[(d[0],d[1])]*r 
+    agents[d[2]].profit_second_stage_partial_cooperation += agents[d[2]].demands[(d[0],d[1])].units*agents[d[2]].demands[(d[0],d[1])].revenue
     for e in central_planner.satisfied_demands[d]:
         if e[2] != d[2]:
-            price =  agents[d[2]].demands[(d[0],d[1])] * c/q
-            agents[e[2]].profit_second_stage += price
-            agents[d[2]].profit_second_stage -= price
+            price =  agents[d[2]].demands[(d[0],d[1])].units * agents[e[2]].edges[(e[0],e[1])].cost/agents[e[2]].edges[(e[0],e[1])].capacity
+            agents[e[2]].profit_second_stage_partial_cooperation += price
+            agents[d[2]].profit_second_stage_partial_cooperation -= price
+
+
+# ---------------------------------
+# ---- PRINTING RESULTS FROM PARTIAL COOPERATION
+# ---------------------------------
 
 for agent in agents:
-    print(agent.profit_second_stage)
-    print(agent.total_profit)
+    print('Agent %s has earned %s in the first stage and %s in the second stage' % (agent.id,agent.profit_first_stage_partial_cooperation,agent.profit_second_stage_partial_cooperation))
+    print('what makes a total of %s' % agent.total_profit_partial_cooperation)

@@ -6,14 +6,15 @@ Modeling the situation where multiple agents have to decide how to route their f
 
 from docplex.mp.model import Model # For modeling the LP problem and solving it with CPLEX
 import itertools as it
+import classes # Neccesary to use edge namedtuple
 
 # -------------------------------------------------------
-# FUNCTIONS FOR CREATING THE NO INFORMATION MODEL
+# FUNCTIONS FOR CREATING THE SINGLE AGENT MODEL
 # -------------------------------------------------------
 
-def build_no_info_problem(V, E, q, c, r, demands, **kwargs):
+def build_single_agent_model(V, E, demands, **kwargs):
     # Takes as input the nodes, V, the edges, E, q the capacity of the edges, r the revenue per unit of demand, c the cost of each edge and the demands between pairs of nodes
-    mdl = Model('Single agent no info', **kwargs)
+    mdl = Model('Single agent', **kwargs)
 
     # --- decision variables ---
     mdl.f = mdl.binary_var_dict([(edge,demand) for edge in E for demand in demands],name = 'f') # Binary variable indicating if a demand is routed in some edge
@@ -23,17 +24,17 @@ def build_no_info_problem(V, E, q, c, r, demands, **kwargs):
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[1] == z) == mdl.sum(mdl.f[e,d] for e in E if e[0] == z) for d in demands for z in V if z!=d[0] and z!=d[1]) # First constraints: Flow over transit nodes
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] == d[0]) <= 1 for d in demands) # Second constraint: Flow from source can only be one at max   (*)
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] == d[1]) == 0 for d in demands) # Third constraint: Commodities dont flow from terminal to other nodes
-    mdl.add_constraints(mdl.sum(mdl.f[e,d]*demands[d] for d in demands) <= (q * mdl.u[e]) for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
+    mdl.add_constraints(mdl.sum(mdl.f[e,d]*demands[d].units for d in demands) <= (E[e].capacity * mdl.u[e]) for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
     mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] in S and e[1] in S) <= len(S) -1 for S in powerset(V,2) for d in demands) # Subtour elimination constraints
 
     # --- objective ---
-    mdl.demands_revenues = mdl.sum(mdl.sum(mdl.f[e,d]*demands[d]*r for e in E if e[1] == d[1]) for d in demands)
+    mdl.demands_revenues = mdl.sum(mdl.sum(mdl.f[e,d]*demands[d].units*demands[d].revenue for e in E if e[1] == d[1]) for d in demands)
     mdl.add_kpi(mdl.demands_revenues, "Demands revenue")
-    mdl.edges_costs = mdl.sum(mdl.u[e]*c for e in E)
+    mdl.edges_costs = mdl.sum(mdl.u[e]*E[e].cost for e in E)
     mdl.add_kpi(mdl.edges_costs, "Edges costs")
     mdl.profit = mdl.demands_revenues - mdl.edges_costs
     mdl.add_kpi(mdl.profit, 'Profit agent')
-    mdl.free_capacity = mdl.sum(q - mdl.sum(mdl.f[e,d]*demands[d] for d in demands) for e in E)
+    mdl.free_capacity = mdl.sum(E[e].capacity - mdl.sum(mdl.f[e,d]*demands[d].units for d in demands) for e in E)
     mdl.add_kpi(mdl.free_capacity, 'Free capacity')
     mdl.maximize_static_lex([mdl.profit, mdl.free_capacity])
     # mdl.maximize(mdl.profit)
@@ -48,7 +49,7 @@ def print_no_info_solution(mdl):
     print("* Total edges costs=%g" % mdl.edges_costs.solution_value, '\n')
 
 
-def recover_data_no_info(mdl,E,demands,q):
+def recover_data_no_info(mdl,E,demands):
     active_edges = {e:0 for e in E if mdl.u[e].solution_value>0.9} # We use >0.9 because sometimes CPLEX can say the value is 0.99999, even if it is 1
     edges_free_capacity = {}  
     active_flow= [flow_var for flow_var in [(edge,demand) for edge in E for demand in demands] if mdl.f[flow_var].solution_value>0.9]
@@ -71,16 +72,16 @@ def recover_data_no_info(mdl,E,demands,q):
     # We assign to each edge, its used capacity
     for d in served_demands:
         for e in served_demands[d]:
-            active_edges[e] += demands[d]
+            active_edges[e] += demands[d].units
 
     # We get dictionary of demands of the agent which are not served (and are different to 0)
     for d in demands:
-        if d not in served_demands and demands[d] != 0:
+        if d not in served_demands and demands[d].units != 0:
             unserved_demands[d] = demands[d]
 
     for e in active_edges:
-        if active_edges[e] < q:
-            edges_free_capacity[e] = q - active_edges[e]
+        if active_edges[e] < E[e].capacity:
+            edges_free_capacity[e] = classes.Edge(E[e].capacity - active_edges[e], E[e].cost)
 
     return served_demands, active_edges, unserved_demands, edges_free_capacity
 
