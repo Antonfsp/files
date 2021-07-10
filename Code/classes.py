@@ -29,16 +29,16 @@ class Agent:
         self.edges_free_capacity = None
         self.profit_first_stage_partial_cooperation = 0
         self.profit_second_stage_partial_cooperation = 0
-        self.profit_first_stage_full_cooperation = 0
-        self.profit_second_stage_full_cooperation = 0
+        self.profit_first_stage_partial2_cooperation = 0
+        self.profit_second_stage_partial2_cooperation = 0
 
     @property
     def total_profit_partial_cooperation(self):
         return self.profit_first_stage_partial_cooperation + self.profit_second_stage_partial_cooperation
 
     @property
-    def total_profit_full_cooperation(self):
-        return self.profit_first_stage_full_cooperation + self.profit_second_stage_full_cooperation
+    def total_profit_partial2_cooperation(self):
+        return self.profit_first_stage_partial2_cooperation + self.profit_second_stage_partial2_cooperation
 
 
 # --------------------------------------
@@ -52,6 +52,7 @@ class CentralizedSystem:
         self.edges = {}
         self.satisfied_demands= None
         self.unsatisfied_demands = None
+        self.used_edges = None
 
         self.create_demands_set(AGENTS,TYPE_COOPERATION)
         self.create_edges_set(AGENTS, TYPE_COOPERATION)
@@ -62,7 +63,7 @@ class CentralizedSystem:
             for i in agents:
                 for d in i.unsatisfied_demands:
                     self.demands[(d[0],d[1],i.id)] = i.unsatisfied_demands[d]
-        elif type_cooperation == 'full_cooperation':
+        elif type_cooperation == 'partial2_cooperation' or type_cooperation == 'full_cooperation':
             for i in agents:
                 for d in i.demands:
                     self.demands[(d[0],d[1],i.id)] = i.demands[d]
@@ -72,8 +73,13 @@ class CentralizedSystem:
             for i in agents:
                 for e in i.edges_free_capacity:
                     self.edges[(e[0],e[1],i.id)] = i.edges_free_capacity[e]
-        elif type_cooperation == 'full_cooperation':
+        elif type_cooperation == 'partial2_cooperation':
             for i in agents:
                 for e in i.used_edges:
                     self.edges[(e[0],e[1],i.id)] = i.edges[e]
+        elif type_cooperation == 'full_cooperation':
+            for i in agents:
+                for e in i.edges:
+                    self.edges[(e[0],e[1],i.id)] = i.edges[e]
+
         
