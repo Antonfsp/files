@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  8 JUL 2021 12:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  12 JUL 2021 16:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/full_cooperation.tex"
-(/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/full_cooperation.tex
+**"/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/central planner.tex"
+(/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/central planner.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -147,8 +147,8 @@ Package: xparse 2020-02-14 L3 Experimental document command parser
 \l__xparse_v_nesting_int=\count196
 )
 \widthInit=\skip56
-) (/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.aux)
-\openout1 = `full_cooperation.aux'.
+) (/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.aux)
+\openout1 = `"central planner.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -212,25 +212,25 @@ Overfull \hbox (27.54924pt too wide) detected at line 16
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (27.54924pt too wide) detected at line 38
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (27.54924pt too wide) detected at line 61
 []
  []
 
-[2] (/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.aux) ) 
+[3] (/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.aux) ) 
 Here is how much of TeX's memory you used:
- 3904 strings out of 482503
- 61702 string characters out of 5947228
- 308885 words of memory out of 5000000
- 18935 multiletter control sequences out of 15000+600000
+ 3911 strings out of 482503
+ 61812 string characters out of 5947228
+ 316949 words of memory out of 5000000
+ 18942 multiletter control sequences out of 15000+600000
  534345 words of font info for 33 fonts, out of 8000000 for 9000
  398 hyphenation exceptions out of 8191
- 43i,16n,39p,887b,304s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,16n,39p,886b,304s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.pdf" (2 pages, 97280 bytes).
+Output written on "/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.pdf" (3 pages, 99520 bytes).
 PDF statistics:
- 51 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 54 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

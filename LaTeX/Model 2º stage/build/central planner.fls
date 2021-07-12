@@ -3,8 +3,8 @@ INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/full_cooperation.tex
-OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.log
+INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/central planner.tex
+OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
@@ -51,9 +51,9 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.aux
-INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.aux
-OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.aux
+INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.aux
+INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.aux
+OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.aux
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
@@ -84,9 +84,9 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.pdf
+OUTPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.pdf
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
-INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/full_cooperation.aux
+INPUT /home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Model 2º stage/build/central planner.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
