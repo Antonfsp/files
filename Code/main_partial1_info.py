@@ -49,7 +49,7 @@ for agent in agents:
     if model.solve():
         # samdl.print_no_info_solution(model)
         agent.satisfied_demands, agent.used_edges, agent.unsatisfied_demands, agent.edges_free_capacity = samdl.recover_data_no_info(model,agent.edges,agent.demands)
-        agent.profit_first_stage_partial_cooperation = model.objective_value
+        agent.payoff_no_cooperation = model.objective_value
     else:
         print("Problem has no solution")
 
@@ -60,7 +60,7 @@ for agent in agents:
     # print('Edges with free capacity:', agent.edges_free_capacity, '\n')
 
 
-# Now we pass to the partial cooperation model with leftovers (edges and demands) from each agent. 
+# Now we pass to the partial1 cooperation model with leftovers (edges and demands) from each agent. 
 # The agents will pay the proportional cost of the fraction of edge capacity they use respect to the total capacity of the edge
 # For this, it will be necessary to keep track of who is the owner of each edge and commodity. 
 # Conflics can happen if a commodity can be routed for multiple paths (always choose shortest 
@@ -72,42 +72,45 @@ for agent in agents:
 
 # ------ Creating central planner object for the PARTIAL COOPERATION scenario
 
-central_planner = CentralizedSystem(agents,'partial_cooperation')
+central_planner = CentralizedSystem(agents,'partial1_cooperation')
 
 
 
 # # ----------------------------------------
-# # SOLVING THE PARTIAL COOPERATION MODEL
+# # SOLVING THE PARTIAL1 COOPERATION MODEL
 # # ----------------------------------------
 
 # print(central_planner.demands)
 # print(central_planner.edges)
 
 # Build the model
-model = cpmdl.build_partial_cooperation_model(V,central_planner.edges,central_planner.demands)
+model = cpmdl.build_cooperation_model(V,central_planner.edges,central_planner.demands,'partial1_cooperation')
 # model.print_information()
 
 # Solve the model.
 if model.solve():
-    # cpmdl.print_partial_cooperation_solution(model)
-    central_planner.satisfied_demands = cpmdl.recover_data_partial_cooperation(model, central_planner.edges, central_planner.demands)
+    cpmdl.print_cooperation_solution(model)
+    central_planner.satisfied_demands = cpmdl.recover_data_cooperation(model, central_planner.edges, central_planner.demands,'partial1_cooperation')
+    
+    # ------ Recover how much each agent earn in the second stage
+    for d in central_planner.satisfied_demands:
+        agents[d[2]].payoff_cooperation += agents[d[2]].demands[(d[0],d[1])].units*agents[d[2]].demands[(d[0],d[1])].revenue
+        for e in central_planner.satisfied_demands[d]:
+            if e[2] != d[2]:
+                side_payment =  agents[d[2]].demands[(d[0],d[1])].units * agents[e[2]].edges[(e[0],e[1])].cost/agents[e[2]].edges[(e[0],e[1])].capacity
+                agents[e[2]].payoff_cooperation += side_payment
+                agents[d[2]].payoff_cooperation -= side_payment
+
+    # ---------------------------------
+    # ---- PRINTING RESULTS FROM PARTIAL1 COOPERATION
+    # ---------------------------------
+
+    for agent in agents:
+        print('Agent %s has earned %s without collaborating and %s with the collaboration' % (agent.id,agent.payoff_no_cooperation,agent.payoff_cooperation))
+        print('what makes a total of %s' % agent.total_payoff('partial1_cooperation'))
+
 else:
     print("Problem has no solution")
 
-# ------ Recover how much each agent earn in the second stage
-for d in central_planner.satisfied_demands:
-    agents[d[2]].profit_second_stage_partial_cooperation += agents[d[2]].demands[(d[0],d[1])].units*agents[d[2]].demands[(d[0],d[1])].revenue
-    for e in central_planner.satisfied_demands[d]:
-        if e[2] != d[2]:
-            price =  agents[d[2]].demands[(d[0],d[1])].units * agents[e[2]].edges[(e[0],e[1])].cost/agents[e[2]].edges[(e[0],e[1])].capacity
-            agents[e[2]].profit_second_stage_partial_cooperation += price
-            agents[d[2]].profit_second_stage_partial_cooperation -= price
 
 
-# ---------------------------------
-# ---- PRINTING RESULTS FROM PARTIAL COOPERATION
-# ---------------------------------
-
-for agent in agents:
-    print('Agent %s has earned %s in the first stage and %s in the second stage' % (agent.id,agent.profit_first_stage_partial_cooperation,agent.profit_second_stage_partial_cooperation))
-    print('what makes a total of %s' % agent.total_profit_partial_cooperation)

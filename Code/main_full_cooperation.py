@@ -49,7 +49,7 @@ for agent in agents:
     if model.solve():
         # samdl.print_no_info_solution(model)
         agent.satisfied_demands, agent.used_edges, agent.unsatisfied_demands, agent.edges_free_capacity = samdl.recover_data_no_info(model,agent.edges,agent.demands)
-        agent.profit_first_stage_partial_cooperation = model.objective_value
+        agent.payoff_no_cooperation = model.objective_value
     else:
         print("Problem has no solution")
 
@@ -73,11 +73,11 @@ for agent in agents:
 # --- MODEL WITH full COOPERATION
 # -------------------------------------------------------------
 
-full_cooperation_planner = CentralizedSystem(agents,'full_cooperation')
+central_planner = CentralizedSystem(agents,'full_cooperation')
 
 agents_minimal_profit = []
 for agent in agents:
-    agents_minimal_profit.append(agent.profit_first_stage_partial_cooperation)
+    agents_minimal_profit.append(agent.payoff_no_cooperation)
 
 # print(agents_minimal_profit)
 
@@ -85,33 +85,33 @@ for agent in agents:
 # SOLVING THE PARTIAL COOPERATION MODEL
 # ----------------------------------------
 
-# print(full_cooperation_planner.demands)
-# print(full_cooperation_planner.edges)
+# print(central_planner.demands)
+# print(central_planner.edges)
 
 
 
 # Build the model
-model = cpmdl.build_full_cooperation_model(N,V,full_cooperation_planner.edges,full_cooperation_planner.demands,agents_minimal_profit)
+model = cpmdl.build_cooperation_model(V,central_planner.edges,central_planner.demands,'full_cooperation',agents_minimal_profit)
 # model.print_information()
 
 # # Solve the model.
 if model.solve():
-      cpmdl.print_full_cooperation_solution(model)
-      full_cooperation_planner.satisfied_demands, full_cooperation_planner.used_edges = cpmdl.recover_data_full_cooperation(model, full_cooperation_planner.edges, full_cooperation_planner.demands)
+      cpmdl.print_cooperation_solution(model)
+      central_planner.satisfied_demands, central_planner.used_edges = cpmdl.recover_data_cooperation(model, central_planner.edges, central_planner.demands,'full_cooperation')
 else:
     print("Problem has no solution")
 
 # ------ Recover how much each agent earn in the second stage
-for d in full_cooperation_planner.satisfied_demands:
-    agents[d[2]].profit_second_stage_partial2_cooperation += agents[d[2]].demands[(d[0],d[1])].units*agents[d[2]].demands[(d[0],d[1])].revenue
-    for e in full_cooperation_planner.satisfied_demands[d]:
+for d in central_planner.satisfied_demands:
+    agents[d[2]].payoff_cooperation += agents[d[2]].demands[(d[0],d[1])].units*agents[d[2]].demands[(d[0],d[1])].revenue
+    for e in central_planner.satisfied_demands[d]:
         if e[2] != d[2]:
             price =  agents[d[2]].demands[(d[0],d[1])].units * agents[e[2]].edges[(e[0],e[1])].cost/agents[e[2]].edges[(e[0],e[1])].capacity
-            agents[e[2]].profit_second_stage_partial2_cooperation += price
-            agents[d[2]].profit_second_stage_partial2_cooperation -= price
+            agents[e[2]].payoff_cooperation += price
+            agents[d[2]].payoff_cooperation -= price
 
-for e in full_cooperation_planner.used_edges:
-    agents[e[2]].profit_second_stage_partial2_cooperation -= full_cooperation_planner.edges[e].cost
+for e in central_planner.used_edges:
+    agents[e[2]].payoff_cooperation -= central_planner.edges[e].cost
 
 
 # ---------------------------------
@@ -120,5 +120,4 @@ for e in full_cooperation_planner.used_edges:
 
 # Need to revise how the profit of each stage is served. Attributes of AGENT class doesnt make sense
 for agent in agents:
-     print('Agent %s has earned %s in the first stage and %s in the second stage' % (agent.id,agent.profit_first_stage_partial2_cooperation,agent.profit_second_stage_partial2_cooperation))
-     print('what makes a total of %s' % agent.total_profit_partial2_cooperation)
+     print('Agent %s would have earned %s without cooperation, and would earn %s with cooperation' % (agent.id,agent.payoff_no_cooperation,agent.total_payoff('full_cooperation')))

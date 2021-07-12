@@ -53,8 +53,8 @@ def recover_data_no_info(mdl,E,demands):
     active_edges = {e:0 for e in E if mdl.u[e].solution_value>0.9} # We use >0.9 because sometimes CPLEX can say the value is 0.99999, even if it is 1
     edges_free_capacity = {}  
     active_flow= [flow_var for flow_var in [(edge,demand) for edge in E for demand in demands] if mdl.f[flow_var].solution_value>0.9]
-    served_demands = {d[1]:None for d in active_flow} # Dictionary with the satisfied demands as keys
-    unserved_demands = {}
+    served_demands = {d[1]:None for d in active_flow} # Dictionary with the served demands as keys
+    unserved_demands = {} # Dictionary to store unserved demands
   
     # We assign to each satisfied demand its proper flow from origin to terminal
     for d in served_demands:
@@ -79,9 +79,10 @@ def recover_data_no_info(mdl,E,demands):
         if d not in served_demands and demands[d].units != 0:
             unserved_demands[d] = demands[d]
 
+    # Dictionary with active edges with free (not used) capacity
     for e in active_edges:
         if active_edges[e] < E[e].capacity:
-            edges_free_capacity[e] = classes.Edge(E[e].capacity - active_edges[e], E[e].cost)
+            edges_free_capacity[e] = classes.Edge(E[e].capacity - active_edges[e], E[e].cost,E[e].original_capacity)
 
     return served_demands, active_edges, unserved_demands, edges_free_capacity
 
