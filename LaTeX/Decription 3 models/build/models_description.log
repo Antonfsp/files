@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  12 JUL 2021 17:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  13 JUL 2021 13:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -119,13 +119,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Here is how much of TeX's memory you used:
  1534 strings out of 482503
  20364 string characters out of 5947228
- 259227 words of memory out of 5000000
+ 258227 words of memory out of 5000000
  16640 multiletter control sequences out of 15000+600000
  535555 words of font info for 37 fonts, out of 8000000 for 9000
  398 hyphenation exceptions out of 8191
- 30i,15n,31p,371b,203s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,17n,31p,371b,203s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on "/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Decription 3 models/build/models_description.pdf" (5 pages, 124877 bytes).
+Output written on "/home/antonfsp/Documentos/Master Maastricht/Thesis/files/LaTeX/Decription 3 models/build/models_description.pdf" (5 pages, 128243 bytes).
 PDF statistics:
  64 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream

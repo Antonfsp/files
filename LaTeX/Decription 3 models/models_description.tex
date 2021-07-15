@@ -8,26 +8,31 @@
 
 \section{Problem description}
 
-Let $N=\{1,...,n\}$ be a set of players. Let $G=(V,E)$ be a complete and direct graph with $V$ and $E$ the sets
+Let $N=\{1,...,n\}$ be a set of agents. Let $G=(V,E)$ be a direct graph with $V$ and $E$ the sets
 of nodes and edges respectively. Each edge $e \in E$ will be noted by a tuple, $e=(v,w,i)$, indicating that it 
-connects the node $v\in V$ with the node $w \in V$ and that his owner is the agent $i\in N$. Note that exist as
-many edge between any pair of nodes as agents. Each edge $e \in E$ will have a capacity $q_e$ and a cost for using it $c_e$.
-The cost of an edge would be payed by his owner if the edge is used, regardless on which fraction of its capacity
-is actually used. Let $\Theta$ be the set of commodities. Each commodity is noted by a tuple, $(o,t,i)$, where $o\in V$ is its origin
-node, $t\in V$ is its destiny node, and $i$ is the agent who owns it. Each commodity $(o,t,i)$ has an integer size, $d_{(o,t,i)}$
+connects the node $v\in V$ with the node $w \in V$ and that his owner is the agent $i\in N$. Note that could exist as
+many edges between a pair of nodes as agents exists. Each edge $e \in E$ has a capacity $q_e$ and a cost for using it, $c_e$.
+
+Let $\Theta$ be the set of commodities. Each commodity is noted by a tuple, $(o,t,i)$, where $o\in V$ is its origin
+node, $t\in V$ its destiny node and $i$ is the agent who owns it. Each commodity $(o,t,i)$ has a size, $d_{(o,t,i)}$
 and an associated revenue $r_{(o,t,i)}$ that its owner earns if the commodity is succesfully delivered from $o$ to $t$.
 
-The commodities are unsplitable, i.e., can not be divided into different edges.
+The commodities are unsplitable, i.e., can not be divided into different edges. The cost of an edge $e \in E$ would be payed 
+by his owner if the edge is used to route any commodity, regardless of who is the owner of the commodity
+or which fraction of its total capacity is effectively used.
 
-We will note by $E^i \subset E$ and $\Theta^i$ the sets of edges and commodities owned by player $i$.
+We will note by $E^i \subset E$ and $\Theta^i\subset \Theta$ the subsets of edges and commodities owned by agent $i$.
 
 
 \subsection{Single agent model}
 
-The objective of each player $i \in N$ is to maximizes his/her payoff by delivering his/her commodities using 
-his/her own edges.
+Lets first introduce the problem for a single agent. The objective of an agent 
+$i \in N$ is to maximize her payoff, by routing her commodities from their origin nodes
+to their terminal nodes through the edges she owns, for what she have to pay the
+activation cost of the edges she end up using and respect their capacities.
 
-Therefore, the problem which player $i\in N$ has to solve can be modeleg as an ILP:
+Thus, the problem which agent $i\in N$ has to solve can be modeled as the following
+ILPm which we will call $P_i$:
 
 
 
@@ -59,15 +64,18 @@ Constraint (\ref{eq:SingleAgentB}) ensures that, for any commodity, the flow tha
 
 Constraints (\ref{eq:SingleAgentC}), together with (\ref{eq:SingleAgentG}), ensures that any commodity, in case of be send, is completely send and only through and edge from its origin node.
 
-Constraint (\ref{eq:SingleAgentD}) ensures that none commodity is send from its terminal node. Constraint (\ref{eq:SingleAgentE}) ensures that the capacity of edges is not exceed.
-
+Constraint (\ref{eq:SingleAgentD}) ensures that none commodity is send from its terminal node. Constraint (\ref{eq:SingleAgentE}) ensures that the capacity of edges is not exceed. It might be unnecessary
 Constraint (\ref{eq:SingleAgentF}) is a subtour elimination constraint.
 
 We will note by $P_i^*$ the optimal solution of $P_i$.
 
 \subsection{Different types of cooperation}
 
-We will consider 3 different types of colaboration between the agents, which will differetiate by 
+In the previous subsection, we have presented the model of the problem when an agent $i\in N$ works independently of the other
+agent in $N$. In this subsection, we present different cooperative mechanisms which the agents
+in $N$ could make use of in order to find synergies among them and increase their payoffs.
+
+e will consider 3 different mechanism of colaboration between the agents. These mechanisms are distinguished from each other on
 the number of decisions that are left to a central planner. 
 
 
@@ -115,9 +123,21 @@ Therefore, the central planner would be solving the following model:
 where $E$ is the set of all the edges, $e$, activated by an agent and with some not used capacity, $q_e$; and 
 $\Theta$ is the set of all the demands that the agent left unserved.
 
-We will note by $\Gamma_1^*$ the optimal solution of  $\Gamma_1$, and by $\Gamma_1^*(i)$ the payoff which obtains
-agent $i$. Thus, the final payoff
-of each agent $i\in N$ when the Partial-1 cooperation is used, is $\Gamma_1^*(i)+P_i^*$
+We will note by $\Gamma_1^*$ the optimal solution of  $\Gamma_1$, and by $\varphi_i(\Gamma_1^*)$ the payoff corresponding to
+agent $i$, with
+
+\begin{align}
+    \begin{split}
+    \varphi_i(\Gamma_1) = & \sum_{(o,t,i)\in \Theta^i} \left[ \sum_{e \in IE^i(o)} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \right. \\
+                          & \left. - \sum_{e'\in \Theta^j \colon j\not = i} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot \frac{c_{e'}}{q_{e'}} \right] + \\
+                          & + \sum_{(o,t,k) \in \Theta \colon k \not = i} \sum_{e'' \in E^i} f_{e''}^{(o,t,k)} \cdot d_{(o,t,k)} \cdot \frac{c_{e''}}{q_{e''}},
+    \end{split}
+\end{align}
+
+for every $i \in N$. Note that the first sum equals the payoff that agent $i$ obtains from each of her demands, i.e., the 
+revenue she obtains from subcessfully serving it minus the cost of the commodity being route through edges of another agents.
+The second sum equals the ``side payments'' that agent $i$ obtains from other agents whose commodities are route through her edges.
+Thus, the final payoff of each agent $i\in N$ when the Partial-1 cooperation is used would be $\varphi_i(\Gamma_1^*)+P_i^*$
 
 
 \subsubsection*{Partial-2 cooperation}
@@ -141,7 +161,7 @@ than what he will optain without cooperation. Therefore, to the model of ``Parti
         &                         & \sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)}              & q_{(o,t,i)}     && \forall\ e \in E, \label{eq:Partial2CooperationE}  \\
         &                         & \sum_{v \in S} \sum_{w \in S} f_{(v,w)}^{(o,t,i)}                     & \leq |S| -1,    && \forall\ S \subset V, \nonumber\\[-1em]
         &                         &                                                                       &                 && \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationF}\\[1em]
-        &                         & \Gamma_2(i)                                                           & \geq P_i^*,     && \forall\ i\in N \label{eq:Partial2CooperationG}\\
+        &                         & \varphi(\Gamma_2(i))                                                  & \geq P_i^*,     && \forall\ i\in N \label{eq:Partial2CooperationG}\\
         &                         & f_e^{(o,t,i)}                                                         & \in \{0,1\},    && \forall\ e \in E,\nonumber\\
         &                         &                                                                       &                 && \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationH}
     \end{alignat}
@@ -160,7 +180,7 @@ smaller than what (s)he would have obtained without cooperation.
 
 \begin{subequations}
     \begin{alignat}{3}
-        &  P_N: \max  & \hspace{22pt} \sum_{(o,t,i)\in \Theta} \sum_{e \in IE(t)}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r - \sum_{e'\in E} u_{e'}\cdot c_{e'} \hspace{40pt} &&   \label{eq:FullCooperationA}
+        &  \Gamma_F: \max  & \hspace{22pt} \sum_{(o,t,i)\in \Theta} \sum_{e \in IE(t)}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r - \sum_{e'\in E} u_{e'}\cdot c_{e'} \hspace{40pt} &&   \label{eq:FullCooperationA}
     \end{alignat}
     \begin{alignat}{3}
         & \text{subject to}       & \sum_{e \in IE(z)} f_e^{(o,t,i)}-\sum_{e' \in OE(z)} f_{e'}^{(o,t,i)} & = 0,                                   && \forall\ z\in V\setminus\{o,t\},\nonumber\\[-1em]
@@ -170,11 +190,23 @@ smaller than what (s)he would have obtained without cooperation.
         &                         & \sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)}                & \leq u_e\cdot q_{(o,t,i)},\hspace{8pt} && \forall\ e \in E, \label{eq:FullCooperationE}  \\
         &                         & \sum_{v \in S} \sum_{w \in S} f_{(v,w)}^{(o,t,i)}                         & \leq |S| -1,                           && \forall\ S \subset V, \nonumber\\[-1em]
         &                         &                                                                           &                                        && \forall\ (o,t,i) \in \Theta, \label{eq:FullCooperationF}\\[1em]
-        &                         & P_N(i)                                                           & \geq P_i^*,     && \forall\ i\in N \label{eq:FullCooperationG}\\
+        &                         & \varphi_i(\Gamma_F)                                                           & \geq P_i^*,     && \forall\ i\in N \label{eq:FullCooperationG}\\
         &                         & f_e^{(o,t,i)}                                                             & \in \{0,1\},                           && \forall\ e \in E,\nonumber\\
         &                         &                                                                           &                                        && \forall\ (o,t,i) \in \Theta, \label{eq:FullCooperationH} \\[1em]  
         &                         &  u_e                                                                      & \in \{0,1\},                           && \forall\ e \in E 
     \end{alignat}
+
+with 
+    \begin{align}
+        \begin{split}
+        \varphi_i(\Gamma_F) = & \sum_{(o,t,i)\in \Theta^i} \left[ \sum_{e \in IE^i(o)} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \right. \\
+                              & \left. - \sum_{e'\in \Theta^j \colon j\not = i} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot \frac{c_{e'}}{q_{e'}} \right] + \\
+                              & + \sum_{(o,t,k) \in \Theta \colon k \not = i} \sum_{e'' \in E^i} f_{e''}^{(o,t,k)} \cdot d_{(o,t,k)} \cdot \frac{c_{e''}}{q_{e''}} -\\
+                              & - \sum_{e \in E^i} u_e \cdot c_e,
+        \end{split}
+    \end{align}
+    
+
 
 \end{subequations}
 
