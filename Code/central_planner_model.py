@@ -2,47 +2,49 @@ from docplex.mp.model import Model # For modeling the LP problem and solving it 
 import itertools as it
 
 
-def build_cooperation_model(V, E, demands, type_cooperation, agents_minimal_profit = None,**kwargs):
-    # Takes as input the the nodes, V, the edges, E, that are tuples (v,w,i) and have some capacity and a cost, the demands between pairs of nodes (which also are tuples (v,w,i) where i is is owner)
+def build_cooperation_model(V, E, commodities, type_cooperation, agents_minimal_profit = None,**kwargs):
+    # Takes as input the the nodes, V, the edges, E, that are tuples (v,w,i) and have some capacity and a cost, the commodities between pairs of nodes (which also are tuples (v,w,i) where i is is owner)
     # the type of cooperation want to be used, and which is the minimal payoff each agent should obtain.
     # In the case type_cooperation if partial1_cooperation, the agents_minimal_rofit doesnt need to be specified
 
     mdl = Model(type_cooperation, **kwargs)
 
     # --- decision variables ---
-    mdl.f = mdl.binary_var_dict([(edge,demand) for edge in E for demand in demands],name = 'f') # Binary variable indicating if a demand is routed in some edge
+    mdl.f = mdl.binary_var_dict([(edge,commodity) for edge in E for commodity in commodities],name = 'f') # Binary variable indicating if a commodity is routed in some edge
     if type_cooperation == 'full_cooperation':
         mdl.u = mdl.binary_var_dict(E,name = 'e') # Binary variable which would indicate if an edge is used or not.
 
 
     # --- constraints ---
-    mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[1] == z) == mdl.sum(mdl.f[e,d] for e in E if e[0]==z) for d in demands for z in V if z!=d[0] and z!=d[1]) # First constraints: Flow over transit nodes
-    mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] == d[0]) <= 1 for d in demands) # Second constraint: Flow from source can only be one at max   (*)
-    mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] == d[1]) == 0 for d in demands) # Third constraint: Commodities dont flow from terminal to other nodes
+    mdl.add_constraints(mdl.sum(mdl.f[e,c] for e in E if e[1] == z) == mdl.sum(mdl.f[e,c] for e in E if e[0]==z) for c in commodities for z in V if z!=c[0] and z!=c[1]) # First constraints: Flow over transit nodes
+    mdl.add_constraints(mdl.sum(mdl.f[e,c] for e in E if e[0] == c[0]) <= 1 for c in commodities) # Second constraint: Flow from source can only be one at max   (*)
+    mdl.add_constraints(mdl.sum(mdl.f[e,c] for e in E if e[0] == c[1]) == 0 for c in commodities) # Third constraint: Commodities dont flow from terminal to other nodes
     
-    if type_cooperation == 'partial1_cooperation' or type_cooperation == 'partial2_cooperation':
-        mdl.add_constraints(mdl.sum(mdl.f[e,d] * demands[d].units for d in demands) <= E[e].capacity for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
+    if type_cooperation == 'partial1_cooperation':
+        mdl.add_constraints(mdl.sum(mdl.f[e,c] * commodities[c].units for c in commodities) <= E[e].free_capacity for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
+    elif type_cooperation == 'partial2_cooperation':
+        mdl.add_constraints(mdl.sum(mdl.f[e,c] * commodities[c].units for c in commodities) <= E[e].original_capacity for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
     elif type_cooperation == 'full_cooperation':
-        mdl.add_constraints(mdl.sum(mdl.f[e,d]*demands[d].units for d in demands) <= (E[e].capacity * mdl.u[e]) for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
+        mdl.add_constraints(mdl.sum(mdl.f[e,c]*commodities[c].units for c in commodities) <= (E[e].original_capacity * mdl.u[e]) for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
     
-    mdl.add_constraints(mdl.sum(mdl.f[e,d] for e in E if e[0] in S and e[1] in S) <= len(S) -1 for S in powerset(V,2) for d in demands) # Subtour elimination constraints
+    mdl.add_constraints(mdl.sum(mdl.f[e,c] for e in E if e[0] in S and e[1] in S) <= len(S) -1 for S in powerset(V,2) for c in commodities) # Subtour elimination constraints
 
     if type_cooperation == 'partial2_cooperation':
-        mdl.add_constraints(mdl.sum(mdl.sum(mdl.f[e,d] * demands[d].units * demands[d].revenue for e in E if e[0] == d[0]) - mdl.sum(mdl.f[e,d] * demands[d].units * (E[e].cost/E[e].original_capacity) for e in E if e[2] != i) for d in demands if d[2] == i) + mdl.sum(mdl.sum(mdl.f[e,d]*demands[d].units*(E[e].cost/E[e].original_capacity) for e in E if e[2] == i) for d in demands if d[2]!= i) >= agents_minimal_profit[i] for i in range(len(agents_minimal_profit))) # Every agent has to earn at least as much as he will win without cooperation
+        mdl.add_constraints(mdl.sum(mdl.sum(mdl.f[e,c] * commodities[c].units * commodities[c].revenue for e in E if e[0] == c[0]) - mdl.sum(mdl.f[e,c] * commodities[c].units * (E[e].cost/E[e].original_capacity) for e in E if e[2] != i) for c in commodities if c[2] == i) + mdl.sum(mdl.sum(mdl.f[e,c]*commodities[c].units*(E[e].cost/E[e].original_capacity) for e in E if e[2] == i) for c in commodities if c[2]!= i) >= agents_minimal_profit[i] for i in range(len(agents_minimal_profit))) # Every agent has to earn at least as much as he will win without cooperation
     elif type_cooperation == 'full_cooperation':
-        mdl.add_constraints(mdl.sum(mdl.sum(mdl.f[e,d] * demands[d].units * demands[d].revenue for e in E if e[0] == d[0]) - mdl.sum(mdl.f[e,d] * demands[d].units * (E[e].cost/E[e].original_capacity) for e in E if e[2] != i) for d in demands if d[2] == i) + mdl.sum(mdl.sum(mdl.f[e,d]*demands[d].units*(E[e].cost/E[e].original_capacity) for e in E if e[2] == i) for d in demands if d[2]!= i) - mdl.sum(mdl.u[e]*E[e].cost for e in E if e[2] == i) >= agents_minimal_profit[i] for i in range(len(agents_minimal_profit))) # Every agent has to earn at least as much as he will win without cooperation
+        mdl.add_constraints(mdl.sum(mdl.sum(mdl.f[e,c] * commodities[c].units * commodities[c].revenue for e in E if e[0] == c[0]) - mdl.sum(mdl.f[e,c] * commodities[c].units * (E[e].cost/E[e].original_capacity) for e in E if e[2] != i) for c in commodities if c[2] == i) + mdl.sum(mdl.sum(mdl.f[e,c]*commodities[c].units*(E[e].cost/E[e].original_capacity) for e in E if e[2] == i) for c in commodities if c[2]!= i) - mdl.sum(mdl.u[e]*E[e].cost for e in E if e[2] == i) >= agents_minimal_profit[i] for i in range(len(agents_minimal_profit))) # Every agent has to earn at least as much as he will win without cooperation
 
     # --- objective ---
     if type_cooperation == 'partial1_cooperation' or type_cooperation == 'partial2_cooperation':
-        mdl.revenues = mdl.sum(mdl.sum(mdl.f[e,d] * demands[d].units * demands[d].revenue for e in E if e[1] == d[1]) - mdl.sum(mdl.f[e,d] * demands[d].units * E[e].cost/E[e].original_capacity for e in E if e[2]!=d[2]) for d in demands)
-        mdl.add_kpi(mdl.revenues, "Demands revenue")
+        mdl.revenues = mdl.sum(mdl.sum(mdl.f[e,c] * commodities[c].units * commodities[c].revenue for e in E if e[1] == c[1]) - mdl.sum(mdl.f[e,c] * commodities[c].units * E[e].cost/E[e].original_capacity for e in E if e[2]!=c[2]) for c in commodities)
+        mdl.add_kpi(mdl.revenues, "commodities revenue")
         mdl.maximize(mdl.revenues)
     elif type_cooperation == 'full_cooperation':
-        mdl.demands_revenues = mdl.sum(mdl.sum(mdl.f[e,d]*demands[d].units*demands[d].revenue for e in E if e[1] == d[1]) for d in demands)
-        mdl.add_kpi(mdl.demands_revenues, "Demands revenue")
+        mdl.commodities_revenues = mdl.sum(mdl.sum(mdl.f[e,c]*commodities[c].units*commodities[c].revenue for e in E if e[1] == c[1]) for c in commodities)
+        mdl.add_kpi(mdl.commodities_revenues, "commodities revenue")
         mdl.edges_costs = mdl.sum(mdl.u[e]*E[e].cost for e in E)
         mdl.add_kpi(mdl.edges_costs, "Edges costs")
-        mdl.profit = mdl.demands_revenues - mdl.edges_costs
+        mdl.profit = mdl.commodities_revenues - mdl.edges_costs
         mdl.add_kpi(mdl.profit, 'Profit agent')
         mdl.maximize(mdl.profit)
 
@@ -53,39 +55,35 @@ def print_cooperation_solution(mdl):
     obj = mdl.objective_value
     print("* Cooperation solved with objective: {:g}".format(obj))
 
-
-
-
-
-def recover_data_cooperation(mdl,E,demands,type_cooperation):
+def recover_data_cooperation(mdl,central_planner,type_cooperation):
     
-    active_flow= [flow_var for flow_var in [(edge,demand) for edge in E for demand in demands] if mdl.f[flow_var].solution_value>0.9]
-    served_demands = {d[1]:None for d in active_flow} # Dictionary with the satisfied demands as keys
+    active_flow= [flow_var for flow_var in [(edge,commodity) for edge in central_planner.edges for commodity in central_planner.commodities] if mdl.f[flow_var].solution_value>0.9]
+    central_planner.served_commodities = {a[1] for a in active_flow} # Dictionary with the satisfied commodities as keys
   
-    # We assign to each satisfied demand its proper flow from origin to terminal
-    for d in served_demands:
-        used_edges = [flow_var[0] for flow_var in active_flow if flow_var[1] == d]
-        prev = d[0]
-        path = []
-        while(prev != d[1]):
-            for e in used_edges:
-                if e[0] == prev:
-                    path.append(e)
-                    used_edges.remove(e)
-                    prev = e[1]
-        served_demands[d] = path
+    # We assign to each satisfied commodity its proper flow from origin to terminal
+    for c in central_planner.served_commodities:
+        central_planner.commodities[c].route = {flow_var[0] for flow_var in active_flow if flow_var[1] == c}
+        # If the order is necessary. I dont think so
+        # used_edges = [flow_var[0] for flow_var in active_flow if flow_var[1] == c]
+        # prev = c[0]
+        # path = []
+        # while(prev != c[1]):
+        #     for e in used_edges:
+        #         if e[0] == prev:
+        #             path.append(e)
+        #             used_edges.remove(e)
+        #             prev = e[1]
+        # served_commodities[c] = path
 
-    if type_cooperation == 'partial1_cooperation' or type_cooperation == 'partial2_cooperation':
-        return served_demands
     
-    elif type_cooperation == 'full_cooperation':
-        active_edges = {e:0 for e in E if mdl.u[e].solution_value>0.9} # We use >0.9 because sometimes CPLEX can say the value is 0.99999, even if it is 1
+    if type_cooperation == 'full_cooperation':
+        central_planner.active_edges = {e for e in central_planner.edges if mdl.u[e].solution_value>0.9} # We use >0.9 because sometimes CPLEX can say the value is 0.99999, even if it is 1
         # We assign to each edge, its used capacity
-        for d in served_demands:
-            for e in served_demands[d]:
-                active_edges[e] += demands[d].units
+        for c in central_planner.served_commodities:
+            for e in central_planner.commodities[c].route:
+                central_planner.edges[e].free_capacity -= central_planner.commodities[c].units
 
-        return served_demands, active_edges
+
 # -----------------------------------
 # Recipe to get subsets of a set
 # -----------------------------------
