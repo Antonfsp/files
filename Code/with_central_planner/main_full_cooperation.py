@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt #For plotting
 import time # Control running time
 
 # Own scripts
-from classes import Agent, CentralizedSystem
+from classes import Agent, CentralizedSystem, Commodity, Edge
 import single_agent_model as samdl
 import central_planner_model as cpmdl
 
@@ -18,21 +18,47 @@ np.random.seed(3)
 
 start_time = time.time()
 
-N = 2 # Number of agents
-V = {0:(0,0), 1:(1,0), 2:(1,1), 3:(0,1)} # Dictionary with the nodes and their location
-E = {(i,j) for j in range(len(V)) for i in range(len(V)) if i!=j} # Dictionary with all possible edges between nodes
-# We use dictionaries for V and E because it is handy when creting the model with Model()
-q = 5 # Capacity of each edge is q
-c = 3 # Cost of stablishing one edge is 3
-#commodities = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random commodities between pairs of nodes
-r = 2 # Revenue of satisfying each unit of demand
+# N = 2 # Number of agents
+# V = {0:(0,0), 1:(1,0), 2:(1,1), 3:(0,1)} # Dictionary with the nodes and their location
+# E = {(i,j) for j in range(len(V)) for i in range(len(V)) if i!=j} # Dictionary with all possible edges between nodes
+# # We use dictionaries for V and E because it is handy when creting the model with Model()
+# q = 5 # Capacity of each edge is q
+# c = 3 # Cost of stablishing one edge is 3
+# #commodities = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random commodities between pairs of nodes
+# r = 2 # Revenue of satisfying each unit of demand
 
+
+file = open('instance.txt','r')
+lines_list = file.readlines()
+N, V = (int(x) for x in lines_list[0].split())
+V = {i for i in range(V)}
+commodities = {i:{} for i in range(N)}
+edges = {i:{} for i in range(N)}
+
+for line in lines_list[1:]:
+    if line.rstrip() == 'Agent':
+        prev = 'Agent'
+    elif line.rstrip() == 'Commodities':
+        prev = 'Commodities'
+    elif line.rstrip() == 'Edges':
+        prev = 'Edges'
+    else:
+        if prev == 'Agent':
+            owner = int(line)
+        if prev == 'Commodities':
+            temp = [int(x) for x in line.split()]
+            commodities[owner][(temp[0],temp[1],temp[2])] = Commodity(temp[0],temp[1],temp[2],temp[3],temp[4])
+        if prev == 'Edges':
+            temp = [int(x) for x in line.split()]
+            edges[owner][(temp[0],temp[1],temp[2])] = Edge(temp[0],temp[1],temp[2],temp[3],temp[4])
 
 # ------ Creating the agents objects ----------
 
 agents_list = []
 for i in range(N):
-    agents_list.append(Agent(i,E,q,c,r))
+    agents_list.append(Agent(i,edges[i],commodities[i]))
+
+
 
 
 # ----------------------------------------------------------------------------

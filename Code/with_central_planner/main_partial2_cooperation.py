@@ -4,7 +4,7 @@ import numpy as np # Basic functions, as random
 import matplotlib.pyplot as plt #For plotting
 
 # Own scripts
-from classes import Agent, CentralizedSystem
+from classes import Agent, CentralizedSystem, Commodity, Edge
 import single_agent_model as samdl
 import central_planner_model as cpmdl
 
@@ -15,24 +15,47 @@ import central_planner_model as cpmdl
 #Setting a seed
 np.random.seed(1)
 
-N = 2 # Number of agents
-V = {0:(0,0), 1:(1,0), 2:(1,1), 3:(0,1)} # Dictionary with the nodes and their location
-E = {(i,j) for j in range(len(V)) for i in range(len(V)) if i!=j} # Dictionary with all possible edges between nodes
-# We use dictionaries for V and E because it is handy when creting the model with Model()
-q = 5 # Capacity of each edge is q
-c = 3 # Cost of stablishing one edge is 3
-#commodities = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random commodities between pairs of nodes
-r = 2 # Revenue of satisfying each unit of commodity
+# N = 2 # Number of agents
+# V = {0:(0,0), 1:(1,0), 2:(1,1), 3:(0,1)} # Dictionary with the nodes and their location
+# E = {(i,j) for j in range(len(V)) for i in range(len(V)) if i!=j} # Dictionary with all possible edges between nodes
+# # We use dictionaries for V and E because it is handy when creting the model with Model()
+# q = 5 # Capacity of each edge is q
+# c = 3 # Cost of stablishing one edge is 3
+# #commodities = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random commodities between pairs of nodes
+# r = 2 # Revenue of satisfying each unit of commodity
 
 
 
 
+file = open('instance.txt','r')
+lines_list = file.readlines()
+N, V = (int(x) for x in lines_list[0].split())
+V = {i for i in range(V)}
+commodities = {i:{} for i in range(N)}
+edges = {i:{} for i in range(N)}
+
+for line in lines_list[1:]:
+    if line.rstrip() == 'Agent':
+        prev = 'Agent'
+    elif line.rstrip() == 'Commodities':
+        prev = 'Commodities'
+    elif line.rstrip() == 'Edges':
+        prev = 'Edges'
+    else:
+        if prev == 'Agent':
+            owner = int(line)
+        if prev == 'Commodities':
+            temp = [int(x) for x in line.split()]
+            commodities[owner][(temp[0],temp[1],temp[2])] = Commodity(temp[0],temp[1],temp[2],temp[3],temp[4])
+        if prev == 'Edges':
+            temp = [int(x) for x in line.split()]
+            edges[owner][(temp[0],temp[1],temp[2])] = Edge(temp[0],temp[1],temp[2],temp[3],temp[4])
 
 # ------ Creating the agents objects ----------
 
 agents_list = []
 for i in range(N):
-    agents_list.append(Agent(i,E,q,c,r))
+    agents_list.append(Agent(i,edges[i],commodities[i]))
 
 
 # ----------------------------------------------------------------------------
@@ -48,7 +71,7 @@ for agent in agents_list:
     # Solve the model.
     if model.solve():
         # samdl.print_no_info_solution(model)
-        samdl.recover_data_no_info(model,agent)
+        samdl.recover_data_single_agent(model,agent)
         agent.payoff_no_cooperation = model.objective_value
         agent.payoff_cooperation = - model.edges_costs.solution_value
     else:
@@ -78,7 +101,7 @@ central_planner = CentralizedSystem(agents_list,'partial2_cooperation')
 
 agents_minimal_profit = []
 for agent in agents_list:
-    agents_minimal_profit.append(agent.payoff_cooperation - agent.payoff_cooperation)
+    agents_minimal_profit.append(agent.payoff_no_cooperation - agent.payoff_cooperation)
 
 print(agents_minimal_profit)
 # ----------------------------------------

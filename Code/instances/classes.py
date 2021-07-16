@@ -3,6 +3,7 @@ import copy
 
 
 
+
 # --------------------------------------
 # ---------  COMMODITY CLASS --------------
 # --------------------------------------
@@ -41,8 +42,8 @@ class Agent:
 
     def __init__(self,id,edges,commodities):
         self.id = id
-        self.edges = edges
-        self.commodities = commodities
+        self.commodities = commodities  # Random commodities between pairs of nodes
+        self.edges = edges # Dictionary with each key is an edge, and each edge has a capacity and a cost
         self.served_commodities = {} # List of keys of the demands that are served
         self.unserved_commodities = {} # List of keys of the demands which are not served
         self.active_edges = {} # List of keys of the active edges
@@ -101,7 +102,7 @@ class CentralizedSystem:
     def create_edges_set(self,agents,type_cooperation):
         if type_cooperation == 'partial1_cooperation':
             for i in agents:
-                for e in i.edges_with_capacity:
+                for e in i.edges_free_capacity:
                     self.edges[e] = copy.deepcopy(i.edges[e])
         elif type_cooperation == 'partial2_cooperation':
             for i in agents:
