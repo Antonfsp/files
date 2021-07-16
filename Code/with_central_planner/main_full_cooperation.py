@@ -14,7 +14,7 @@ import central_planner_model as cpmdl
 # -------------------------------------------------------------------------
 
 #Setting a seed
-np.random.seed(1)
+np.random.seed(3)
 
 start_time = time.time()
 
@@ -26,9 +26,6 @@ q = 5 # Capacity of each edge is q
 c = 3 # Cost of stablishing one edge is 3
 #commodities = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random commodities between pairs of nodes
 r = 2 # Revenue of satisfying each unit of demand
-
-
-
 
 
 # ------ Creating the agents objects ----------
@@ -51,7 +48,7 @@ for agent in agents_list:
     # Solve the model.
     if model.solve():
         # samdl.print_no_info_solution(model)
-        samdl.recover_data_no_info(model,agent)
+        samdl.recover_data_single_agent(model,agent)
         agent.payoff_no_cooperation = model.objective_value
     else:
         print("Problem has no solution")

@@ -54,8 +54,7 @@ class Agent:
         # self.used_edges_from_others = None # Dict of the form {(v,w,i):5}, meaning that 5 units of capacity are used in the edge v,w,i, when i != self.id
         # self.commodities_through_others = None # Dict of the form {d:[(v,w,i)]}, meaning that the demand d is routed through the edge (v,w,i)
 
-    @property
-    def share_info(self):
+    def share_edges(self):
         return {e:self.edges[e] for e in self.edges_with_capacity} # A dictionary, not only a list of keys, with the edges that have free capacity
 
     @property
@@ -114,3 +113,7 @@ class CentralizedSystem:
                     self.edges[e] = copy.deepcopy(i.edges[e])
 
         
+class informationPlatform():
+    def __init__(self,agents):
+        self.shared_edges = {i.id:None for i in agents}
+        self.demanded_edges = {(i,j):None for i in agents for j in agents if j !=i}

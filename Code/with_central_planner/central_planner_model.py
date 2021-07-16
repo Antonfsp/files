@@ -12,7 +12,7 @@ def build_cooperation_model(V, E, commodities, type_cooperation, agents_minimal_
     # --- decision variables ---
     mdl.f = mdl.binary_var_dict([(edge,commodity) for edge in E for commodity in commodities],name = 'f') # Binary variable indicating if a commodity is routed in some edge
     if type_cooperation == 'full_cooperation':
-        mdl.u = mdl.binary_var_dict(E,name = 'e') # Binary variable which would indicate if an edge is used or not.
+        mdl.u = mdl.binary_var_dict(E,name = 'u') # Binary variable which would indicate if an edge is used or not.
 
 
     # --- constraints ---

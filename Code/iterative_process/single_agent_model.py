@@ -6,7 +6,6 @@ Modeling the situation where multiple agents have to decide how to route their f
 
 from docplex.mp.model import Model # For modeling the LP problem and solving it with CPLEX
 import itertools as it
-import classes # Neccesary to use edge namedtuple
 
 # -------------------------------------------------------
 # FUNCTIONS FOR CREATING THE SINGLE AGENT MODEL
@@ -18,7 +17,7 @@ def build_single_agent_model(V, E, commodities, **kwargs):
 
     # --- decision variables ---
     mdl.f = mdl.binary_var_dict([(edge,commodity) for edge in E for commodity in commodities],name = 'f') # Binary variable indicating if a commodity is routed in some edge
-    mdl.u = mdl.binary_var_dict(E,name = 'e') # Binary variable which would indicate if an edge is used or not.
+    mdl.u = mdl.binary_var_dict(E,name = 'u') # Binary variable which would indicate if an edge is used or not.
 
     # --- constraints ---
     mdl.add_constraints(mdl.sum(mdl.f[e,c] for e in E if e[1] == z) == mdl.sum(mdl.f[e,c] for e in E if e[0] == z) for c in commodities for z in V if z!=c[0] and z!=c[1]) # First constraints: Flow over transit nodes
@@ -41,7 +40,7 @@ def build_single_agent_model(V, E, commodities, **kwargs):
 
     return mdl
 
-def print_no_info_solution(mdl):
+def print_single_agent_solution(mdl):
     obj = mdl.objective_value
     mdl.report_kpis()
     print("* Single agent model solved with objective: {:g}".format(obj))
@@ -49,7 +48,7 @@ def print_no_info_solution(mdl):
     print("* Total edges costs=%g" % mdl.edges_costs.solution_value, '\n')
 
 
-def recover_data_no_info(mdl,agent):
+def recover_data_single_agent(mdl,agent):
     agent.active_edges = {e for e in agent.edges if mdl.u[e].solution_value>0.9} # We use >0.9 because sometimes CPLEX can say the value is 0.99999, even if it is 1
     active_flow= [flow_var for flow_var in [(edge,commodity) for edge in agent.edges for commodity in agent.commodities] if mdl.f[flow_var].solution_value>0.9]
     
@@ -74,13 +73,12 @@ def recover_data_no_info(mdl,agent):
     for c in agent.served_commodities:
         for e in agent.commodities[c].route:
             agent.edges[e].free_capacity -= agent.commodities[c].units
-            agent.edges[e].assigned_commodities.add(c)
 
     # We get dictionary of commodities of the agent which are not served (and are different to 0)
     agent.unserved_commodities = {c for c in agent.commodities if c not in agent.served_commodities and agent.commodities[c].units != 0}
 
     # Dictionary with active edges with free (not used) capacity
-    agent.edges_free_capacity = {e for e in agent.active_edges if agent.edges[e].free_capacity > 0}
+    agent.edges_with_capacity = {e for e in agent.active_edges if agent.edges[e].free_capacity > 0}
 
 
 # -----------------------------------
