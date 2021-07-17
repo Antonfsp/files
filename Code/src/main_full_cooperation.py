@@ -1,13 +1,12 @@
 
 # Python packages
 import numpy as np # Basic functions, as random 
-import matplotlib.pyplot as plt #For plotting
 import time # Control running time
 
 # Own scripts
-from classes import Agent, CentralizedSystem, Commodity, Edge
-import single_agent_model as samdl
-import central_planner_model as cpmdl
+import lib.classes as cl
+import lib.models as mdls
+import lib.functions as fn
 
 # -------------------------------------------------------------------------
 #  INSTANCE DATA
@@ -28,35 +27,14 @@ start_time = time.time()
 # r = 2 # Revenue of satisfying each unit of demand
 
 
-file = open('instance.txt','r')
-lines_list = file.readlines()
-N, V = (int(x) for x in lines_list[0].split())
-V = {i for i in range(V)}
-commodities = {i:{} for i in range(N)}
-edges = {i:{} for i in range(N)}
+N, V, commodities, edges = fn.read_data('new_instance')
 
-for line in lines_list[1:]:
-    if line.rstrip() == 'Agent':
-        prev = 'Agent'
-    elif line.rstrip() == 'Commodities':
-        prev = 'Commodities'
-    elif line.rstrip() == 'Edges':
-        prev = 'Edges'
-    else:
-        if prev == 'Agent':
-            owner = int(line)
-        if prev == 'Commodities':
-            temp = [int(x) for x in line.split()]
-            commodities[owner][(temp[0],temp[1],temp[2])] = Commodity(temp[0],temp[1],temp[2],temp[3],temp[4])
-        if prev == 'Edges':
-            temp = [int(x) for x in line.split()]
-            edges[owner][(temp[0],temp[1],temp[2])] = Edge(temp[0],temp[1],temp[2],temp[3],temp[4])
 
 # ------ Creating the agents objects ----------
 
 agents_list = []
 for i in range(N):
-    agents_list.append(Agent(i,edges[i],commodities[i]))
+    agents_list.append(cl.Agent(i,edges[i],commodities[i]))
 
 
 
@@ -68,62 +46,41 @@ for i in range(N):
 for agent in agents_list:
 
     # Build the model
-    model = samdl.build_single_agent_model(V,agent.edges,agent.commodities)
+    model = mdls.build_single_agent_model(V,agent.edges,agent.commodities)
     # model.print_information()
 
     # Solve the model.
     if model.solve():
-        # samdl.print_no_info_solution(model)
-        samdl.recover_data_single_agent(model,agent)
+        # fn.print_no_info_solution(model)
+        fn.recover_data_single_agent(model,agent)
         agent.payoff_no_cooperation = model.objective_value
     else:
         print("Problem has no solution")
-
-
-    # print('served commodities:', agent.served_commodities)
-    # print('Used edges:', agent.active_edges)
-    # print('Unserved demand:', agent.unserved_commodities)
-    # print('Edges with free capacity:', agent.edges_free_capacity, '\n')
-
-
-# Now we pass to the partial cooperation model with leftovers (edges and commodities) from each agent. 
-# The agents will pay the proportional cost of the fraction of edge capacity they use respect to the total capacity of the edge
-# For this, it will be necessary to keep track of who is the owner of each edge and commodity. 
-# Conflics can happen if a commodity can be routed for multiple paths (always choose shortest 
-# path as it will make the owner to pay less). Also if multiple commodities (but not all together) can
-# be route in the same edge. This could be solved including some kind of extra payment for routing the
-# commodity which doesn't fit. Also a commodity could be route at the same price for the customer, at different paths. How to choose?
 
 
 # -------------------------------------------------------------
 # --- MODEL WITH full COOPERATION
 # -------------------------------------------------------------
 
-central_planner = CentralizedSystem(agents_list,'full_cooperation')
+central_planner = cl.CentralizedSystem(agents_list,'full_cooperation')
 
 agents_minimal_profit = []
 for agent in agents_list:
     agents_minimal_profit.append(agent.payoff_no_cooperation)
 
-# print(agents_minimal_profit)
 
 # ----------------------------------------
 # SOLVING THE PARTIAL COOPERATION MODEL
 # ----------------------------------------
 
-# print(central_planner.commodities)
-# print(central_planner.edges)
-
-
-
 # Build the model
-model = cpmdl.build_cooperation_model(V,central_planner.edges,central_planner.commodities,'full_cooperation',agents_minimal_profit)
+model = mdls.build_cooperation_model(V,central_planner.edges,central_planner.commodities,'full_cooperation',agents_minimal_profit)
 # model.print_information()
 
 # # Solve the model.
 if model.solve():
-    cpmdl.print_cooperation_solution(model)
-    cpmdl.recover_data_cooperation(model, central_planner,'full_cooperation')
+    fn.print_cooperation_solution(model)
+    fn.recover_data_cooperation(model, central_planner,'full_cooperation')
 
     # ------ Recover how much each agent earn in the second stage
     for c in central_planner.served_commodities:
@@ -144,7 +101,6 @@ if model.solve():
     # Need to revise how the profit of each stage is served. Attributes of AGENT class doesnt make sense
     for agent in agents_list:
         print('Agent %s would have earned %s without cooperation, and would earn %s with cooperation' % (agent.id,agent.payoff_no_cooperation,agent.total_payoff('full_cooperation')))
-
 
 else:
     print("Problem has no solution")

@@ -10,9 +10,10 @@ import numpy as np # Basic functions, as random
 import matplotlib.pyplot as plt #For plotting
 
 # Own scripts
-import classes as cl
-import single_agent_model as samdl
-import agent_iterative_model as wimdl
+import lib.classes as cl
+import lib.models as mdls
+import lib.functions as fn
+
 
 # -------------------------------------------------------------------------
 #  INSTANCE DATA
@@ -21,20 +22,24 @@ import agent_iterative_model as wimdl
 #Setting a seed
 np.random.seed(1)
 
-N = 2 # Number of agents
-V = {0:(0,0), 1:(1,0), 2:(1,1), 3:(0,1)} # Dictionary with the nodes and their location
-E = {(i,j) for j in range(len(V)) for i in range(len(V)) if i!=j} # Dictionary with all possible edges between nodes
-# We use dictionaries for V and E because it is handy when creting the model with Model()
-q = 5 # Capacity of each edge is q
-c = 3 # Cost of stablishing one edge is 3
-#commodities = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random commodities between pairs of nodes
-r = 2 # Revenue of satisfying each unit of demand
+# N = 2 # Number of agents
+# V = {0:(0,0), 1:(1,0), 2:(1,1), 3:(0,1)} # Dictionary with the nodes and their location
+# E = {(i,j) for j in range(len(V)) for i in range(len(V)) if i!=j} # Dictionary with all possible edges between nodes
+# # We use dictionaries for V and E because it is handy when creting the model with Model()
+# q = 5 # Capacity of each edge is q
+# c = 3 # Cost of stablishing one edge is 3
+# #commodities = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random commodities between pairs of nodes
+# r = 2 # Revenue of satisfying each unit of demand
+
+
+N, V, commodities, edges = fn.read_data('instance.txt')
+
 
 # ------ Creating the agents objects ----------
 
 agents_list = []
 for i in range(N):
-    agents_list.append(cl.Agent(i,E,q,c,r))
+    agents_list.append(cl.Agent(i,edges[i],commodities[i]))
 
 
 # ----- Creating the information platform ------
@@ -67,12 +72,12 @@ while(iteration<10):
     info_platform.restore_info(agents_list[0])
 
     # Build the model
-    model = wimdl.build_iterative_model(V,agents_list[0],info_platform)
+    model = mdls.build_iterative_model(V,agents_list[0],info_platform)
 
     # Solve the model.
     if model.solve():
-        #wimdl.print_iterative_solution(model)
-        wimdl.recover_data_iterative(model,agents_list[0],info_platform)
+        #fn.print_iterative_solution(model)
+        fn.recover_data_iterative(model,agents_list[0],info_platform)
         agents_list[0].history_solutions.append(cl.Solution(agents_list[0],model))
         agents_list[0].history_solutions[-1].print_data()
     else:
@@ -90,12 +95,12 @@ while(iteration<10):
     info_platform.restore_info(agents_list[1])
 
     # Build the model
-    model = wimdl.build_iterative_model(V,agents_list[1],info_platform)
+    model = mdls.build_iterative_model(V,agents_list[1],info_platform)
 
     # Solve the model.
     if model.solve():
-        #wimdl.print_iterative_solution(model)
-        wimdl.recover_data_iterative(model,agents_list[1],info_platform)
+        #fn.print_iterative_solution(model)
+        fn.recover_data_iterative(model,agents_list[1],info_platform)
         agents_list[1].history_solutions.append(cl.Solution(agents_list[1],model))
         agents_list[1].history_solutions[-1].print_data()
     else:
