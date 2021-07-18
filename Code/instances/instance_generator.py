@@ -11,7 +11,7 @@ import os
 # ---------------------------------------------
 
 # Instance name
-instance_name = 'new_instance'
+instance_name = 'instance_05'
 
 # Number of agents
 N = 2
@@ -21,7 +21,7 @@ V = 4
 # Intervals specifying min and max values for the edges and commodities values
 edges_capacity = [1,10]
 edges_cost = [3,6]
-commodities_revenue = [2,4]
+commodities_revenue = [1,2]
 commodities_units = (1,5)
 
 

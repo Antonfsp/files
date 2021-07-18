@@ -32,13 +32,13 @@ np.random.seed(1)
 # r = 2 # Revenue of satisfying each unit of demand
 
 
-N, V, commodities, edges = fn.read_data('instance.txt')
+N, V, commodities, edges = fn.read_data('instance_05')
 
 
 # ------ Creating the agents objects ----------
 
 agents_list = []
-for i in range(N):
+for i in range(N-1,-1,-1):
     agents_list.append(cl.Agent(i,edges[i],commodities[i]))
 
 
@@ -52,7 +52,7 @@ info_platform = cl.informationPlatform(agents_list)
 # ----------------------------------------------------------------------------
 
 iteration = 0
-while(iteration<10):
+while(iteration<6):
 
     iteration += 1
 

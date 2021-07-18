@@ -27,7 +27,7 @@ start_time = time.time()
 # r = 2 # Revenue of satisfying each unit of demand
 
 
-N, V, commodities, edges = fn.read_data('new_instance')
+N, V, commodities, edges = fn.read_data('instance_05')
 
 
 # ------ Creating the agents objects ----------

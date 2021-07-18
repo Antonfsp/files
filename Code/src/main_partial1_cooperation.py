@@ -24,7 +24,7 @@ np.random.seed(1)
 # #commodities = {agent:{i:np.random.randint(0,q) for i in E} for agent in range(N)} # Random commodities between pairs of nodes
 # r = 2 # Revenue of satisfying each unit of commodity
 
-N, V, commodities, edges = fn.read_data('instance.txt')
+N, V, commodities, edges = fn.read_data('instance_05')
 
 # ------ Creating the agents objects ----------
 

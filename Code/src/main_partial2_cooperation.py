@@ -26,7 +26,7 @@ np.random.seed(1)
 
 
 
-N, V, commodities, edges = fn.read_data('instance.txt')
+N, V, commodities, edges = fn.read_data('instance_05')
 
 # ------ Creating the agents objects ----------
 
