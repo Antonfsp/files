@@ -1,0 +1,15 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{Agarwal2008}
+R.~Agarwal, \"{O}zlem Ergun, Mechanism design for a multicommodity flow game in
+  service network alliances, Operations Research Letters 36~(5) (2008)
+  520--524.
+\newblock \href {https://doi.org/10.1016/j.orl.2008.04.007}
+  {\path{doi:10.1016/j.orl.2008.04.007}}.
+
+\end{thebibliography}
