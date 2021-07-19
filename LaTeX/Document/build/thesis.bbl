@@ -1,15 +1,74 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
 \expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
 \expandafter\ifx\csname href\endcsname\relax
   \def\href#1#2{#2} \def\path#1{#1}\fi
 
-\bibitem{Agarwal2008}
-R.~Agarwal, \"{O}zlem Ergun, Mechanism design for a multicommodity flow game in
+\bibitem{BALLOT2010}
+E.~Ballot, F.~Fontane, Reducing transportation co2 emissions through pooling of
+  supply networks: perspectives from a case study in french retail chains,
+  Production Planning \& Control 21~(6) (2010) 640--650.
+\newblock \href {https://doi.org/10.1080/09537287.2010.489276}
+  {\path{doi:10.1080/09537287.2010.489276}}.
+
+\bibitem{AGARWAL2008175}
+R.~Agarwal, O.~Ergun, Ship scheduling and network design for cargo routing in
+  liner shipping, Transportation Science 42~(2) (2008) 175--196.
+\newblock \href {https://doi.org/10.1287/trsc.1070.0205}
+  {\path{doi:10.1287/trsc.1070.0205}}.
+
+\bibitem{GONZALEZ2010}
+J.~Gonz{\'{a}}lez-D{\'{\i}}az, I.~Garc{\'{\i}}a-Jurado, M.~G. Fiestras-Janeiro,
+  An Introductory Course on Mathematical Game Theory, American Mathematical
+  Society, 2010.
+\newblock \href {https://doi.org/10.1090/gsm/115} {\path{doi:10.1090/gsm/115}}.
+
+\bibitem{SHAPLEY1952}
+L.~S. Shapley, A Value for N-Person Games, RAND Corporation, Santa Monica, CA,
+  1952.
+\newblock \href {https://doi.org/10.7249/P0295} {\path{doi:10.7249/P0295}}.
+
+\bibitem{DEFRYN2018891}
+C.~Defryn, K.~Sörensen, Multi-objective optimisation models for the travelling
+  salesman problem with horizontal cooperation, European Journal of Operational
+  Research 267~(3) (2018) 891--903.
+\newblock \href {https://doi.org/10.1016/j.ejor.2017.12.028}
+  {\path{doi:10.1016/j.ejor.2017.12.028}}.
+
+\bibitem{DEFRYN20191}
+C.~Defryn, K.~Sörensen, W.~Dullaert, Integrating partner objectives in
+  horizontal logistics optimisation models, Omega 82 (2019) 1--12.
+\newblock \href {https://doi.org/10.1016/j.omega.2017.11.008}
+  {\path{doi:10.1016/j.omega.2017.11.008}}.
+
+\bibitem{VANOVERMEIRE2014125}
+C.~Vanovermeire, K.~Sörensen, Integration of the cost allocation in the
+  optimization of collaborative bundling, Transportation Research Part E:
+  Logistics and Transportation Review 72 (2014) 125--143.
+\newblock \href {https://doi.org/10.1016/j.tre.2014.09.009}
+  {\path{doi:10.1016/j.tre.2014.09.009}}.
+
+\bibitem{XIAOZHOU2013}
+X.~Xu, Collaboration mechanism in the horizontal logistics collaboration, Ph.D.
+  thesis, Business administration. Ecole Nationale Supérieure des Mines de
+  Paris (2013).
+
+\bibitem{AGARWAL2008520}
+R.~Agarwal, Özlem Ergun, Mechanism design for a multicommodity flow game in
   service network alliances, Operations Research Letters 36~(5) (2008)
   520--524.
 \newblock \href {https://doi.org/10.1016/j.orl.2008.04.007}
   {\path{doi:10.1016/j.orl.2008.04.007}}.
+
+\bibitem{ANUPINDI2001}
+R.~Anupindi, Y.~Bassok, E.~Zemel, A general framework for the study of
+  decentralized distribution systems, Manufacturing \& Service Operations
+  Management 3 (2001) 349--368.
+\newblock \href {https://doi.org/10.1287/msom.3.4.349.9973}
+  {\path{doi:10.1287/msom.3.4.349.9973}}.
+
+\bibitem{BRANDENBURGER1996}
+A.~M. Brandenburger, B.~J. Nalebuff, Co-opetition, Crown Business, 1996.
 
 \end{thebibliography}
