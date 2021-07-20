@@ -1,10 +1,10 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Problem statement: A decision making - muldicommodity flow problem}{}% 2
+\BOOKMARK [1][-]{section.2}{Problem statement: A network design - muldicommodity flow problem}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Single agent model}{section.2}% 3
 \BOOKMARK [1][-]{section.3}{The centralized cooperation models}{}% 4
 \BOOKMARK [2][-]{subsection.3.1}{Full cooperation scenario}{section.3}% 5
 \BOOKMARK [2][-]{subsection.3.2}{Partial cooperation scenario}{section.3}% 6
 \BOOKMARK [2][-]{subsection.3.3}{Residual cooperation}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{An iterative optimization mechanism}{}% 8
+\BOOKMARK [1][-]{section.4}{A decentralized cooperation mechanism}{}% 8
 \BOOKMARK [1][-]{section.5}{Results}{}% 9
 \BOOKMARK [1][-]{section.6}{Conclusion}{}% 10
