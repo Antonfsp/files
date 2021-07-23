@@ -1,6 +1,8 @@
 \documentclass[review]{elsarticle}
 
 \usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{tensor}
 \usepackage{adjustbox}
 \usepackage{multirow}
 \usepackage{threeparttable}
@@ -60,18 +62,19 @@ Here\sep go \sep KEY \sep words
 During the last decades, logistics collaboration, and specially \emph{horizontal
 logistics collaboration}, has gained the attention of many researchers, as it
 has been proofed to be an effective strategy to improve the logistics chain, for
-example, reducing both ecological \cite{BALLOT2010} or economical (find cite)
-operational costs. By horizontal logistics collaboration we refer to the
+example, reducing both ecological and economical 
+costs \cite{BALLOT2010} \cite{SOYSAL2018168}. By horizontal logistics collaboration we refer to the
 cooperation between several companies or agents, who playing the same role in
 the logistics chain, form coalitions or alliances to increase the efficiency of
 their logistics operations. For example, in the case of the liner hipping
 industry, by allowing other companies to use part of the capacity of the own
-ships, increasing the asset utilization ratio \cite{AGARWAL2008175}.
+ships, increasing the asset utilization ratio \cite{AGARWAL2008175}. In this paper, we use the terms ``collaboration" and
+``cooperation" interchangeably.
 
 
 The literature studying the horizontal logistics collaboration between agents
 can be divided in two main streams depending on whether the collaboration it is
-centralized or not. 
+centralized or not.
 
 In the case of centralized systems, agents usually share in a pool all or
 part of the demands that they have to serve as well as the assets they have
@@ -90,7 +93,9 @@ Some authors have argued in the centralized systems, the individual objectives
 of the agents are not considered in favour of the coalition objective, while
 actually the agents remain independent entities \cite{DEFRYN2018891}. Therefore,
 these authors propose different mechanisms where both levels of objectives are
-considered \cite{DEFRYN20191} \cite{VANOVERMEIRE2014125}.
+considered \cite{DEFRYN20191} \cite{VANOVERMEIRE2014125}. Furthermore, it is assumed
+in the literature studying these type of systems that agents share all their private information
+with the central planner, what might be unrealistic or problematic in real world cases \cite{SERRANO2017} \cite{ZENG2015}.
 
 In the other hand, in the decentralized systems there is not a central planner
 who carries out the optimization and then allocates the benefits, but the agents
@@ -130,6 +135,7 @@ extra profits. They propose sufficient conditions under which a Nash equilibrium
 in pure strategies exist for the first stage, and for which allocation rule in
 the \emph{core} exists for the second stage.
 
+Most of the current literature studies the  horizontal logistics collaboration from a static point of view \cite{BASSO2019}
 
 
 In this paper we will compare the efficiency between a centralized system,
@@ -146,7 +152,7 @@ payoff.
 In section blablbla. In section blalbla. Finally in sectioin blalblalba
 
 
-\section{Problem statement: A network design - muldicommodity flow problem}
+\section{Problem statement: A network design - muldicommodity flow problem}\label{seq:probdefinition} 
 
 As stated in the previous section, we will use a multicommodity flow problem
 with a network design stage to illustrate the different cooperation
@@ -172,29 +178,52 @@ cost $c_e$, that the owner of the edge have to pay if he wants to use the edge t
 We will note by $E^i \subset E$ and $\Theta^i\subset \Theta$ the subsets of
 edges and commodities owned by agent $i$.
 
+\begin{table}[h!]
+	\caption{Summary of notation \label{tb:notation}}
+	\begin{tabular}{|l|l|}
+	\hline
+	Symbol & Meaning	 \\ \hline
+	$N$ & Set of agents. \\
+	$G$ & Network. \\
+	$V$ & Set of nodes in $G$. \\
+	$E$ & Set of edges in $G$. \\
+	$\Theta$ & Sets of commodities. \\
+	$OE(v)$ & Subset of edges in $E$ which depart from node $v$.\\
+	$IE(v)$ & Subset of edges in $E$ which arrive to node $v$.\\	
+	$\Theta^i$ & Set of commodities owned by agent $i$. \\	
+	$E^i$ & Set of edges owned by agent $i$.\\
+	$E_A$ & Subset of edges in $E$ that are active \\
+	$E_R$ & Subset of edges in $E_A$ that have residual capacity.\\
+	\multirow{2}{*}{$(o,t,i)\in \Theta$} & Commodity with origin node $o$ and terminal node $t$\\[-3pt]
+	& owned by agent $i$. \\
+	$d_{(o,t,i)}$ & Size, on units, of commodity $(o,t,i)$.\\
+	$r_{(o,t,i)}$ & Revenue associated with serving commodity $(o,t,i)$.\\
+	$e=(v,w,i)\in E$ & Edge connecting node $v$ with node $w$, owned by agent $i$.\\
+	$c_e$ & Cost of activate edge $e$. \\
+	$q_e$ & Units of capacity of edge $e$. \\
+	$q_e^R$ & Units of residual capacity of edge $e$.\\
+	\hline
+	\end{tabular}
+\end{table}
+
 \subsection{Single agent model}
 
 The objective of an agent $i \in N$ is to maximize his payoff, by routing his
-commodities, $\Theta^i$, from their origin nodes to their terminal nodes through the edges $E^i$, he has activated. If the agent does not take part of the collaboration, she will not have any access to other agents edges, neither the other agents can route their commodities through his edges. Thus, the problem which agent $i\in N$ has to solve can be modelled as the following ILP, that we call $P_i$, 
+commodities, $\Theta^i$, from their origin nodes to their terminal nodes through the edges $E^i$, he has activated. If the agent does not take part of the collaboration, she will not have any access to other agents edges, neither the other agents can route their commodities through his edges. Thus, the problem which agent $i\in N$ has to solve can be modelled as the following ILP, that we call $P_i$,
 
-\begin{subequations}
-    \begin{alignat}{3}
-        &  P_i: \hspace{10pt} \max  &  \sum_{(o,t,i)\in \Theta^i} \sum_{e \in IE^i(t)}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{e\in E^i} u_{e'}\cdot c_{e} \hspace{20pt} &&   \label{eq:SingleAgentA}
-    \end{alignat}
-    \begin{alignat}{3}
-        & \text{subject to}       & \sum_{e \in IE^i(z)} f_e^{(o,t,i)}-\sum_{e \in OE^i(z)} f_{e}^{(o,t,i)} & = 0,                                   && \forall\ z\in V\setminus\{o,t\},\nonumber\\[-1em]
-        &                         &                                                                           &                                        && \forall\ (o,t,i)\in\Theta^i,  \label{eq:SingleAgentB}\\[1em]
-        &                         & \sum_{e \in OE^i(o)} f_e^{(o,t,i)}                                        & \leq 1,                                && \forall\ (o,t,i)\in \Theta^i, \label{eq:SingleAgentC} \\
-        &                         & \sum_{e \in OE^i(t)} f_e^{(o,t,i)}                                        & = 0,                                   && \forall\ (o,t,i)\in \Theta^i, \label{eq:SingleAgentD} \\
-        &                         & \sum_{(o,t,i) \in \Theta^i} f_e^{(o,t,i)}\cdot d_{(o,t,i)}                & \leq u_e\cdot q_{(o,t,i)},\hspace{8pt} && \forall\ e \in E^i, \label{eq:SingleAgentE}  \\
-        &                         & \sum_{v \in S} \sum_{w \in S} f_{(v,w)}^{(o,t,i)}                         & \leq |S| -1,                           && \forall\ S \subset V, \nonumber\\[-1em]
-        &                         &                                                                           &                                        && \forall\ (o,t,i) \in \Theta^i, \label{eq:SingleAgentF}\\[1em]
-        &                         & f_e^{(o,t,i)}                                                             & \in \{0,1\},                           && \forall\ e \in E^i,\nonumber\\
-        &                         &                                                                           &                                        && \forall\ (o,t,i) \in \Theta^i, \label{eq:SingleAgentG} \\[1em]  
-        &                         &  u_e                                                                      & \in \{0,1\},                           && \forall\ e \in E^i 
-    \end{alignat}
-
-\end{subequations}
+    \begin{align}
+        &  P_i: \quad \max  &  \sum_{(o,t,i)\in \Theta^i} \sum_{e \in \delta^+(t)\cap E^i} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{e\in E^i} u_{e'}\cdot c_{e} \hspace{20pt} &&   \label{eq:SingleAgentA}
+    \end{align}
+    \begin{align}
+        & \text{subject to:}       &  \nonumber\\
+       & \sum_{e \in \delta^-(t)\cap E^i} f_e^{(o,t,i)}-\sum_{e \in \delta^+(t)\cap E^i} f_{e}^{(o,t,i)} = 0,\quad && \forall\ z\in V\setminus\{o,t\},\ \forall\ (o,t,i)\in\Theta^i,  \label{eq:SingleAgentB}\\
+        &    \sum_{e \in \delta^+(t)\cap E^i} f_e^{(o,t,i)} \leq 1,  && \forall\ (o,t,i)\in \Theta^i, \label{eq:SingleAgentC} \\
+		& \sum_{e \in \delta^+(t)\cap E^i} f_e^{(o,t,i)}= 0,  && \forall\ (o,t,i)\in \Theta^i, \label{eq:SingleAgentD} \\
+		& \sum_{(o,t,i) \in \Theta^i} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq u_e\cdot q_e, && \forall\ e \in E^i,\label{eq:SingleAgentE}  \\
+		& \sum_{\substack{(v,w,k) \in E^i\colon \\ v,w \in S}} f_{(v,w,i)}^{(o,t,i)} \leq |S| -1,   && \forall\ S \subset V,\ \forall\ (o,t,i) \in \Theta^i, \label{eq:SingleAgentF}\\[1em]
+		& f_e^{(o,t,i)} \in \{0,1\},    && \forall\ e \in E^i,\ \forall\ (o,t,i) \in \Theta^i, \label{eq:SingleAgentG} \\ 
+		&  u_e   \in \{0,1\},           && \forall\ e \in E^i 
+    \end{align}
 
 where, $\forall\ (o,t,i)\in \Theta^i$ and  $\forall\ e \in E$,
 \[
@@ -220,10 +249,10 @@ that commodity) is equal. Constraints (\ref{eq:SingleAgentC}), together with
 from its origin node. Constraints (\ref{eq:SingleAgentD}) ensure that no
 commodity is send from its terminal node to any other node. Constraint (\ref{eq:SingleAgentE})
 ensures that the capacity of edges is not exceed. Finally, constraints
-(\ref{eq:SingleAgentF}) are subtour elimination constraints. We have included these constraints in our model because, first of all, it makes sense to assume that an agent would not want to create subtours when routing his commodities, as they would mean that some commodities would occupy unnecessary units of capacity in some edges. Note that his can be possible because once an edge is activated, there is no extra costs for routing more commodities through it. Furthermore, without the subtour elimination constraints, the other constraints are not enough to ensure that all the feasible solution of the ILP are admissible, since the flow of a commodity could contain a subtour disconneted from the origin and terminal nodes of that commodity, as we illustrate in Figure [Include figure!!!!!]. [Or maybe include cost for routing commodities through edges?]
+(\ref{eq:SingleAgentF}) are subtour elimination constraints \cite{AHUJA1993}. We have included these constraints in our model because, first of all, it makes sense to assume that an agent would not want to create subtours when routing his commodities, as they would mean that some commodities would occupy unnecessary units of capacity in some edges. Note that his can be possible because once an edge is activated, there is no extra costs for routing more commodities through it. Furthermore, without the subtour elimination constraints, the other constraints are not sufficient to ensure that all the feasible solution of the ILP are admissible, since the flow of a commodity could contain a subtour disconneted from the origin and terminal nodes of that commodity, as we illustrate in Figure [Include figure!!!!!]. [Or maybe include cost for routing commodities through edges?]
 
-We will note by $P_i^*$ the optimal solution of $P_i$ and it is the maximal
-payoff agent $i$ can obtain by his own, without cooperating with the other agents.
+We will note by $P_i^*$ the optimal solution of $P_i$ which is the maximal
+payoff agent $i$ can obtain by his own without cooperating with the other agents.
 
 \section{The centralized cooperation models}
 
@@ -245,47 +274,35 @@ cooperative scenarios we propose in this work.
 
 We start introducing the model where more power is given to the central planner.
 In this model, all the commodities and edges of all the agents are given to the
-central planner, who has to solve the following ILP,
+central planner, who then has to solve the following ILP, $\Gamma_F$, which is almost identical to $P_ i$, the ILP that an
+agent $i\in N$ has to solve when no cooperating. Both problems only differ in
+two aspects:
 
-\begin{subequations}
-    \begin{alignat}{3}
-        &  \Gamma_F: \max  & \hspace{22pt} \sum_{(o,t,i)\in \Theta} \sum_{e \in IE(t)}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r - \sum_{e\in E} u_{e}\cdot c_{e} \hspace{40pt} &&   \label{eq:FullCooperationA}
-    \end{alignat}
-    \begin{alignat}{3}
-        & \text{subject to}       & \sum_{e \in IE(z)} f_e^{(o,t,i)}-\sum_{e' \in OE(z)} f_{e'}^{(o,t,i)} & = 0,                                   && \forall\ z\in V\setminus\{o,t\},\nonumber\\[-1em]
-        &                         &                                                                           &                                        && \forall\ (o,t,i)\in\Theta,  \label{eq:FullCooperationB}\\[1em]
-        &                         & \sum_{e \in OE(o)} f_e^{(o,t,i)}                                        & \leq 1,                                && \forall\ (o,t,i)\in \Theta, \label{eq:FullCooperationC} \\
-        &                         & \sum_{e \in OE(t)} f_e^{(o,t,i)}                                        & = 0,                                   && \forall\ (o,t,i)\in \Theta, \label{eq:FullCooperationD} \\
-        &                         & \sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)}                & \leq u_e\cdot q_{(o,t,i)},\hspace{8pt} && \forall\ e \in E, \label{eq:FullCooperationE}  \\
-        &                         & \sum_{v \in S} \sum_{w \in S} f_{(v,w)}^{(o,t,i)}                         & \leq |S| -1,                           && \forall\ S \subset V, \nonumber\\[-1em]
-        &                         &                                                                           &                                        && \forall\ (o,t,i) \in \Theta, \label{eq:FullCooperationF}\\[1em]
-        &                         & f_e^{(o,t,i)}                                                             & \in \{0,1\},                           && \forall\ e \in E,\nonumber\\
-        &                         &                                                                           &                                        && \forall\ (o,t,i) \in \Theta, \label{eq:FullCooperationG} \\[1em]  
-        &                         &  u_e                                                                      & \in \{0,1\},                           && \forall\ e \in E, \\
-        &                         & \varphi_i(\Gamma_F)                                                           & \geq P_i^*,     && \forall\ i\in N; \label{eq:FullCooperationH}
-    \end{alignat}
-\end{subequations}
+\begin{enumerate}[(a)]
+	\item The central planner manages the commodities and edges of
+all the agents, $\Theta$ and $E$, while without cooperation an agent $i$ only has access to his own commodities and edges, $\Theta^i$ and $E^i$.
+	\item The following new constraint is added to the problem:
+	
+\begin{equation}\label{eq:newconstraintFullCooperation}
+\varphi_i(\Gamma_F) \geq P_i^*,  \quad \forall\ i\in N; 
+\end{equation}
 
-where 
+where
 \begin{equation}
     \begin{split}
     & \varphi_i(\Gamma_F) =\label{eq:FullCooperationPayoff} \\
-    & = \sum_{(o,t,i)\in \Theta^i} \left[ \sum_{e \in IE^i(o)} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} -  \sum_{e\in \Theta^j \colon j\not = i} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot \frac{c_e}{q_e} \right] + \\
+    & = \sum_{(o,t,i)\in \Theta^i} \left[ \sum_{e \in \delta^-(t)\cap E^i} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} -  \sum_{\substack{e\in \Theta^j \colon\\ j\not = i}} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot \frac{c_e}{q_e} \right] + \\
     & + \sum_{\substack{(o,t,k) \in \Theta  \colon \\ k \not = i}} \left[\sum_{e \in E^i} f_e^{(o,t,k)} \cdot d_{(o,t,k)} \cdot \frac{c_e}{q_e}\right] - \sum_{e \in E^i} u_e \cdot c_e, 
     \end{split}
 \end{equation}
 
 is the payoff allocate to the agent $i\in N$ for any feasible solution
 of $\Gamma_F$.
+	
+Similarly to what is done in \cite{VANOVERMEIRE2014125}, we integrate the final payoffs of the agents in the constraints of the central planner's problem. Thus, constraints (\ref{eq:newconstraintFullCooperation}) ensure that the final payoff of any agent $i\in N$, $\varphi_i$, is greater or equal than what that agent could achieve without cooperation, i.e., $P_i^*$.  Doing so we can say that the final payoff allocation is \emph{individually rational} \cite{GONZALEZ2010}, i.e., no single agent is interested in leaving the coalition unilaterally.  \footnote{We can extend this idea by forcing the solution resulting from the cooperation to be in the \emph{core}, by adding constraints ensuring that any the sum of the payoffs of the members of any subcoalition is equal or greater than what that agents could obtain by leaving the grand coalition and cooperating only among them. Nevertheless, doing it will increase the complexity of the models and we consider that it does not add value to the paper.}
+	
 
-Note that the model that the central planner has to solve in the
-\emph{full cooperation} scenario is almost identical to $P_ i$, the ILP that an
-agent $i\in N$ has to solve when no cooperating. Both problems only differ in
-two aspects:
-\begin{enumerate}[(a)]
-	\item The central planner manages the commodities and edges of
-all the agents, $\Theta$ and $E$, while without cooperation an agent $i$ only has access to his own commodities and edges, $\Theta^i$ and $E^i$.
-	\item Second, the constraint (\ref{eq:FullCooperationH}) is exclusive to the cooperation scenario. Similarly to what is done in \cite{VANOVERMEIRE2014125}, we integrate the final payoffs of the agents in the constraints of the central planner's problem. Thus, these constraints ensure that the final payoff of any agent $i\in N$, $\varphi_i$, is greater or equal than what that agent could achieve without cooperation, i.e., $P_i^*$.  Doing so we can say that the final payoff allocation is \emph{individually rational} \cite{GONZALEZ2010}, i.e., no single agent is interested in leaving the coalition unilaterally.  \footnote{We can extend this idea by forcing the solution resulting from the cooperation to be in the \emph{core}, by adding constraints ensuring that any the sum of the payoffs of the members of any subcoalition is equal or greater than what that agents could obtain by leaving the grand coalition and cooperating only among them. Nevertheless, doing it will increase the complexity of the models and we consider that it does not add value to the paper.}
+
 \end{enumerate}
 
 
@@ -307,34 +324,30 @@ edges to activate remains as an individual decision of each agent.
 We propose that, in a first stage, each agent $i \in N$ solves his own $P_i$ problem. Then, in a second stage, the same edges that are active in the optimal solutions of each agent individual ILP, $P_i^*$, are the agents that the central planner can use to route the commodities through the network.
 
 Let $E_A \subset E$ be the subset of edges such that $\forall e=(v,w,i) \in
-E_A$, $e$ is active in $P_i^*$. Then the ILP, $\Gamma_P$, that the central
-planner has to solve in the partial cooperation scenario is
+E_A$, $e$ is active in $P_i^*$. Then the ILP, $\Gamma_P$, that the central planner has to solve in the partial cooperation scenario is
 
+\begin{align}
+        &  \Gamma_P: \max  & \sum_{(o,t,i) \in \Theta} \left[\sum_{e \in \delta^-(t)\cap E_A}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{\substack{e \in E_A^j\colon \\ j\not = i}} f_e^{(o,t,i)} \cdot \frac{c_e}{q_e} \right] &&   \label{eq:Partial2CooperationA} 
+    \end{align}
+    \begin{align}
+        & \text{subject to:}       && \nonumber\\
+        & \sum_{e \in \delta^-(z)\cap E_A} f_e^{(o,t,i)}-\sum_{e \in \delta^+(z)\cap E_A} f_{e}^{(o,t,i)} = 0,            \quad && \forall\ z\in V\setminus\{o,t\},\ \forall\ (o,t,i)\in\Theta,  \label{eq:Partial2CooperationB}\\[1em]
+& \sum_{e \in \delta^+(o)\cap E_A} f_e^{(o,t,i)} \leq 1,  && \forall\ (o,t,i)\in \Theta, \label{eq:Partial2CooperationC} \\
+& \sum_{e \in \delta^+(t)\cap E_A} f_e^{(o,t,i)} = 0,  && \forall\ (o,t,i)\in \Theta, \label{eq:Partial2CooperationD} \\
+ & \sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq q_e     && \forall\ e \in E_A, \label{eq:Partial2CooperationE}  \\
+ & \sum_{\substack{(v,w,k) \in E_A\colon \\ v,w \in S}} f_{(v,w,k)}^{(o,t,i)}  \leq |S| -1,    && \forall\ S \subset V,\ \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationF}\\
+ & f_e^{(o,t,i)}  \in \{0,1\},    && \forall\ e \in E_A, \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationG} \\
+& \varphi_i(\Gamma_P)   \geq P_i^*,     && \forall\ i\in N \label{eq:Partial2CooperationH}
+    \end{align}
+   
 
-\begin{subequations}
-    \begin{alignat}{3}
-        &  \Gamma_P: \max  & \sum_{(o,t,i) \in \Theta} \left[\sum_{e \in OE_A(o)}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{\substack{e \in E_A^j\colon \\ j\not = i}} f_e^{(o,t,i)} \cdot \frac{c_e}{q_e} \right] &&   \label{eq:Partial2CooperationA} 
-    \end{alignat}
-    \begin{alignat}{3}
-        & \text{subject to}       & \sum_{e \in IE_A(z)} f_e^{(o,t,i)}-\sum_{e' \in OE_A(z)} f_{e'}^{(o,t,i)} & = 0,            && \forall\ z\in V\setminus\{o,t\},\nonumber\\[-1em]
-        &                         &                                                                       &                 && \forall\ (o,t,i)\in\Theta,  \label{eq:Partial2CooperationB}\\[1em]
-        &                         & \sum_{e \in OE_A(o)} f_e^{(o,t,i)}                                      & \leq 1,         && \forall\ (o,t,i)\in \Theta, \label{eq:Partial2CooperationC} \\
-        &                         & \sum_{e \in OE_A(t)} f_e^{(o,t,i)}                                      & = 0,            && \forall\ (o,t,i)\in \Theta, \label{eq:Partial2CooperationD} \\
-        &                         & \sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)}              &\leq q_e     && \forall\ e \in E_A, \label{eq:Partial2CooperationE_A}  \\
-        &                         & \sum_{v \in S} \sum_{w \in S} f_{(v,w)}^{(o,t,i)}                     & \leq |S| -1,    && \forall\ S \subset V, \nonumber\\[-1em]
-        &                         &                                                                       &                 && \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationF}\\[1em]
-        &                         & f_e^{(o,t,i)}                                                         & \in \{0,1\},    && \forall\ e \in E_A,\nonumber\\
-        &                         &                                                                       &                 && \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationG} \\
-        &                         & \varphi_i(\Gamma_P)                                                  & \geq P_i^*,     && \forall\ i\in N \label{eq:Partial2CooperationH}
-    \end{alignat}
-\end{subequations}
-
-Consequently to the above introduced, note that this model differs from the previously present in this work in the absence of a decision variable for activation of the edges, since this decision is previously make by the agents and not left to the central planner. Therefore equation (\ref{eq:FullCooperationPayoff}) no longer holds in this cooperation scenario. Nevertheless, the final payoff of each agent in the partial cooperation scenario can be easily rewritten as follows
+Note that, consequently to the above introduced,this model differs from the previously presented in this work in the absence of decisions variables for the activation of the edges, since this decision is previously make by the agents and not left to the central planner. Also we include the constraints (\ref{eq:Partial2CooperationH}
+which are equivalent to the constraints (\ref{eq:newconstraintFullCooperation}) included in the full cooperation scenario problem, to again ensure that any feasible solution of the problem is individually rational. In this case, because the absence of the decision variables $u_e$ in the model, we redefine the payoff allocate to each agent $i\in N$ as follows
 
 \begin{equation}
     \begin{split}
-    & \varphi_i(\Gamma_R) =\label{eq:PartialCooperationPayoff} \\
-    & = \sum_{(o,t,i)\in \Theta^i} \left[ \sum_{e \in IE_A^i(o)} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} -  \sum_{\substack{e\in E^j \colon\\ j\not = i}} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot \frac{c_e}{q_e} \right] + \\
+    & \varphi_i(\Gamma_P) =\label{eq:PartialCooperationPayoff} \\
+    & = \sum_{(o,t,i)\in \Theta^i} \left[ \sum_{e \in \delta^-(t)\cap E_A} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} -  \sum_{\substack{e\in E^j \colon\\ j\not = i}} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot \frac{c_e}{q_e} \right] + \\
     & + \sum_{\substack{(o,t,k) \in \Theta  \colon \\ k \not = i}} \left[\sum_{e \in E_A^i} f_e^{(o,t,k)} \cdot d_{(o,t,k)} \cdot \frac{c_e}{q_e}\right] - \sum_{e \in E_A^i} c_e.
     \end{split}
 \end{equation}
@@ -344,32 +357,24 @@ Consequently to the above introduced, note that this model differs from the prev
 Among the three centralized systems we propose in this paper, the
 \emph{residual cooperation scenario}, which is inspired in the already mentioned framework presented in \cite{ANUPINDI2001}, is the one where less decision power if left to the central planner.
 
-As in the partial cooperation scenario, every agent $i\in N$ will individually solve his corresponding $P_i$ problem, deciding which edges to activate and how to route his commodities through that edges. But this time, the agents actually implement this solution, and only inform the central planner about which commodities they have not been able to route in an efficient way, as well as which active edges still have some free capacity. With all this information, the central planner routes in a efficient way the residual commodities of the agents, $\Theta_R$, through the residual capacities of the active edges,$E_R$. For each edge $e \in E_R$ we will note by $q_e^R$ the residual capacity of that edge, i.e., the units of capacity that the owner of the edge has not used. Thus, the central planner has to solve the following ILP, that we call $\Gamma_R$,
+As in the partial cooperation scenario, every agent $i\in N$ will individually solve his corresponding $P_i$ problem, deciding which edges to activate and how to route his commodities through that edges. But this time, the agents actually implement this solution, and only inform the central planner about which commodities they have not been able to route in an efficient way, as well as which active edges still have some free capacity. With all this information, the central planner routes in a efficient way the residual commodities of the agents, $\Theta_R$, through the residual capacities of the active edges,$E_R$. For each edge $e \in E_R$ we will note by $q_e^R$ the residual capacity of that edge, i.e., the units of capacity that the owner of the edge has not used to route his own commodities. The ILP the central planner has to solve in this residual cooperation scenario, $\Gamma_R$, is equivalent to $\Gamma_P$, where the commodities and edges the central planner manages are $\Theta_R$ and $E_R$ instead of $\Theta$ and $E_A$. Also, the central planner can not route commodities through and edge $e\in E_R$ exceeding the residual capacity of that edge, $Q_e^R$, so constraint (\ref{eq:Partial2CooperationE}) is substituted by
 
+\begin{equation}
+\sum_{(o,t,i) \in \Theta_R} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq q_e^R,\quad \forall\ e \in E_R.
+\end{equation}
 
-\begin{subequations}
-    \begin{alignat}{3}
-        &  \Gamma_R: \max  & \sum_{(o,t,i) \in \Theta_R} \left[\sum_{e \in OE_R(o)}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{\substack{e \in E_R^j\colon \\ j\not = i}} f_e^{(o,t,i)} \cdot \frac{c_e}{q_e} \right] &&   \label{eq:Partial1CooperationA} 
-    \end{alignat}
-    \begin{alignat}{3}
-        & \text{subject to}       & \sum_{e \in IE_R(z)} f_e^{(o,t,i)}-\sum_{e' \in OE_R(z)} f_{e'}^{(o,t,i)} & = 0,            && \forall\ z\in V\setminus\{o,t\},\nonumber\\[-1em]
-        &                         &                                                                       &                 && \forall\ (o,t,i)\in\Theta_R,  \label{eq:Partial1CooperationB}\\[1em]
-        &                         & \sum_{e \in OE_R(o)} f_e^{(o,t,i)}                                      & \leq 1,         && \forall\ (o,t,i)\in \Theta_R, \label{eq:Partial1CooperationC} \\
-        &                         & \sum_{e \in OE_R(t)} f_e^{(o,t,i)}                                      & = 0,            && \forall\ (o,t,i)\in \Theta_R, \label{eq:Partial1CooperationD} \\
-        &                         & \sum_{(o,t,i) \in \Theta_R}
-        f_e^{(o,t,i)}\cdot d_{(o,t,i)}              & \leq q_e^R     &&
-        \forall\ e \in E_R, \label{eq:Partial1CooperationE_R}  \\
-        &                         & \sum_{v \in S} \sum_{w \in S} f_{(v,w)}^{(o,t,i)}                     & \leq |S| -1,    && \forall\ S \subset V, \nonumber\\[-1em]
-        &                         &                                                                       &                 && \forall\ (o,t,i) \in \Theta_R, \label{eq:Partial1CooperationF}\\[1em]
-        &                         & f_e^{(o,t,i)}                                                         & \in \{0,1\},    && \forall\ e \in E_R,\nonumber\\
-        &                         &                                                                       &                 && \forall\ (o,t,i) \in \Theta_R, \label{eq:Partial1CooperationG} 
-    \end{alignat}
-\end{subequations}
+    
+In this scenario, it is guaranteed by design of the collaboration mechanism that each agent end up the cooperation with a payoff greater or equal than the payoff they could obtain by their own, as they always first implement the best solution they can achieve without cooperating, and therefore they can only increase their payoffs with respect to that value. Therefore, constraints equivalent to (\ref{eq:Partial2CooperationH}) are not included. Under the residual cooperation scenario we define the final payoff of an agent $i\in N$ as
 
-In this scenario, it is guaranteed by design of the collaboration
-mechanism that each agent end up the cooperation with a payoff greater or equal than the payoff they could obtain by their own, as they always first implement the best solution they can achieve without cooperating, and therefore the cooperating mechanism can only increase their payoffs with respect to that value.
+\begin{equation}
+    \begin{split}
+    & \varphi_i(\Gamma_R) =\label{eq:ResidualCooperationPayoff} \\
+    & = \sum_{(o,t,i)\in \Theta^i_R} \left[ \sum_{e \in \delta^-(t)\cap E_R} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} -  \sum_{\substack{e\in E^j_R \colon\\ j\not = i}} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot \frac{c_e}{q_e} \right] + \\
+    & + \sum_{\substack{(o,t,k) \in \Theta_R  \colon \\ k \not = i}} \left[\sum_{e \in E_R^i} f_e^{(o,t,k)} \cdot d_{(o,t,k)} \cdot \frac{c_e}{q_e}\right] - P_i^*
+    \end{split}
+\end{equation}
 
-In table \ref{tb:summarycentralizedmodels} we summarize the differences between the three different centralized cooperative scenarios we have proposed in this section, indicating which decision are left to the agents and which decision are made by the central planner.
+In table \ref{tb:summarycentralizedmodels} we summarize the differences between the three different centralized cooperative scenarios we have proposed in this section, indicating which decisions are left to the agents and which are made by the central planner.
 
 \begin{table}[ht!]
 	\centering
@@ -390,15 +395,123 @@ In table \ref{tb:summarycentralizedmodels} we summarize the differences between 
     \end{threeparttable}
     \end {table}
 
-\section{A decentralized cooperation mechanism}
+\section{A decentralized cooperation mechanism for two agents}
 
-In this section we propose a decentralized cooperation mechanism, where all the decisions are left to the agents, which will make use of a information platform to interact with the other agents.
+In this section we propose a decentralized cooperation mechanism for two agents, where all the decisions are left to the agents, who make use of an \emph{information platform} to interact with each other.
+
+The idea behind this mechanism is that the agents exchange information in an iterative process, informing to the other agent about the residual capacity they have in their own active edges, allowing the other agent to use that residual capacity to route his commodities at some price.
+
+Before go in more detail about how the cooperation mechanism works, we introduce how the information platform works. Each agent $i\in N$ has two different pools where he can share information:
+
+\begin{description}
+	\item[Shared edges:] Agent $i$ can share a subset of his active edges which still have some residual capacity, $\widehat{E}_R^i\subset E_R^i$. He also has to share how many units of residual capacity has each edge $e\in E_R^i$, $q_e^R$, and which is the cost of each of that units, $\frac{c_e}{q_e}$
+	\item[Demanded edges:] If agent $j$ has previously share a set of edges in the platform, agent $i$ can use that edges when routing his commodities. If agent $i$ actually decides to route a subset of his commodities, $\widehat{\Theta}^i\subset \Theta ^i$ through some of that edges, he has to share in the information platform:
+	\begin{enumerate}
+		\item How much units of capacity he requires (or demands) on each edge $e$ shared by agent $j$, what we note by $q_e^D$.
+	\item For each commodity $(o,t,i)\in \widehat{\Theta}^i$, a set $L^{(o,t,i)}$, containing the edges that commodity would pass through, as well as which would be the side payment he would do to agent $j$ if finally he can have access to all the edges in $L^{(o,t,i)}$, $p_{L^{(o,t,i)}}=\sum_{e \in L^{(o,t,i)}} d_{(o,t,i)}\cdot \frac{c_e}{q_e}$. We note by $\mathcal{L}^i$ the set containing all $L^{(o,t,i)},\ \forall\ (o,t,i) \in \widehat{\Theta}^i$.
+	\end{enumerate}
+\end{description}	
+
+Making use of the information platform just introduced, both agents iteratively solve an ILP. In each iteration both agents, sequentially and not in parallel, decide which edges to activate, and how to route their commodities through the network, as they do in $P_i$, but this time, they can route their commodities, through the edges shared in the platform by the other agent with the corresponding costs and respecting the available capacities on that edges. Furthermore, when deciding if activate or not an edge, each agent does not only have to account for the activation cost, but also for the side payments the other agent is willing to make to him if he activates certain combinations of edges and leaves on them certain residual capacities. The ILP, $\Upsilon_i$, agent $i\in N$ has to solve in each iteration is the following:
+
+    \begin{align}
+        &  \Upsilon_i: \hspace{10pt} \max  &&  \sum_{(o,t,i)\in \Theta^i} \sum_{e \in \delta^-(t)\cap (E^i\cup \widehat{E}_R^j)} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{e\in E^i} u_{e}\cdot c_{e} \hspace{20pt} -  \nonumber  \label{eq:IterativeA}\\
+        & 								  && - \sum_{(o,t,i) \in \Theta^i} \sum_{\substack{e \in \widehat{E}_R^j\colon \\ j\not = i}} f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot \frac{c_e}{q_e}  \nonumber\\
+        & 								  && + \sum_{\substack{L^{(o,t,j)} \in \mathcal{L}^j \colon \\ j\not = i}} p_{L^{(o,t,j)}} \cdot t_{L^{(o,t,j)}}
+    \end{align}
+    \begin{align}
+        & \text{subject to:}       && \nonumber\\
+& \sum_{e \in \delta^-(z)\cap (E^i\cup \widehat{E}_R^j)} f_e^{(o,t,i)}-\sum_{e \in \delta^+(z)\cap (E^i\cup \widehat{E}_R^j)} f_{e}^{(o,t,i)}  = 0,                                   && \forall\ z\in V\setminus\{o,t\},\nonumber\\[-1em]
+& && \forall\ (o,t,i)\in\Theta^i,  \label{eq:IterativeB}\\[1em]
+& \sum_{e \in \delta^+(o)\cap (E^i\cup \widehat{E}_R^j)} f_e^{(o,t,i)}  \leq 1, && \forall\ (o,t,i)\in \Theta^i, \label{eq:IterativeC} \\
+& \sum_{e \in \delta^+(t)\cap (E^i\cup \widehat{E}_R^j)} f_e^{(o,t,i)}  = 0,  && \forall\ (o,t,i)\in \Theta^i, \label{eq:IterativeD} \\
+& \sum_{(o,t,i) \in \Theta^i} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq u_e\cdot q_e, && \forall\ e \in E^i, \label{eq:IterativeE}  \\
+& \sum_{(o,t,i) \in \Theta^i} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq  q_e^R, && \forall\ e \in \widehat{E}_R^j,\label{eq:IterativeF}  \\
+& \sum_{\substack{(v,w,k) \in E^i\cup \widehat{E}_R^j\colon \\ v,w \in S}}  f_{(v,w,k)}^{(o,t,i)}  \leq |S| -1, && \forall\ S \subset V,\ \forall\ (o,t,i) \in \Theta^i, \label{eq:IterativeG}\\
+&\sum_{(o,t,i)\in \Theta^i} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq (q_e - q_e^D) +M(1-b_e),\quad && \forall e \in L^{(o,t,j)},\ \forall L^{(o,t,j)} \in \mathcal{L}^j \label{eq:IterativeH}\\
+& t_{L^{(o,t,j)}} \leq 1 -  (|L^{(o,t,j)}|-\sum_{e \in L^{(o,t,j)}} b_e), && \forall L^{(o,t,j)} \in \mathcal{L}^i \label{eq:IterativeI}\\
+& f_e^{(o,t,i)}  \in \{0,1\}, && \forall\ e \in E^i,\ \forall\ (o,t,i) \in \Theta^i, \label{eq:IterativeJ} \\
+&  u_e   \in \{0,1\},   && \forall\ e \in E^i  \label{eq:IterativeK}\\
+& b_e \in \{0,1\}, && \forall e \in L^{(o,t,j)},\ \forall L_{(o,t,j)}\in \mathcal{L}^j\label{eq:IterativeL}\\
+& t_{L^{(o,t,j)}} \in \{0,1\}, && \forall L^{(o,t,j)} \in \mathcal{L}^j \label{eq:IterativeM}
+    \end{align}
+where $M$ is a very large value.
+
+In this ILP, the objective function of the agent $i$, equation (\ref{eq:IterativeA}), the first term is the sum of the revenue generated by the commodities he has served and the side payments the other agent makes to him when routing commodities through his edges. The second term are the costs of the edges he has activate. The third and term are the side payments he has to do when routing commodities through the edges shared by the other agent. In the other hand, the fourth term are the side payments he receives from the other agent for making use of the edges he shared in the previous iteration and remain available in the same conditions to him in the current one. 
+
+Constraints (\ref{eq:IterativeB}), (\ref{eq:IterativeC}), (\ref{eq:IterativeD}) and (\ref{eq:IterativeG}) are equivalent to constraints (\ref{eq:SingleAgentB}),(\ref{eq:SingleAgentC}),(\ref{eq:SingleAgentD}) and (\ref{eq:SingleAgentF}) in $P_i$, with the difference that now the agent $i$ can use the edges shared in the information platform by the agent $j$, $\widehat{E}_R^j$. Constraint (\ref{eq:IterativeE}) is identical to constraint (\ref{eq:SingleAgentE}) and constraint (\ref{eq:IterativeF}) is an extension of it, ensuring that the agent does not exceed the residual capacity of the edges shared by agent $j$ when routing his commodities.
+
+Constraints (\ref{eq:IterativeH}) and (\ref{eq:IterativeI}), together with the ``technical" decision variables (\ref{eq:IterativeL}) and (\ref{eq:IterativeM}), are related with the side payments agent $i$ receives from agent $j$. Recall that each $L^{(o,t,j)} \in \mathcal{j}$ is a set which contains the edges agent $j$ has indicated in the previous iteration he would like to use to route commodity $(o,t,j)$. He has also indicate that if for every $e \in L^{(o,t,j)}$, he requires $q_e^R$ units of capacity, he would make a side payment to agent $i$ equal to $p_{L^{(o,t,j)}}$. Thus, in order to get the side payment $p_{L^{(o,t,j)}}$, the technical decision variable $t_{L^{(o,t,j)}}$ must be equal to 1. Constraints (\ref{eq:IterativeI}) and (\ref{eq:IterativeM}) ensures that only can happen if all the technical decision variables $b_e$ for $e \in L^{(o,t,j)}$ are also equal to 1. Finally, constraint (\ref{eq:IterativeH}), making use of the \emph{big M} method, ensures that if $b_e$ is equal to one, agent $i$ must leave at least $q_e^D$ units of residual capacity on that edge. Note that this constraints are too restrictive, since agent $j$ might be planning to route 2 or more commodities through the edge $e$, and that agent $i$ left less than $q_e^R$ units of capacity available does not necessarily mean that none of that commodities can be route through it, but that not all of them. Nevertheless, we argue that capture that particularities would make the model to complex, as the problem of deciding which commodities can still be routed and which can not is a version of the well known \emph{knapsack problem}, which has been proven to be a NP-complete problem \cite{KARP1972}.
+
+
+
+
+
+
+
+
+
 
 \section{Results}
+
+\subsection{Comparision 3 centralized mechanisms}
+
+\subsection{Comparision centralized mechanisms and iterative one, all for 2 agents}
 
 \section{Conclusion}
 
 
 \bibliography{bibliography}
+
+\appendix
+\section{ILP's}
+
+\subsection{ILP to be solved by the central planner in the centralized full cooperation scenario.}
+
+    \begin{align}
+        &  \Gamma_F: \max  & \hspace{22pt} \sum_{(o,t,i)\in \Theta} \sum_{e \in \delta^-(t)\cap E}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{e\in E} u_{e}\cdot c_{e} \hspace{40pt} && 
+    \end{align}
+    \begin{align}
+        & \text{subject to:}       && \nonumber \\
+        & \sum_{e \in \delta^-(z)\cap E} f_e^{(o,t,i)} -\sum_{e \in \delta^+(z)\cap E} f_{e}^{(o,t,i)} = 0,\quad && \forall\ z\in V\setminus\{o,t\},\ \forall\ (o,t,i)\in\Theta, \\
+& \sum_{e \in \delta^+(o)\cap E} f_e^{(o,t,i)} \leq 1, && \forall\ (o,t,i)\in \Theta, \\
+ & \sum_{e \in \delta^+(t)\cap E} f_e^{(o,t,i)} = 0,  && \forall\ (o,t,i)\in \Theta,  \\
+& \sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)}  \leq u_e\cdot q_e, && \forall\ e \in E,   \\
+ & \sum_{\substack{(v,w,k) \in E\colon \\ v,w \in S}} f_{(v,w,k)}^{(o,t,i)} \leq |S| -1, && \forall\ S \subset V,\ \forall\ (o,t,i) \in \Theta,\\
+& f_e^{(o,t,i)} \in \{0,1\},  && \forall\ e \in E,\ \forall\ (o,t,i) \in \Theta,  \\
+&  u_e  \in \{0,1\},  && \forall\ e \in E, \\
+& \varphi_i(\Gamma_F) \geq P_i^*,  && \forall\ i\in N; 
+    \end{align}
+
+\subsection{ILP to be solved by the central planner in the centralized partial cooperation scenario.}
+
+ \begin{align}
+        &  \Gamma_P: \max  & \sum_{(o,t,i) \in \Theta} \left[\sum_{e \in \delta^-(t)\cap E_A}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{\substack{e \in E_A^j\colon \\ j\not = i}} f_e^{(o,t,i)} \cdot \frac{c_e}{q_e} \right] &&   \label{eq:Partial2CooperationA} 
+    \end{align}
+    \begin{align}
+        & \text{subject to:}       && \nonumber\\
+        & \sum_{e \in \delta^-(z)\cap E_A} f_e^{(o,t,i)}-\sum_{e \in \delta^+(z)\cap E_A} f_{e}^{(o,t,i)} = 0,            \quad && \forall\ z\in V\setminus\{o,t\},\ \forall\ (o,t,i)\in\Theta,  \label{eq:Partial2CooperationB}\\[1em]
+& \sum_{e \in \delta^+(o)\cap E_A} f_e^{(o,t,i)} \leq 1,  && \forall\ (o,t,i)\in \Theta, \label{eq:Partial2CooperationC} \\
+& \sum_{e \in \delta^+(t)\cap E_A} f_e^{(o,t,i)} = 0,  && \forall\ (o,t,i)\in \Theta, \label{eq:Partial2CooperationD} \\
+ & \sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq q_e     && \forall\ e \in E_A, \label{eq:Partial2CooperationE_A}  \\
+ & \sum_{\substack{(v,w,k) \in E_A\colon \\ v,w \in S}} f_{(v,w,k)}^{(o,t,i)}  \leq |S| -1,    && \forall\ S \subset V,\ \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationF}\\
+ & f_e^{(o,t,i)}  \in \{0,1\},    && \forall\ e \in E_A, \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationG} \\
+& \varphi_i(\Gamma_P)   \geq P_i^*,     && \forall\ i\in N \label{eq:Partial2CooperationH}
+    \end{align}
+
+\subsection{ILP to be solved by the central planner in the centralized residual cooperation scenario.}
+
+  \begin{align}
+        &  \Gamma_R: \max  & \sum_{(o,t,i) \in \Theta_R} \left[\sum_{e \in \delta^-(t)\cap E_R}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{\substack{e \in E_R^j\colon \\ j\not = i}} f_e^{(o,t,i)} \cdot \frac{c_e}{q_e} \right] &&   
+    \end{align}
+    \begin{align}
+        & \text{subject to:}       && \nonumber\\
+        & \sum_{e \in \delta^-(z)\cap E_R} f_e^{(o,t,i)}-\sum_{e \in \delta^+(z)\cap E_R} f_{e}^{(o,t,i)}  = 0,           \quad && \forall\ z\in V\setminus\{o,t\},\ \forall\ (o,t,i)\in\Theta_R, \\[1em]
+& \sum_{e \in \delta^+(o)\cap E_R} f_e^{(o,t,i)}\leq 1, && \forall\ (o,t,i)\in \Theta_R,  \\
+& \sum_{e \in \delta^+(t)\cap E_R} f_e^{(o,t,i)}  = 0, && \forall\ (o,t,i)\in \Theta_R,  \\
+ & \sum_{(o,t,i) \in \Theta_R} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq q_e^R   &&\forall\ e \in E_R,   \\
+& \sum_{\substack{(v,w,k)\in E_R\colon\\v\in S,w \in S }} f_{(v,w,k)}^{(o,t,i)} \leq |S| -1,  && \forall\ S \subset V, \ \forall\ (o,t,i) \in \Theta_R, \\
+& f_e^{(o,t,i)} \in \{0,1\},    && \forall\ e \in E_R, \forall\ (o,t,i) \in \Theta_R.
+    \end{align}
 
 \end{document}

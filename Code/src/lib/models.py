@@ -126,7 +126,7 @@ def build_iterative_model(V, agent, info_platform,  **kwargs):
     mdl.add_constraints(mdl.sum(mdl.f[e,c]*commodities[c].units for c in commodities) <= (E[e].original_capacity * mdl.u[e]) for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
     
     if conditioned_edges: # If b_e is equal to 1, the, the current agent cannt route more flow through the edge e than its original capacity - the capacity demanded by the other agent, for e an edge used for the other agent
-            mdl.add_indicator_constraints(mdl.indicator_constraint(mdl.b[e],mdl.sum(mdl.f[e,c]*commodities[c].units for c in commodities) <= E[e].original_capacity - conditioned_edges[e]) for e in conditioned_edges) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity)  # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
+            mdl.add_indicator_constraints(mdl.indicator_constraint(mdl.b[e],mdl.sum(mdl.f[e,c]*commodities[c].units for c in commodities) <= E[e].original_capacity - conditioned_edges[e]) for e in conditioned_edges) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity) 
 
     if L:
         mdl.add_constraints(mdl.sum(mdl.f[e,c]*commodities[c].units for c in commodities) <= L[e].free_capacity for e in L) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity

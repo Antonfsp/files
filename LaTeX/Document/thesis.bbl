@@ -12,6 +12,13 @@ E.~Ballot, F.~Fontane, Reducing transportation co2 emissions through pooling of
 \newblock \href {https://doi.org/10.1080/09537287.2010.489276}
   {\path{doi:10.1080/09537287.2010.489276}}.
 
+\bibitem{SOYSAL2018168}
+M.~Soysal, J.~M. Bloemhof-Ruwaard, R.~Haijema, J.~G. {van der Vorst}, Modeling
+  a green inventory routing problem for perishable products with horizontal
+  collaboration, Computers \& Operations Research 89 (2018) 168--182.
+\newblock \href {https://doi.org/doi.org/10.1016/j.cor.2016.02.003}
+  {\path{doi:doi.org/10.1016/j.cor.2016.02.003}}.
+
 \bibitem{AGARWAL2008175}
 R.~Agarwal, O.~Ergun, Ship scheduling and network design for cargo routing in
   liner shipping, Transportation Science 42~(2) (2008) 175--196.
@@ -49,6 +56,17 @@ C.~Vanovermeire, K.~Sörensen, Integration of the cost allocation in the
 \newblock \href {https://doi.org/10.1016/j.tre.2014.09.009}
   {\path{doi:10.1016/j.tre.2014.09.009}}.
 
+\bibitem{SERRANO2017}
+A.~Serrano-Hernandez, A.~A. Juan, J.~Faulin, E.~Perez-Bernabeu, Horizontal
+  collaboration in freight transport: concepts, benefits and environmental
+  challenges, SORT 1 (2017) 393--414.
+
+\bibitem{ZENG2015}
+F.~Zeng, Y.~Chen, M.~Dong, J.~Zheng, Understanding distributor opportunism in a
+  horizontal network, Industrial Marketing Management 46 (02 2015).
+\newblock \href {https://doi.org/10.1016/j.indmarman.2015.01.018}
+  {\path{doi:10.1016/j.indmarman.2015.01.018}}.
+
 \bibitem{XIAOZHOU2013}
 X.~Xu, Collaboration mechanism in the horizontal logistics collaboration, Ph.D.
   thesis, Business administration. Ecole Nationale Supérieure des Mines de
@@ -70,5 +88,23 @@ R.~Anupindi, Y.~Bassok, E.~Zemel, A general framework for the study of
 
 \bibitem{BRANDENBURGER1996}
 A.~M. Brandenburger, B.~J. Nalebuff, Co-opetition, Crown Business, 1996.
+
+\bibitem{BASSO2019}
+F.~Basso, S.~D'Amours, M.~Rönnqvist, A.~Weintraub, A survey on obstacles and
+  difficulties of practical implementation of horizontal collaboration in
+  logistics, International Transactions in Operational Research 26~(3) (2019)
+  775--793.
+\newblock \href {https://doi.org/10.1111/itor.12577}
+  {\path{doi:10.1111/itor.12577}}.
+
+\bibitem{AHUJA1993}
+R.~K. Ahuja, T.~L. Magnanti, J.~B. Orlin, Network Flows: Theory, Algorithms,
+  and Applications, Prentice-Hall, Inc., 1993.
+
+\bibitem{KARP1972}
+R.~M. Karp, Reducibility among Combinatorial Problems, Springer US, Boston, MA,
+  1972, pp. 85--103.
+\newblock \href {https://doi.org/10.1007/978-1-4684-2001-2_9}
+  {\path{doi:10.1007/978-1-4684-2001-2_9}}.
 
 \end{thebibliography}
