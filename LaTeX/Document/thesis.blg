@@ -5,45 +5,45 @@ The style file: elsarticle-num.bst
 Database file #1: bibliography.bib
 Warning--can't use both author and editor fields in KARP1972
 Warning--empty chapter and pages in KARP1972
-You've used 17 entries,
+You've used 20 entries,
             2952 wiz_defined-function locations,
-            809 strings with 9014 characters,
-and the built_in function-call counts, 5052 in all, are:
-= -- 484
-> -- 146
+            834 strings with 9761 characters,
+and the built_in function-call counts, 6019 in all, are:
+= -- 585
+> -- 179
 < -- 1
-+ -- 60
-- -- 43
-* -- 376
-:= -- 681
-add.period$ -- 30
-call.type$ -- 17
-change.case$ -- 12
++ -- 73
+- -- 53
+* -- 462
+:= -- 813
+add.period$ -- 37
+call.type$ -- 20
+change.case$ -- 16
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 142
-empty$ -- 586
-format.name$ -- 57
-if$ -- 1328
+cite$ -- 22
+duplicate$ -- 168
+empty$ -- 686
+format.name$ -- 71
+if$ -- 1579
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 21
-newline$ -- 72
-num.names$ -- 17
-pop$ -- 107
+int.to.str$ -- 20
+missing$ -- 25
+newline$ -- 85
+num.names$ -- 20
+pop$ -- 119
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 337
+skip$ -- 402
 stack$ -- 0
-substring$ -- 232
-swap$ -- 46
+substring$ -- 264
+swap$ -- 57
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 31
-width$ -- 19
-write$ -- 167
+while$ -- 36
+width$ -- 22
+write$ -- 200
 (There were 2 warnings)

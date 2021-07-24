@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  23 JUL 2021 19:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.22)  24 JUL 2021 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -465,29 +465,7 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count293
 \l__pdf_internal_box=\box59
 )
-(./thesis.aux
-
-LaTeX Warning: Label `eq:Partial2CooperationA' multiply defined.
-
-
-LaTeX Warning: Label `eq:Partial2CooperationB' multiply defined.
-
-
-LaTeX Warning: Label `eq:Partial2CooperationC' multiply defined.
-
-
-LaTeX Warning: Label `eq:Partial2CooperationD' multiply defined.
-
-
-LaTeX Warning: Label `eq:Partial2CooperationF' multiply defined.
-
-
-LaTeX Warning: Label `eq:Partial2CooperationG' multiply defined.
-
-
-LaTeX Warning: Label `eq:Partial2CooperationH' multiply defined.
-
-)
+(./thesis.aux)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
@@ -506,7 +484,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count294
 \scratchdimen=\dimen263
@@ -567,53 +546,63 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7]
-Overfull \hbox (3.03848pt too wide) detected at line 297
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8
+]
+Overfull \hbox (3.03848pt too wide) detected at line 290
 []
  []
 
 
-Overfull \hbox (17.77782pt too wide) detected at line 297
+Overfull \hbox (17.77782pt too wide) detected at line 290
 []
  []
 
-[8] [9] [10] [11] [12] [13]
-Overfull \hbox (9.3215pt too wide) detected at line 437
+[9] [10] [11] [12] [13] [14]
+Overfull \hbox (9.3215pt too wide) detected at line 432
 []
  []
 
-[14] [15] (./thesis.bbl [16] [17] [18])
-Overfull \hbox (1.61935pt too wide) detected at line 473
+[15] [16] (./thesis.bbl [17] [18]
+Underfull \hbox (badness 1028) in paragraph at lines 94--98
+[]\OT1/cmr/m/n/10 X. Wang, H. Kopfer, Col-lab-o-ra-tive trans-porta-tion plan-n
+ing of less-
+ []
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 94--98
+\OT1/cmr/m/n/10 than-truckload freight, OR Spec-trum 36 (03 2014).  []$\OT1/cmt
+t/m/n/10 doi : 10 . 1007 /
+ []
+
+[19])
+Overfull \hbox (1.61935pt too wide) detected at line 463
 []
  []
 
-[19] [20]
-Overfull \hbox (1.30072pt too wide) detected at line 515
+[20]
+Overfull \hbox (1.30072pt too wide) detected at line 489
 []
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 517.
 [21]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 517.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 491.
+ [22]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 491.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 517.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 517.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 491.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 491.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: F120EC19E9D4A8CFBC826E19AFDEFF82;1341.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 517.
+(rerunfilecheck)             Checksum: D3296E0933427E799E30C52C5403DC60;1449.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 491.
  ) 
 Here is how much of TeX's memory you used:
- 10392 strings out of 482503
- 157448 string characters out of 5947228
- 431197 words of memory out of 5000000
- 25134 multiletter control sequences out of 15000+600000
+ 10409 strings out of 482503
+ 157725 string characters out of 5947228
+ 430014 words of memory out of 5000000
+ 25151 multiletter control sequences out of 15000+600000
  538609 words of font info for 49 fonts, out of 8000000 for 9000
  398 hyphenation exceptions out of 8191
- 55i,22n,96p,1728b,498s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,22n,96p,1987b,487s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/
@@ -631,10 +620,10 @@ texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis.pdf (21 pages, 262620 bytes).
+Output written on thesis.pdf (22 pages, 266615 bytes).
 PDF statistics:
- 424 PDF objects out of 1000 (max. 8388607)
- 379 compressed objects within 4 object streams
+ 455 PDF objects out of 1000 (max. 8388607)
+ 408 compressed objects within 5 object streams
  125 named destinations out of 1000 (max. 500000)
- 129 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 153 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -67,10 +67,40 @@ F.~Zeng, Y.~Chen, M.~Dong, J.~Zheng, Understanding distributor opportunism in a
 \newblock \href {https://doi.org/10.1016/j.indmarman.2015.01.018}
   {\path{doi:10.1016/j.indmarman.2015.01.018}}.
 
-\bibitem{XIAOZHOU2013}
-X.~Xu, Collaboration mechanism in the horizontal logistics collaboration, Ph.D.
-  thesis, Business administration. Ecole Nationale Supérieure des Mines de
-  Paris (2013).
+\bibitem{LEDYARD2002}
+J.~O. Ledyard, M.~Olson, D.~Porter, J.~A. Swanson, D.~P. Torma, The first use
+  of a combined-value auction for transportation services, INFORMS Journal on
+  Applied Analytics 32~(5) (2002) 4--12.
+\newblock \href {https://doi.org/10.1287/inte.32.5.4.30}
+  {\path{doi:10.1287/inte.32.5.4.30}}.
+
+\bibitem{MAHR201099}
+T.~Máhr, J.~Srour, M.~{de Weerdt}, R.~Zuidwijk, Can agents measure up? a
+  comparative study of an agent-based and on-line optimization approach for a
+  drayage problem with uncertainty, Transportation Research Part C: Emerging
+  Technologies 18~(1) (2010) 99--119, information/Communication Technologies
+  and Travel Behaviour Agents in Traffic and Transportation.
+\newblock \href {https://doi.org/10.1016/j.trc.2009.04.018}
+  {\path{doi:10.1016/j.trc.2009.04.018}}.
+
+\bibitem{HERNANDEZ2014}
+S.~Hernández, S.~Peeta, A carrier collaboration problem for
+  less-than-truckload carriers: characteristics and carrier collaboration
+  model, Transportmetrica A: Transport Science 10~(4) (2014) 327--349.
+\newblock \href {https://doi.org/10.1080/23249935.2013.766279}
+  {\path{doi:10.1080/23249935.2013.766279}}.
+
+\bibitem{WANG2014}
+X.~Wang, H.~Kopfer, Collaborative transportation planning of
+  less-than-truckload freight, OR Spectrum 36 (03 2014).
+\newblock \href {https://doi.org/10.1007/s00291-013-0331-x}
+  {\path{doi:10.1007/s00291-013-0331-x}}.
+
+\bibitem{GANTERER2017}
+M.~Gansterer, R.~Hartl, Collaborative vehicle routing: A survey, European
+  Journal of Operational Research (06 2017).
+\newblock \href {https://doi.org/10.1016/j.ejor.2017.10.023}
+  {\path{doi:10.1016/j.ejor.2017.10.023}}.
 
 \bibitem{AGARWAL2008520}
 R.~Agarwal, Özlem Ergun, Mechanism design for a multicommodity flow game in
@@ -88,14 +118,6 @@ R.~Anupindi, Y.~Bassok, E.~Zemel, A general framework for the study of
 
 \bibitem{BRANDENBURGER1996}
 A.~M. Brandenburger, B.~J. Nalebuff, Co-opetition, Crown Business, 1996.
-
-\bibitem{BASSO2019}
-F.~Basso, S.~D'Amours, M.~Rönnqvist, A.~Weintraub, A survey on obstacles and
-  difficulties of practical implementation of horizontal collaboration in
-  logistics, International Transactions in Operational Research 26~(3) (2019)
-  775--793.
-\newblock \href {https://doi.org/10.1111/itor.12577}
-  {\path{doi:10.1111/itor.12577}}.
 
 \bibitem{AHUJA1993}
 R.~K. Ahuja, T.~L. Magnanti, J.~B. Orlin, Network Flows: Theory, Algorithms,

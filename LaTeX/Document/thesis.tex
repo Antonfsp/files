@@ -68,13 +68,23 @@ cooperation between several companies or agents, who playing the same role in
 the logistics chain, form coalitions or alliances to increase the efficiency of
 their logistics operations. For example, in the case of the liner hipping
 industry, by allowing other companies to use part of the capacity of the own
-ships, increasing the asset utilization ratio \cite{AGARWAL2008175}. In this paper, we use the terms ``collaboration" and
-``cooperation" interchangeably.
+ships, increasing the asset utilization ratio \cite{AGARWAL2008175}.
 
+The literature studying the horizontal logistics collaboration between agents
+can be divided in two main streams depending on whether the collaboration it is
+centralized or decentralized. In this first case, the common approach is to give all the power to a central planner, who manages all the assets and demands of a coalition of agents and then some allocation rule is used to allocate the benefit generated. In the second one, auctions were agents can exchange demands are frequentlly used. One important difference among this two approaches is that in the decentralized one, agents remain independent decision makers.
+
+In this paper we explore different cooperation mechanisms in the context of the horizontal logistics collaboration between courier companies, modelling the optimization problem they have to solve as a network-design multicommodity flow problem. In section \ref{seq:litreview} we develop a review on the literature we studied during the development of this work. In section \ref{seq:probdefinition} we define the problem and present the model for a single agent. Section \ref{seq:centrmodels} contains three different centralized cooperation mechanism. In section \ref{seq:itermodel} we introduce a, to best of our knowledge, novel approach to model a decentralized cooperative mechanism. Section \ref{seq:results} contains the results of the simulations we have done with the models presented in the two previous section. Section \ref{seq:discussion} is a discussion about the limitations and possible extensions of the models proposed in this paper. We finish with a conclusion in section \ref{seq:conclusion}.
+
+
+
+\section{Literature review}\label{seq:litreview}
 
 The literature studying the horizontal logistics collaboration between agents
 can be divided in two main streams depending on whether the collaboration it is
 centralized or not.
+
+\subsection{Centralized cooperation}
 
 In the case of centralized systems, agents usually share in a pool all or
 part of the demands that they have to serve as well as the assets they have
@@ -89,22 +99,21 @@ i.e., any subcoalition of the former one could obtain a higher payoff working
 independently \cite{GONZALEZ2010}. A well known example of an allocation rule
 fulfilling this conditions is the \emph{Shapley value} \cite{SHAPLEY1952}.
 
-Some authors have argued in the centralized systems, the individual objectives
-of the agents are not considered in favour of the coalition objective, while
-actually the agents remain independent entities \cite{DEFRYN2018891}. Therefore,
+Some authors have pointed that in the centralized systems, the individual objectives
+of the agents are often not considered in favour of the coalition objective, what neglects the fact that the agents actually remain independent entities \cite{DEFRYN2018891}. Therefore,
 these authors propose different mechanisms where both levels of objectives are
 considered \cite{DEFRYN20191} \cite{VANOVERMEIRE2014125}. Furthermore, it is assumed
 in the literature studying these type of systems that agents share all their private information
 with the central planner, what might be unrealistic or problematic in real world cases \cite{SERRANO2017} \cite{ZENG2015}.
 
-In the other hand, in the decentralized systems there is not a central planner
-who carries out the optimization and then allocates the benefits, but the agents
-remain independent decision makers during the whole collaboration process.
-Decentralized systems commonly operate based on auctions systems or
-inverse-optimization techniques \cite{XIAOZHOU2013}. In the first, agents share
+
+\subsection{Decentralized cooperation}
+
+Some decentralized cooperative mechanism operate based on auctions systems. In that systmem, agents share
 the part of their demands, an the other members of the coalition bid to be the
-ones serving that demand on exchange of a recompense from the original owner of
-the order. In the other hand, an example of a collaborative system based in a
+ones serving that demand, for what the obtain some benefit \cite{LEDYARD2002} \cite{MAHR201099}. Non-auction based decentralized systems have also been stuy \cite{HERNANDEZ2014} \cite{WANG2014} . Nevertheless, in this works there is still a central authority which has to make some decisions. We refer the reader to \cite{GANTERER2017} for a survey covering decentralized mechanism based and not based in auctions.
+
+A collaborative system based in a
 inverse-optimization mechanism is the proposed in \cite{AGARWAL2008520}. On it,
 the authors model a multicommodity flow problem, where agents own certain
 fraction of the capacity of the edges of a network. Thus, the agents can
@@ -114,43 +123,27 @@ own on each edge of the and which are their demand is assumed to be public
 information. Using inverse optimization, capacity exchange prices are
 found, in such a way that if the agents adopt that prices policy, when each
 agent selfishly optimizes his demands through the shared network, the resulting
-flow will be the same that if a centralized approach was used. 
+flow will be the same that if a centralized approach was used. However, we argue that might be difficult or even unrealistic to implement in the real work a cooperation mechanism were a central authority with full information impose the prices at which the agents can exchange assets.
 
-Some authors have argued that in the centralized systems, the individual
-objectives of the agents are not considered in favour of the coalition
-objective, while the agents actually remain independent entities
-\cite{DEFRYN2018891}. Therefore, these authors propose different mechanisms where
-both levels of objectives are considered through multi-objective approaches
-\cite{DEFRYN20191} or by integrating the objectives of the agents as constraints
-to the coalition problem \cite{VANOVERMEIRE2014125}.
-
-In \cite{ANUPINDI2001} a novel framework to model decentralized systems is
-proposed. Based in the concept of \emph{coopetition} \cite{BRANDENBURGER1996},
+In \cite{ANUPINDI2001} a novel framework to model decentralized systems is proposed. Based in the concept of \emph{coopetition} \cite{BRANDENBURGER1996},
 the authors proposed a 2-stage mechanism to model the collaboration of agents in
 decentralized distribution systems. In the first stage, agents individually
 take strategic decisions, in their case, fixing their inventory levels. In the
-seconds stage an allocation of the assets is obtained through cooperation, were
-agents share their residual demands and inventory with the others, obtaining
+seconds stage and after all the agents have served their demands in the best way they individually can, they cooperate sharing their residual demands and inventory with the others, obtaining
 extra profits. They propose sufficient conditions under which a Nash equilibrium
-in pure strategies exist for the first stage, and for which allocation rule in
+in pure strategies exist for the first stage, and for which an allocation rule in
 the \emph{core} exists for the second stage.
 
-Most of the current literature studies the  horizontal logistics collaboration from a static point of view \cite{BASSO2019}
 
 
-In this paper we will compare the efficiency between a centralized system,
-giving to central planner different degrees of decision power, and a
- one, where we substitute the central planner by a platform where
-agents can share information, and through an iterative process of optimization
-and information sharing, agents can achieve an equilibrium point from which any
-of the agents would be interested to deviate from. The problem we
+
+In this work we analyse and compare several centralized systems,
+giving to central planner different degrees of decision power, and a non-auction-based decentralized system, where we substitute the central planner by a platform where agents can share information, and through an iterative process of optimization
+and information sharing, similar to what is done in \cite{WANG2014} but without leaving any decision power to the platform, agents can achieve an equilibrium point from which no agent would be interested to unilaterally deviate from. The problem we
 will use as example to implement this models is a multicommodity flow problem,
 where each agent have to decide which edges to active on the network at certain
 price, to then find an efficient flow through them which maximizes their
 payoff.
-
-In section blablbla. In section blalbla. Finally in sectioin blalblalba
-
 
 \section{Problem statement: A network design - muldicommodity flow problem}\label{seq:probdefinition} 
 
@@ -178,7 +171,7 @@ cost $c_e$, that the owner of the edge have to pay if he wants to use the edge t
 We will note by $E^i \subset E$ and $\Theta^i\subset \Theta$ the subsets of
 edges and commodities owned by agent $i$.
 
-\begin{table}[h!]
+\begin{table}[ht!]
 	\caption{Summary of notation \label{tb:notation}}
 	\begin{tabular}{|l|l|}
 	\hline
@@ -188,8 +181,8 @@ edges and commodities owned by agent $i$.
 	$V$ & Set of nodes in $G$. \\
 	$E$ & Set of edges in $G$. \\
 	$\Theta$ & Sets of commodities. \\
-	$OE(v)$ & Subset of edges in $E$ which depart from node $v$.\\
-	$IE(v)$ & Subset of edges in $E$ which arrive to node $v$.\\	
+	$\delta^+(v)$ & Subset of edges in $E$ which depart from node $v$.\\
+	$\delta^-(v)$ & Subset of edges in $E$ which arrive to node $v$.\\	
 	$\Theta^i$ & Set of commodities owned by agent $i$. \\	
 	$E^i$ & Set of edges owned by agent $i$.\\
 	$E_A$ & Subset of edges in $E$ that are active \\
@@ -254,7 +247,7 @@ ensures that the capacity of edges is not exceed. Finally, constraints
 We will note by $P_i^*$ the optimal solution of $P_i$ which is the maximal
 payoff agent $i$ can obtain by his own without cooperating with the other agents.
 
-\section{The centralized cooperation models}
+\section{The centralized cooperation models} \label{seq:centrmodels}
 
 In the previous subsection, we have presented an ILP that models the network design - multicommodity flow problem of an agent $i\in N$ who works alone. In this section, we present different centralized cooperative scenarios, where the agents in $N$ collaborative in different ways in order to find synergies among them and increase their payoffs.
 
@@ -395,21 +388,22 @@ In table \ref{tb:summarycentralizedmodels} we summarize the differences between 
     \end{threeparttable}
     \end {table}
 
-\section{A decentralized cooperation mechanism for two agents}
+\section{A decentralized cooperation mechanism for two agents} \label{seq:itermodel}
 
 In this section we propose a decentralized cooperation mechanism for two agents, where all the decisions are left to the agents, who make use of an \emph{information platform} to interact with each other.
 
 The idea behind this mechanism is that the agents exchange information in an iterative process, informing to the other agent about the residual capacity they have in their own active edges, allowing the other agent to use that residual capacity to route his commodities at some price.
 
-Before go in more detail about how the cooperation mechanism works, we introduce how the information platform works. Each agent $i\in N$ has two different pools where he can share information:
+Before go in more detail about how the cooperation mechanism works, we introduce how the information platform works. Each agent $i\in N$ has two different ``pools" to share information:
 
 \begin{description}
-	\item[Shared edges:] Agent $i$ can share a subset of his active edges which still have some residual capacity, $\widehat{E}_R^i\subset E_R^i$. He also has to share how many units of residual capacity has each edge $e\in E_R^i$, $q_e^R$, and which is the cost of each of that units, $\frac{c_e}{q_e}$
-	\item[Demanded edges:] If agent $j$ has previously share a set of edges in the platform, agent $i$ can use that edges when routing his commodities. If agent $i$ actually decides to route a subset of his commodities, $\widehat{\Theta}^i\subset \Theta ^i$ through some of that edges, he has to share in the information platform:
+	\item[Shared edges:] Agent $i$ can share a subset of his active edges which still have some residual capacity, $\widehat{E}_R^i\subseteq E_R^i$. He also has to share how many units of residual capacity has each edge $e\in \widehat{E}_R^i$, $q_e^R$, and which is the cost of each of that units, $\frac{c_e}{q_e}$
+	\item[Demanded edges:] If agent $j$ has previously shared a set of edges in the platform, agent $i$ can make use that edges when routing his commodities. If agent $i$ actually decides to route a subset of his commodities, $\widehat{\Theta}^i\subset \Theta ^i$ through some of that edges, he has to share in the information platform:
 	\begin{enumerate}
-		\item How much units of capacity he requires (or demands) on each edge $e$ shared by agent $j$, what we note by $q_e^D$.
-	\item For each commodity $(o,t,i)\in \widehat{\Theta}^i$, a set $L^{(o,t,i)}$, containing the edges that commodity would pass through, as well as which would be the side payment he would do to agent $j$ if finally he can have access to all the edges in $L^{(o,t,i)}$, $p_{L^{(o,t,i)}}=\sum_{e \in L^{(o,t,i)}} d_{(o,t,i)}\cdot \frac{c_e}{q_e}$. We note by $\mathcal{L}^i$ the set containing all $L^{(o,t,i)},\ \forall\ (o,t,i) \in \widehat{\Theta}^i$.
+		\item How much units of capacity he requires (or demands) in total on each edge $e$ shared by agent $j$, what we note by $q_e^D$.
+	\item For each commodity $(o,t,i)\in \widehat{\Theta}^i$, a set $L^{(o,t,i)}$, containing the edges shared by agent $j$ through which the commodity would be routed. Also which would be the side payment he would make to agent $j$ if finally all the edges $e$ in $L^{(o,t,i)}$ are active and he can make use of $q_e^D$ units of capacity in each of them. That side payment is computed as $p_{L^{(o,t,i)}}=\sum_{e \in L^{(o,t,i)}} d_{(o,t,i)}\cdot \frac{c_e}{q_e}$. We note by $\mathcal{L}^i$ the set containing all $L^{(o,t,i)},\ \forall\ (o,t,i) \in \widehat{\Theta}^i$.
 	\end{enumerate}
+		
 \end{description}	
 
 Making use of the information platform just introduced, both agents iteratively solve an ILP. In each iteration both agents, sequentially and not in parallel, decide which edges to activate, and how to route their commodities through the network, as they do in $P_i$, but this time, they can route their commodities, through the edges shared in the platform by the other agent with the corresponding costs and respecting the available capacities on that edges. Furthermore, when deciding if activate or not an edge, each agent does not only have to account for the activation cost, but also for the side payments the other agent is willing to make to him if he activates certain combinations of edges and leaves on them certain residual capacities. The ILP, $\Upsilon_i$, agent $i\in N$ has to solve in each iteration is the following:
@@ -429,36 +423,32 @@ Making use of the information platform just introduced, both agents iteratively 
 & \sum_{(o,t,i) \in \Theta^i} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq  q_e^R, && \forall\ e \in \widehat{E}_R^j,\label{eq:IterativeF}  \\
 & \sum_{\substack{(v,w,k) \in E^i\cup \widehat{E}_R^j\colon \\ v,w \in S}}  f_{(v,w,k)}^{(o,t,i)}  \leq |S| -1, && \forall\ S \subset V,\ \forall\ (o,t,i) \in \Theta^i, \label{eq:IterativeG}\\
 &\sum_{(o,t,i)\in \Theta^i} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq (q_e - q_e^D) +M(1-b_e),\quad && \forall e \in L^{(o,t,j)},\ \forall L^{(o,t,j)} \in \mathcal{L}^j \label{eq:IterativeH}\\
-& t_{L^{(o,t,j)}} \leq 1 -  (|L^{(o,t,j)}|-\sum_{e \in L^{(o,t,j)}} b_e), && \forall L^{(o,t,j)} \in \mathcal{L}^i \label{eq:IterativeI}\\
-& f_e^{(o,t,i)}  \in \{0,1\}, && \forall\ e \in E^i,\ \forall\ (o,t,i) \in \Theta^i, \label{eq:IterativeJ} \\
-&  u_e   \in \{0,1\},   && \forall\ e \in E^i  \label{eq:IterativeK}\\
-& b_e \in \{0,1\}, && \forall e \in L^{(o,t,j)},\ \forall L_{(o,t,j)}\in \mathcal{L}^j\label{eq:IterativeL}\\
-& t_{L^{(o,t,j)}} \in \{0,1\}, && \forall L^{(o,t,j)} \in \mathcal{L}^j \label{eq:IterativeM}
+&b_e \leq u_e, && \forall e\in L^{(o,t,j)}, \forall L^{(o,t,j)} \in \mathcal{L}^j \label{eq:IterativeI}\\
+& t_{L^{(o,t,j)}} \leq 1 -  (|L^{(o,t,j)}|-\sum_{e \in L^{(o,t,j)}} b_e), && \forall L^{(o,t,j)} \in \mathcal{L}^i \label{eq:IterativeJ}\\
+& f_e^{(o,t,i)}  \in \{0,1\}, && \forall\ e \in E^i,\ \forall\ (o,t,i) \in \Theta^i, \label{eq:IterativeK} \\
+&  u_e   \in \{0,1\},   && \forall\ e \in E^i  \label{eq:IterativeL}\\
+& b_e \in \{0,1\}, && \forall e \in L^{(o,t,j)},\ \forall L_{(o,t,j)}\in \mathcal{L}^j\label{eq:IterativeM}\\
+& t_{L^{(o,t,j)}} \in \{0,1\}, && \forall L^{(o,t,j)} \in \mathcal{L}^j \label{eq:IterativeN}
     \end{align}
 where $M$ is a very large value.
 
-In this ILP, the objective function of the agent $i$, equation (\ref{eq:IterativeA}), the first term is the sum of the revenue generated by the commodities he has served and the side payments the other agent makes to him when routing commodities through his edges. The second term are the costs of the edges he has activate. The third and term are the side payments he has to do when routing commodities through the edges shared by the other agent. In the other hand, the fourth term are the side payments he receives from the other agent for making use of the edges he shared in the previous iteration and remain available in the same conditions to him in the current one. 
+In $\Upsilon_i$, the first term of the objective function of the agent $i$, equation (\ref{eq:IterativeA}), is the sum of the revenue generated by the commodities which are served. The second term is the sum of the costs of the edges he has activate. The third term is the sum of the side payments he has to do when routing commodities through the edges shared by the other agent. Finally, the fourth term is the sum of the side payments he receives from the other agent for making use of the edges he has shared in the previous iteration, if they remain available in the conditions the other agent has demanded.
 
 Constraints (\ref{eq:IterativeB}), (\ref{eq:IterativeC}), (\ref{eq:IterativeD}) and (\ref{eq:IterativeG}) are equivalent to constraints (\ref{eq:SingleAgentB}),(\ref{eq:SingleAgentC}),(\ref{eq:SingleAgentD}) and (\ref{eq:SingleAgentF}) in $P_i$, with the difference that now the agent $i$ can use the edges shared in the information platform by the agent $j$, $\widehat{E}_R^j$. Constraint (\ref{eq:IterativeE}) is identical to constraint (\ref{eq:SingleAgentE}) and constraint (\ref{eq:IterativeF}) is an extension of it, ensuring that the agent does not exceed the residual capacity of the edges shared by agent $j$ when routing his commodities.
 
-Constraints (\ref{eq:IterativeH}) and (\ref{eq:IterativeI}), together with the ``technical" decision variables (\ref{eq:IterativeL}) and (\ref{eq:IterativeM}), are related with the side payments agent $i$ receives from agent $j$. Recall that each $L^{(o,t,j)} \in \mathcal{j}$ is a set which contains the edges agent $j$ has indicated in the previous iteration he would like to use to route commodity $(o,t,j)$. He has also indicate that if for every $e \in L^{(o,t,j)}$, he requires $q_e^R$ units of capacity, he would make a side payment to agent $i$ equal to $p_{L^{(o,t,j)}}$. Thus, in order to get the side payment $p_{L^{(o,t,j)}}$, the technical decision variable $t_{L^{(o,t,j)}}$ must be equal to 1. Constraints (\ref{eq:IterativeI}) and (\ref{eq:IterativeM}) ensures that only can happen if all the technical decision variables $b_e$ for $e \in L^{(o,t,j)}$ are also equal to 1. Finally, constraint (\ref{eq:IterativeH}), making use of the \emph{big M} method, ensures that if $b_e$ is equal to one, agent $i$ must leave at least $q_e^D$ units of residual capacity on that edge. Note that this constraints are too restrictive, since agent $j$ might be planning to route 2 or more commodities through the edge $e$, and that agent $i$ left less than $q_e^R$ units of capacity available does not necessarily mean that none of that commodities can be route through it, but that not all of them. Nevertheless, we argue that capture that particularities would make the model to complex, as the problem of deciding which commodities can still be routed and which can not is a version of the well known \emph{knapsack problem}, which has been proven to be a NP-complete problem \cite{KARP1972}.
+Constraints (\ref{eq:IterativeH}),  (\ref{eq:IterativeI}) and (\ref{eq:IterativeJ}) together with the ``technical" decision variables (\ref{eq:IterativeM}) and (\ref{eq:IterativeN}), are related with the side payments agent $i$ receives from agent $j$. Recall that each $L^{(o,t,j)} \in \mathcal{L}^j$ is a set which contains the edges of agent $i$ that agent $j$ has indicated in the previous iteration he would like to use to route commodity $(o,t,j)$. He has also indicates that if and only if for every $e \in L^{(o,t,j)}$, $q_e^R$ units of capacity are available to him, he would make a side payment to agent $i$ equal to $p_{L^{(o,t,j)}}$. Thus, in order to get the side payment $p_{L^{(o,t,j)}}$, the technical decision variable $t_{L^{(o,t,j)}}$ must be equal to 1. Constraints (\ref{eq:IterativeJ}) and (\ref{eq:IterativeN}) ensures that $t_{L^{(o,t,j)}}$ only can be 1 if all the technical decision variables $b_e$ for $e \in L^{(o,t,j)}$ are also equal to 1. Finally, constraints (\ref{eq:IterativeH})  making use of the \emph{big M} coefficient, and (\ref{eq:IterativeI}), ensures that if $b_e$ is equal to one, agent $i$ must leave at least $q_e^D$ units of residual capacity on that edge and the edge $e$ must be active. Note that these constraints are too restrictive. Agent $j$ might be planning to route 2 or more commodities through the edge $e$, and even if agent $i$ left less than $q_e^R$ units of capacity available, he might be possible to route, not all, but some of that commodities through it. However, these constraint assume that none of the commodities could be routed and therefore, any side payment associated with a commodity passing through that edge would be done. We argue that capture with exactitude this behaviour would make the model too complex, as the problem of deciding which commodities can still be routed and which can not is a \emph{knapsack problem}, which has been proven to be NP-complete \cite{KARP1972}.
 
+In figure [INSERT FIGURE!] we present the flow chart illustrating the structure of these cooperation mechanism.
 
-
-
-
-
-
-
-
-
-\section{Results}
+\section{Results} \label{seq:results}
 
 \subsection{Comparision 3 centralized mechanisms}
 
 \subsection{Comparision centralized mechanisms and iterative one, all for 2 agents}
 
-\section{Conclusion}
+\section{Discussion} \label{seq:discussion}
+
+\section{Conclusion} \label{seq:conclusion}
 
 
 \bibliography{bibliography}
@@ -481,22 +471,6 @@ Constraints (\ref{eq:IterativeH}) and (\ref{eq:IterativeI}), together with the `
 & f_e^{(o,t,i)} \in \{0,1\},  && \forall\ e \in E,\ \forall\ (o,t,i) \in \Theta,  \\
 &  u_e  \in \{0,1\},  && \forall\ e \in E, \\
 & \varphi_i(\Gamma_F) \geq P_i^*,  && \forall\ i\in N; 
-    \end{align}
-
-\subsection{ILP to be solved by the central planner in the centralized partial cooperation scenario.}
-
- \begin{align}
-        &  \Gamma_P: \max  & \sum_{(o,t,i) \in \Theta} \left[\sum_{e \in \delta^-(t)\cap E_A}  f_e^{(o,t,i)} \cdot d_{(o,t,i)} \cdot r_{(o,t,i)} - \sum_{\substack{e \in E_A^j\colon \\ j\not = i}} f_e^{(o,t,i)} \cdot \frac{c_e}{q_e} \right] &&   \label{eq:Partial2CooperationA} 
-    \end{align}
-    \begin{align}
-        & \text{subject to:}       && \nonumber\\
-        & \sum_{e \in \delta^-(z)\cap E_A} f_e^{(o,t,i)}-\sum_{e \in \delta^+(z)\cap E_A} f_{e}^{(o,t,i)} = 0,            \quad && \forall\ z\in V\setminus\{o,t\},\ \forall\ (o,t,i)\in\Theta,  \label{eq:Partial2CooperationB}\\[1em]
-& \sum_{e \in \delta^+(o)\cap E_A} f_e^{(o,t,i)} \leq 1,  && \forall\ (o,t,i)\in \Theta, \label{eq:Partial2CooperationC} \\
-& \sum_{e \in \delta^+(t)\cap E_A} f_e^{(o,t,i)} = 0,  && \forall\ (o,t,i)\in \Theta, \label{eq:Partial2CooperationD} \\
- & \sum_{(o,t,i) \in \Theta} f_e^{(o,t,i)}\cdot d_{(o,t,i)} \leq q_e     && \forall\ e \in E_A, \label{eq:Partial2CooperationE_A}  \\
- & \sum_{\substack{(v,w,k) \in E_A\colon \\ v,w \in S}} f_{(v,w,k)}^{(o,t,i)}  \leq |S| -1,    && \forall\ S \subset V,\ \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationF}\\
- & f_e^{(o,t,i)}  \in \{0,1\},    && \forall\ e \in E_A, \forall\ (o,t,i) \in \Theta, \label{eq:Partial2CooperationG} \\
-& \varphi_i(\Gamma_P)   \geq P_i^*,     && \forall\ i\in N \label{eq:Partial2CooperationH}
     \end{align}
 
 \subsection{ILP to be solved by the central planner in the centralized residual cooperation scenario.}
