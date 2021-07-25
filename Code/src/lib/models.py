@@ -47,7 +47,7 @@ def build_single_agent_model(V, E, commodities, **kwargs):
 def build_cooperation_model(V, E, commodities, type_cooperation, agents_minimal_profit = None,**kwargs):
     # Takes as input the the nodes, V, the edges, E, that are tuples (v,w,i) and have some capacity and a cost, the commodities between pairs of nodes (which also are tuples (v,w,i) where i is is owner)
     # the type of cooperation want to be used, and which is the minimal payoff each agent should obtain.
-    # In the case type_cooperation if partial1_cooperation, the agents_minimal_rofit doesnt need to be specified
+    # In the case type_cooperation if residual_cooperation, the agents_minimal_rofit doesnt need to be specified
 
     mdl = Model(type_cooperation, **kwargs)
 
@@ -62,23 +62,25 @@ def build_cooperation_model(V, E, commodities, type_cooperation, agents_minimal_
     mdl.add_constraints(mdl.sum(mdl.f[e,c] for e in E if e[0] == c[0]) <= 1 for c in commodities) # Second constraint: Flow from source can only be one at max   (*)
     mdl.add_constraints(mdl.sum(mdl.f[e,c] for e in E if e[0] == c[1]) == 0 for c in commodities) # Third constraint: Commodities dont flow from terminal to other nodes
     
-    if type_cooperation == 'partial1_cooperation':
+    if type_cooperation == 'residual_cooperation':
         mdl.add_constraints(mdl.sum(mdl.f[e,c] * commodities[c].units for c in commodities) <= E[e].free_capacity for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
-    elif type_cooperation == 'partial2_cooperation':
+    elif type_cooperation == 'partial_cooperation':
         mdl.add_constraints(mdl.sum(mdl.f[e,c] * commodities[c].units for c in commodities) <= E[e].original_capacity for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
     elif type_cooperation == 'full_cooperation':
         mdl.add_constraints(mdl.sum(mdl.f[e,c]*commodities[c].units for c in commodities) <= (E[e].original_capacity * mdl.u[e]) for e in E) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
     
     mdl.add_constraints(mdl.sum(mdl.f[e,c] for e in E if e[0] in S and e[1] in S) <= len(S) -1 for S in powerset(V,2) for c in commodities) # Subtour elimination constraints
 
-    if type_cooperation == 'partial2_cooperation':
+    mdl.add_constraints(mdl.sum(mdl.f[e,c] * commodities[c].units * commodities[c].revenue for e in E if e[1] == c[1]) - mdl.sum(mdl.f[e,c] * commodities[c].units * E[e].cost/E[e].original_capacity for e in E if e[2]!=c[2]) >= 0 for c in commodities)
+    
+    if type_cooperation == 'partial_cooperation':
         mdl.add_constraints(mdl.sum(mdl.sum(mdl.f[e,c] * commodities[c].units * commodities[c].revenue for e in E if e[0] == c[0]) - mdl.sum(mdl.f[e,c] * commodities[c].units * (E[e].cost/E[e].original_capacity) for e in E if e[2] != i) for c in commodities if c[2] == i) + mdl.sum(mdl.sum(mdl.f[e,c]*commodities[c].units*(E[e].cost/E[e].original_capacity) for e in E if e[2] == i) for c in commodities if c[2]!= i) >= agents_minimal_profit[i] for i in range(len(agents_minimal_profit))) # Every agent has to earn at least as much as he will win without cooperation
     elif type_cooperation == 'full_cooperation':
         mdl.add_constraints(mdl.sum(mdl.sum(mdl.f[e,c] * commodities[c].units * commodities[c].revenue for e in E if e[0] == c[0]) - mdl.sum(mdl.f[e,c] * commodities[c].units * (E[e].cost/E[e].original_capacity) for e in E if e[2] != i) for c in commodities if c[2] == i) + mdl.sum(mdl.sum(mdl.f[e,c]*commodities[c].units*(E[e].cost/E[e].original_capacity) for e in E if e[2] == i) for c in commodities if c[2]!= i) - mdl.sum(mdl.u[e]*E[e].cost for e in E if e[2] == i) >= agents_minimal_profit[i] for i in range(len(agents_minimal_profit))) # Every agent has to earn at least as much as he will win without cooperation
 
     # --- objective ---
-    if type_cooperation == 'partial1_cooperation' or type_cooperation == 'partial2_cooperation':
-        mdl.revenues = mdl.sum(mdl.sum(mdl.f[e,c] * commodities[c].units * commodities[c].revenue for e in E if e[1] == c[1]) - mdl.sum(mdl.f[e,c] * commodities[c].units * E[e].cost/E[e].original_capacity for e in E if e[2]!=c[2]) for c in commodities)
+    if type_cooperation == 'residual_cooperation' or type_cooperation == 'partial_cooperation':
+        mdl.revenues = mdl.sum(mdl.sum(mdl.f[e,c] * commodities[c].units * commodities[c].revenue for e in E if e[1] == c[1])  for c in commodities)
         mdl.add_kpi(mdl.revenues, "commodities revenue")
         mdl.maximize(mdl.revenues)
     elif type_cooperation == 'full_cooperation':
@@ -127,7 +129,7 @@ def build_iterative_model(V, agent, info_platform,  **kwargs):
     
     if conditioned_edges: # If b_e is equal to 1, the, the current agent cannt route more flow through the edge e than its original capacity - the capacity demanded by the other agent, for e an edge used for the other agent
             mdl.add_indicator_constraints(mdl.indicator_constraint(mdl.b[e],mdl.sum(mdl.f[e,c]*commodities[c].units for c in commodities) <= E[e].original_capacity - conditioned_edges[e]) for e in conditioned_edges) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity) 
-
+            mdl.add_constraints(mdl.b[e] <= mdl.u[e] for e in conditioned_edges)
     if L:
         mdl.add_constraints(mdl.sum(mdl.f[e,c]*commodities[c].units for c in commodities) <= L[e].free_capacity for e in L) # Fourth constraint: The sum of commodities on an edge can't exceed its capacity
     

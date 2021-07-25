@@ -71,17 +71,17 @@ class Agent:
         self.history_solutions.append(solution)
 
     @property
-    def total_payoff_partial1_cooperation(self):
+    def total_payoff_residual_cooperation(self):
         return self.payoff_no_cooperation + self.payoff_cooperation
 
     @property
-    def total_payoff_partial2_cooperation(self):
+    def total_payoff_partial_cooperation(self):
         return self.payoff_cooperation
 
     def total_payoff(self, type_cooperation):
-        if type_cooperation == 'partial1_cooperation':
+        if type_cooperation == 'residual_cooperation':
             return self.payoff_no_cooperation + self.payoff_cooperation
-        elif type_cooperation == 'partial2_cooperation' or type_cooperation == 'full_cooperation':
+        elif type_cooperation == 'partial_cooperation' or type_cooperation == 'full_cooperation':
             return self.payoff_cooperation
     
 # --------------------------------------
@@ -102,21 +102,21 @@ class CentralizedSystem:
 
 
     def create_commodities_set(self,agents, type_cooperation):
-        if type_cooperation == 'partial1_cooperation':
+        if type_cooperation == 'residual_cooperation':
             for i in agents:
                 for d in i.unserved_commodities:
                     self.commodities[d] = copy.deepcopy(i.commodities[d])
-        elif type_cooperation == 'partial2_cooperation' or type_cooperation == 'full_cooperation':
+        elif type_cooperation == 'partial_cooperation' or type_cooperation == 'full_cooperation':
             for i in agents:
                 for d in i.commodities:
                     self.commodities[d] = copy.deepcopy(i.commodities[d])
 
     def create_edges_set(self,agents,type_cooperation):
-        if type_cooperation == 'partial1_cooperation':
+        if type_cooperation == 'residual_cooperation':
             for i in agents:
                 for e in i.edges_with_capacity:
                     self.edges[e] = copy.deepcopy(i.edges[e])
-        elif type_cooperation == 'partial2_cooperation':
+        elif type_cooperation == 'partial_cooperation':
             for i in agents:
                 for e in i.active_edges:
                     self.edges[e] = copy.deepcopy(i.edges[e])
