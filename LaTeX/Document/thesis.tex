@@ -446,6 +446,8 @@ Constraints (\ref{eq:IterativeB}), (\ref{eq:IterativeC}), (\ref{eq:IterativeD}) 
 Constraints (\ref{eq:IterativeH}),  (\ref{eq:IterativeI}) and (\ref{eq:IterativeJ}) together with the ``technical" decision variables (\ref{eq:IterativeM}) and (\ref{eq:IterativeN}), are related with the side payments agent $i$ receives from agent $j$. Recall that each $L^{(o,t,j)} \in \mathcal{L}^j$ is a set which contains the edges of agent $i$ that agent $j$ has indicated in the previous iteration he would like to use to route commodity $(o,t,j)$. He has also indicates that if and only if for every $e \in L^{(o,t,j)}$, $q_e^R$ units of capacity are available to him, he would make a side payment to agent $i$ equal to $p_{L^{(o,t,j)}}$. Thus, in order to get the side payment $p_{L^{(o,t,j)}}$, the technical decision variable $t_{L^{(o,t,j)}}$ must be equal to 1. Constraints (\ref{eq:IterativeJ}) and (\ref{eq:IterativeN}) ensures that $t_{L^{(o,t,j)}}$ only can be 1 if all the technical decision variables $b_e$ for $e \in L^{(o,t,j)}$ are also equal to 1. Finally, constraints (\ref{eq:IterativeH})  making use of the \emph{big M} coefficient, and (\ref{eq:IterativeI}), ensures that if $b_e$ is equal to one, agent $i$ must leave at least $q_e^D$ units of residual capacity on that edge and the edge $e$ must be active. Note that these constraints are too restrictive. Agent $j$ might be planning to route 2 or more commodities through the edge $e$, and even if agent $i$ left less than $q_e^R$ units of capacity available, he might be possible to route, not all, but some of that commodities through it. However, these constraint assume that none of the commodities could be routed and therefore, any side payment associated with a commodity passing through that edge would be done. We argue that capture with exactitude this behaviour would make the model too complex, as the problem of deciding which commodities can still be routed and which can not is a \emph{knapsack problem}, which has been proven to be NP-complete \cite{KARP1972}.
 
 In figure \ref{fig:iterflowchart} we present a flow chart illustrating the structure of these cooperation mechanism.
+In the first iteration, as the information platform is empty, agent 1 is in practice solving $P^1$. Indeed, if the no information was shared in the platform, $\Upsilon^i=P^i$. For the same reason, in the first iteration agent 2 does not expect any side payments from agent 1 (he have not got yet the opportunity of demanding any edges, since no edges were shared for agent 2 in the platform yet). The iterative process continues until an equilibrium is found or the maximum number of iteration allowed is reached or an equilibrium is found. We define an \emph{equilibrium} as the situation were the solutions of $\Upsilon^1$ and $\Upsilon^2$ found in the iteration $h$ are exactly the same than the solutions found in the iteration $h-1$. This is equivalent to the definition of the \emph{Nash equilibrum}: given the actions of the others, an agent can not individually improve their payoff by changing his strategy \citep{GONZALEZ2010}. Therefore, in case an equilibrium is found, the associates networks designs and commodities flows of each agent combined are the final solution returned by the cooperation mechanism. If the maximum number of iteration is reached without equilibrium, the mechanism considers that no solution was found.
+
 
 \begin{figure}[ht!]
 \centering
@@ -488,6 +490,24 @@ In figure \ref{fig:iterflowchart} we present a flow chart illustrating the struc
 
 \section{Results} \label{seq:results}
 
+In order to analyse the performance of the different models discussed in the work, we tested the 4 different cooperation mechanism over 20 instances of the network design - multicommodity flow problem introduced in section \ref{seq:probdefinition}, comparing them with the no cooperation scenario, by simply solving the single agent model (presented also in section \ref{seq:probdefinition}) and summing the payoff of all the agents.
+
+The models were implemented in Python 3.8 and solved using CPLEX 20.1, by means of the DOCplex library. The tests were performed in an  Intel(R) Core(TM) i7-5500U CPU @ 2.40GHz with 8GB of RAM.
+
+Both the instances and the code are available upon request.
+
+
+\subsection{Instance generation}
+
+We have created 20 instances for the network design - multicommodity flow problem introduced in section \ref{seq:probdefinition}. We have decided to randomly generate them and not to use them for two main reasons. First of all, we could not found on the Internet any set of test instances matching exactly our problem characteristics. Secondly, we found sets of test instances for multicommodity flow problems \cite{MCFPWEB} and we considered to adapt them to our problem. Nevertheless, all this instances were too big, and since we are using an exact ILP solver we considered that to use very complex instances was not appropriate for this work.
+
+Therefore, we randomly generate 20 instances, all sharing the following characteristic: a complete and directed graph $G(V,E)$ with 7 nodes, ($|V|=7$), is generated. For each edge $e\in E$, we randomly select its activation cost, $c_e$, from a uniform distribution $U[3,6]$. Also for each commodity $(o,t,i)\in \Theta$ we randomly select its size and revenue per unit from two uniform distributions, $U[0,5]$ and $U[1,2]$ respectively. Finally, we differentiate 4 classes among the 20 problem cases, each containing 5 instances, which differ in the number of agents and the capacity of the edges considered. Two of the four classes consider cases with 2 agents, and the other two, with 5. At the same time, among the two instances with the same number of agents,  in one class the capacity of the edges is randomly selected from a uniform distribution $U[2,8]$ (LOW capacity), and for the other class from a uniform distribution $U[5,12]$ (HIGH capacity).
+The name of each instance indicates to which class they belong: for example, the instance ``\texttt{2\_LOW\_0}'' has 2 agents and the capacities of the edges were selected from the $U[2,8]$ distribution. The last number is just a index to differentiate the five instances inside the same class (from 0 to 4).
+
+\subsection{Parameter selection}
+
+Only in the decentralize iterative cooperation mechanism there is a parameter, and only one, i.e., the maximum number of iterations allowed. In our test we set it equal to 100. Furthermore, we have also model this mechanism in such a way that the agents always share all their edges with residual capacity in the information platform, i.e., $\widehat{E}_R^i=E_R^i\ \forall\ i\in N$.
+
 \subsection{Comparision 3 centralized mechanisms}
 
 \subsection{Comparision centralized mechanisms and iterative one, all for 2 agents}
@@ -516,6 +536,9 @@ Here
 
 Here
 \section{Discussion} \label{seq:discussion}
+
+In this section we want to comment different aspects about the mechanism we have studied in this work, as well as possible extensions for them and open questions for future research.
+
 
 \section{Conclusion} \label{seq:conclusion}
 

@@ -24,7 +24,7 @@ V = 7
 # Intervals specifying min and max values for the edges and commodities values
 edges_cost = [3,6]
 commodities_revenue = [1,2]
-commodities_units = [1,5]
+commodities_units = [0,5]
 if cap_ratio == 'high':
     # High capacity 
     edges_capacity = [5,12]

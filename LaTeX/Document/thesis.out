@@ -10,10 +10,12 @@
 \BOOKMARK [2][-]{subsection.4.3}{Residual cooperation}{section.4}% 10
 \BOOKMARK [1][-]{section.5}{A decentralized cooperation mechanism for two agents}{}% 11
 \BOOKMARK [1][-]{section.6}{Results}{}% 12
-\BOOKMARK [2][-]{subsection.6.1}{Comparision 3 centralized mechanisms}{section.6}% 13
-\BOOKMARK [2][-]{subsection.6.2}{Comparision centralized mechanisms and iterative one, all for 2 agents}{section.6}% 14
-\BOOKMARK [1][-]{section.7}{Discussion}{}% 15
-\BOOKMARK [1][-]{section.8}{Conclusion}{}% 16
-\BOOKMARK [1][-]{appendix.A}{ILP's}{}% 17
-\BOOKMARK [2][-]{subsection.A.1}{ILP to be solved by the central planner in the centralized full cooperation scenario.}{appendix.A}% 18
-\BOOKMARK [2][-]{subsection.A.2}{ILP to be solved by the central planner in the centralized residual cooperation scenario.}{appendix.A}% 19
+\BOOKMARK [2][-]{subsection.6.1}{Instance generation}{section.6}% 13
+\BOOKMARK [2][-]{subsection.6.2}{Parameter selection}{section.6}% 14
+\BOOKMARK [2][-]{subsection.6.3}{Comparision 3 centralized mechanisms}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.4}{Comparision centralized mechanisms and iterative one, all for 2 agents}{section.6}% 16
+\BOOKMARK [1][-]{section.7}{Discussion}{}% 17
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 18
+\BOOKMARK [1][-]{appendix.A}{ILP's}{}% 19
+\BOOKMARK [2][-]{subsection.A.1}{ILP to be solved by the central planner in the centralized full cooperation scenario.}{appendix.A}% 20
+\BOOKMARK [2][-]{subsection.A.2}{ILP to be solved by the central planner in the centralized residual cooperation scenario.}{appendix.A}% 21
