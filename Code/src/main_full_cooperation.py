@@ -12,7 +12,6 @@ def full_cooperation(instance):
 
     N, V, commodities, edges = fn.read_data(instance)
 
-
     # ------ Creating the agents objects ----------
 
     agents_list = []
@@ -29,12 +28,12 @@ def full_cooperation(instance):
         # Build the model
         model = mdls.build_single_agent_model(V,agent.edges,agent.commodities)
         # model.print_information()
-
         # Solve the model.
         if model.solve():
-            # fn.print_no_info_solution(model)
+            # fn.print_single_agent_solution(model)
             fn.recover_data_single_agent(model,agent)
             agent.payoff_no_cooperation = model.objective_value
+
         else:
             print("Problem has no solution")
 
@@ -57,9 +56,10 @@ def full_cooperation(instance):
     # Build the model
     model = mdls.build_cooperation_model(V,central_planner.edges,central_planner.commodities,'full_cooperation',agents_minimal_profit)
     # model.print_information()
-
+    model.set_time_limit(5400)
     # # Solve the model.
     if model.solve():
+        # model.print_solution()
         # fn.print_cooperation_solution(model)
         fn.recover_data_cooperation(model, central_planner,'full_cooperation')
 
@@ -88,7 +88,8 @@ def full_cooperation(instance):
         return coalition_payoff
     else:
         print("Problem has no solution")
+        return -1
 
 if __name__ == '__main__':
-    instance = '2_low_0'
+    instance = '5_high_0'
     full_cooperation(instance)

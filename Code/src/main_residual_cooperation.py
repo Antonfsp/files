@@ -56,7 +56,7 @@ def residual_cooperation(instance):
     # Build the model
     model = mdls.build_cooperation_model(V,central_planner.edges,central_planner.commodities,'residual_cooperation')
     # model.print_information()
-
+    model.set_time_limit(5400)
     # Solve the model.
     if model.solve():
         # fn.print_cooperation_solution(model)
@@ -84,6 +84,9 @@ def residual_cooperation(instance):
         return no_cooperation_coalition_payoff, coalition_payoff
     else:
         print("Problem has no solution")
+        for agent in agents_list:
+            no_cooperation_coalition_payoff += agent.payoff_no_cooperation
+        return no_cooperation_coalition_payoff, -1
 
 
 if __name__ == '__main__':

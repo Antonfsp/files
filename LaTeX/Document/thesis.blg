@@ -1,50 +1,50 @@
 This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: thesis.aux
-The style file: elsarticle-num.bst
+The style file: plainnat.bst
 Database file #1: bibliography.bib
-Warning--can't use both author and editor fields in KARP1972
-Warning--empty chapter and pages in KARP1972
+Warning--to sort, need author or key in MCFPWEB
 Warning--empty year in MCFPWEB
+Warning--can't use both author and editor fields in KARP1972
 You've used 21 entries,
-            2952 wiz_defined-function locations,
-            839 strings with 9878 characters,
-and the built_in function-call counts, 6186 in all, are:
-= -- 600
-> -- 180
-< -- 1
-+ -- 74
-- -- 53
-* -- 468
-:= -- 827
-add.period$ -- 38
+            2773 wiz_defined-function locations,
+            765 strings with 9489 characters,
+and the built_in function-call counts, 9504 in all, are:
+= -- 857
+> -- 524
+< -- 12
++ -- 177
+- -- 156
+* -- 794
+:= -- 1478
+add.period$ -- 82
 call.type$ -- 21
-change.case$ -- 18
-chr.to.int$ -- 0
-cite$ -- 24
-duplicate$ -- 175
-empty$ -- 712
-format.name$ -- 71
-if$ -- 1629
-int.to.chr$ -- 0
-int.to.str$ -- 21
+change.case$ -- 110
+chr.to.int$ -- 21
+cite$ -- 46
+duplicate$ -- 429
+empty$ -- 782
+format.name$ -- 194
+if$ -- 2001
+int.to.chr$ -- 1
+int.to.str$ -- 1
 missing$ -- 25
-newline$ -- 88
-num.names$ -- 20
-pop$ -- 129
+newline$ -- 132
+num.names$ -- 80
+pop$ -- 211
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 94
 quote$ -- 0
-skip$ -- 418
+skip$ -- 317
 stack$ -- 0
-substring$ -- 266
-swap$ -- 57
+substring$ -- 323
+swap$ -- 36
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 206
 warning$ -- 3
-while$ -- 36
-width$ -- 23
-write$ -- 207
+while$ -- 76
+width$ -- 0
+write$ -- 313
 (There were 3 warnings)

@@ -1,0 +1,9 @@
+\begin{tabular}{lrrrr}
+\toprule
+{} &  No\_cooperation &     Full &  Partial &  Residual \\
+\midrule
+5\_high\_2 &          128.31 &  5531.96 &   140.68 &    127.19 \\
+5\_high\_3 &          147.19 &  5553.22 &   174.01 &    146.92 \\
+5\_high\_4 &          335.42 &  5744.83 &   351.80 &    334.53 \\
+\bottomrule
+\end{tabular}

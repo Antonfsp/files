@@ -54,7 +54,7 @@ def partial_cooperation(instance):
     # Build the model
     model = mdls.build_cooperation_model(V,central_planner.edges,central_planner.commodities,'partial_cooperation',agents_minimal_profit)
     # model.print_information()
-
+    model.set_time_limit(5400)
     # Solve the model.
     if model.solve():
         # fn.print_cooperation_solution(model)
@@ -80,7 +80,7 @@ def partial_cooperation(instance):
         return coalition_payoff
     else:
         print("Problem has no solution")
-
+        return -1
 
 if __name__ == '__main__':
     instance = '2_low_0'

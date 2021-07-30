@@ -2,13 +2,13 @@
 \BOOKMARK [1][-]{section.2}{Literature review}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Centralized cooperation}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Decentralized cooperation}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Problem statement: A network design - muldicommodity flow problem}{}% 5
+\BOOKMARK [1][-]{section.3}{Problem statement: A network design - multicommodity flow problem}{}% 5
 \BOOKMARK [2][-]{subsection.3.1}{Single agent model}{section.3}% 6
-\BOOKMARK [1][-]{section.4}{The centralized cooperation models}{}% 7
-\BOOKMARK [2][-]{subsection.4.1}{Full cooperation system}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.2}{Partial cooperation system}{section.4}% 9
-\BOOKMARK [2][-]{subsection.4.3}{Residual cooperation}{section.4}% 10
-\BOOKMARK [1][-]{section.5}{A decentralized cooperation mechanism for two agents}{}% 11
+\BOOKMARK [1][-]{section.4}{Three cooperation models with a central authority with decision power}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Fully centralized cooperation system}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Central routing cooperation system}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Central residuals routing cooperation system}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{A fully decentralized cooperation mechanism for two agents}{}% 11
 \BOOKMARK [1][-]{section.6}{Results}{}% 12
 \BOOKMARK [2][-]{subsection.6.1}{Instance generation}{section.6}% 13
 \BOOKMARK [2][-]{subsection.6.2}{Parameter selection}{section.6}% 14
@@ -19,5 +19,5 @@
 \BOOKMARK [2][-]{subsection.7.2}{Possible extensions and future work}{section.7}% 19
 \BOOKMARK [1][-]{section.8}{Conclusion}{}% 20
 \BOOKMARK [1][-]{appendix.A}{ILP's}{}% 21
-\BOOKMARK [2][-]{subsection.A.1}{ILP to be solved by the central planner in the centralized full cooperation system.}{appendix.A}% 22
-\BOOKMARK [2][-]{subsection.A.2}{ILP to be solved by the central planner in the centralized residual cooperation system.}{appendix.A}% 23
+\BOOKMARK [2][-]{subsection.A.1}{ILP to be solved by the central planner in the fully centralized cooperation system.}{appendix.A}% 22
+\BOOKMARK [2][-]{subsection.A.2}{ILP to be solved by the central planner in the central residuals routing cooperation system.}{appendix.A}% 23

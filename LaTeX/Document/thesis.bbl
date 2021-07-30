@@ -1,137 +1,159 @@
-\begin{thebibliography}{10}
-\expandafter\ifx\csname url\endcsname\relax
-  \def\url#1{\texttt{#1}}\fi
-\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
-\expandafter\ifx\csname href\endcsname\relax
-  \def\href#1#2{#2} \def\path#1{#1}\fi
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem{BALLOT2010}
-E.~Ballot, F.~Fontane, Reducing transportation co2 emissions through pooling of
-  supply networks: perspectives from a case study in french retail chains,
-  Production Planning \& Control 21~(6) (2010) 640--650.
-\newblock \href {https://doi.org/10.1080/09537287.2010.489276}
-  {\path{doi:10.1080/09537287.2010.489276}}.
+\bibitem[MCF()]{MCFPWEB}
+Multicommodity flow problems.
+\newblock \url{http://groups.di.unipi.it/optimize/Data/MMCF.html}.
+\newblock Accessed: 2021-07-25.
 
-\bibitem{SOYSAL2018168}
-M.~Soysal, J.~M. Bloemhof-Ruwaard, R.~Haijema, J.~G. {van der Vorst}, Modeling
-  a green inventory routing problem for perishable products with horizontal
-  collaboration, Computers \& Operations Research 89 (2018) 168--182.
-\newblock \href {https://doi.org/doi.org/10.1016/j.cor.2016.02.003}
-  {\path{doi:doi.org/10.1016/j.cor.2016.02.003}}.
+\bibitem[Agarwal and Ergun(2008)]{AGARWAL2008175}
+Richa Agarwal and Ozlem Ergun.
+\newblock Ship scheduling and network design for cargo routing in liner
+  shipping.
+\newblock \emph{Transportation Science}, 42\penalty0 (2):\penalty0 175--196,
+  2008.
+\newblock \doi{10.1287/trsc.1070.0205}.
 
-\bibitem{AGARWAL2008175}
-R.~Agarwal, O.~Ergun, Ship scheduling and network design for cargo routing in
-  liner shipping, Transportation Science 42~(2) (2008) 175--196.
-\newblock \href {https://doi.org/10.1287/trsc.1070.0205}
-  {\path{doi:10.1287/trsc.1070.0205}}.
+\bibitem[Agarwal and Özlem Ergun(2008)]{AGARWAL2008520}
+Richa Agarwal and Özlem Ergun.
+\newblock Mechanism design for a multicommodity flow game in service network
+  alliances.
+\newblock \emph{Operations Research Letters}, 36\penalty0 (5):\penalty0
+  520--524, 2008.
+\newblock ISSN 0167-6377.
+\newblock \doi{10.1016/j.orl.2008.04.007}.
 
-\bibitem{GONZALEZ2010}
-J.~Gonz{\'{a}}lez-D{\'{\i}}az, I.~Garc{\'{\i}}a-Jurado, M.~G. Fiestras-Janeiro,
-  An Introductory Course on Mathematical Game Theory, American Mathematical
-  Society, 2010.
-\newblock \href {https://doi.org/10.1090/gsm/115} {\path{doi:10.1090/gsm/115}}.
+\bibitem[Ahuja et~al.(1993)Ahuja, Magnanti, and Orlin]{AHUJA1993}
+Ravindra~K. Ahuja, Thomas~L. Magnanti, and James~B. Orlin.
+\newblock \emph{Network Flows: Theory, Algorithms, and Applications}.
+\newblock Prentice-Hall, Inc., 1993.
 
-\bibitem{SHAPLEY1952}
-L.~S. Shapley, A Value for N-Person Games, RAND Corporation, Santa Monica, CA,
-  1952.
-\newblock \href {https://doi.org/10.7249/P0295} {\path{doi:10.7249/P0295}}.
+\bibitem[Anupindi et~al.(2001)Anupindi, Bassok, and Zemel]{ANUPINDI2001}
+Ravi Anupindi, Yehuda Bassok, and Eitan Zemel.
+\newblock A general framework for the study of decentralized distribution
+  systems.
+\newblock \emph{Manufacturing \& Service Operations Management}, 3:\penalty0
+  349--368, 10 2001.
+\newblock \doi{10.1287/msom.3.4.349.9973}.
 
-\bibitem{DEFRYN2018891}
-C.~Defryn, K.~Sörensen, Multi-objective optimisation models for the travelling
-  salesman problem with horizontal cooperation, European Journal of Operational
-  Research 267~(3) (2018) 891--903.
-\newblock \href {https://doi.org/10.1016/j.ejor.2017.12.028}
-  {\path{doi:10.1016/j.ejor.2017.12.028}}.
+\bibitem[Ballot and Fontane(2010)]{BALLOT2010}
+E.~Ballot and F.~Fontane.
+\newblock Reducing transportation co2 emissions through pooling of supply
+  networks: perspectives from a case study in french retail chains.
+\newblock \emph{Production Planning \& Control}, 21\penalty0 (6):\penalty0
+  640--650, 2010.
+\newblock \doi{10.1080/09537287.2010.489276}.
 
-\bibitem{DEFRYN20191}
-C.~Defryn, K.~Sörensen, W.~Dullaert, Integrating partner objectives in
-  horizontal logistics optimisation models, Omega 82 (2019) 1--12.
-\newblock \href {https://doi.org/10.1016/j.omega.2017.11.008}
-  {\path{doi:10.1016/j.omega.2017.11.008}}.
+\bibitem[Brandenburger and Nalebuff(1996)]{BRANDENBURGER1996}
+Adam~M Brandenburger and Barry~J Nalebuff.
+\newblock \emph{Co-opetition}.
+\newblock Crown Business, may 1996.
 
-\bibitem{VANOVERMEIRE2014125}
-C.~Vanovermeire, K.~Sörensen, Integration of the cost allocation in the
-  optimization of collaborative bundling, Transportation Research Part E:
-  Logistics and Transportation Review 72 (2014) 125--143.
-\newblock \href {https://doi.org/10.1016/j.tre.2014.09.009}
-  {\path{doi:10.1016/j.tre.2014.09.009}}.
+\bibitem[Defryn and Sörensen(2018)]{DEFRYN2018891}
+Christof Defryn and Kenneth Sörensen.
+\newblock Multi-objective optimisation models for the travelling salesman
+  problem with horizontal cooperation.
+\newblock \emph{European Journal of Operational Research}, 267\penalty0
+  (3):\penalty0 891--903, 2018.
+\newblock \doi{10.1016/j.ejor.2017.12.028}.
 
-\bibitem{SERRANO2017}
-A.~Serrano-Hernandez, A.~A. Juan, J.~Faulin, E.~Perez-Bernabeu, Horizontal
-  collaboration in freight transport: concepts, benefits and environmental
-  challenges, SORT 1 (2017) 393--414.
+\bibitem[Defryn et~al.(2019)Defryn, Sörensen, and Dullaert]{DEFRYN20191}
+Christof Defryn, Kenneth Sörensen, and Wout Dullaert.
+\newblock Integrating partner objectives in horizontal logistics optimisation
+  models.
+\newblock \emph{Omega}, 82:\penalty0 1--12, 2019.
+\newblock ISSN 0305-0483.
+\newblock \doi{10.1016/j.omega.2017.11.008}.
 
-\bibitem{ZENG2015}
-F.~Zeng, Y.~Chen, M.~Dong, J.~Zheng, Understanding distributor opportunism in a
-  horizontal network, Industrial Marketing Management 46 (02 2015).
-\newblock \href {https://doi.org/10.1016/j.indmarman.2015.01.018}
-  {\path{doi:10.1016/j.indmarman.2015.01.018}}.
+\bibitem[Gansterer and Hartl(2017)]{GANTERER2017}
+Margaretha Gansterer and Richard Hartl.
+\newblock Collaborative vehicle routing: A survey.
+\newblock \emph{European Journal of Operational Research}, 06 2017.
+\newblock \doi{10.1016/j.ejor.2017.10.023}.
 
-\bibitem{LEDYARD2002}
-J.~O. Ledyard, M.~Olson, D.~Porter, J.~A. Swanson, D.~P. Torma, The first use
-  of a combined-value auction for transportation services, INFORMS Journal on
-  Applied Analytics 32~(5) (2002) 4--12.
-\newblock \href {https://doi.org/10.1287/inte.32.5.4.30}
-  {\path{doi:10.1287/inte.32.5.4.30}}.
+\bibitem[Gonz{\'{a}}lez-D{\'{\i}}az et~al.(2010)Gonz{\'{a}}lez-D{\'{\i}}az,
+  Garc{\'{\i}}a-Jurado, and Fiestras-Janeiro]{GONZALEZ2010}
+Julio Gonz{\'{a}}lez-D{\'{\i}}az, Ignacio Garc{\'{\i}}a-Jurado, and M.~Gloria
+  Fiestras-Janeiro.
+\newblock \emph{An Introductory Course on Mathematical Game Theory}.
+\newblock American Mathematical Society, may 2010.
+\newblock \doi{10.1090/gsm/115}.
 
-\bibitem{MAHR201099}
-T.~Máhr, J.~Srour, M.~{de Weerdt}, R.~Zuidwijk, Can agents measure up? a
-  comparative study of an agent-based and on-line optimization approach for a
-  drayage problem with uncertainty, Transportation Research Part C: Emerging
-  Technologies 18~(1) (2010) 99--119, information/Communication Technologies
-  and Travel Behaviour Agents in Traffic and Transportation.
-\newblock \href {https://doi.org/10.1016/j.trc.2009.04.018}
-  {\path{doi:10.1016/j.trc.2009.04.018}}.
+\bibitem[Hernández and Peeta(2014)]{HERNANDEZ2014}
+Salvador Hernández and Srinivas Peeta.
+\newblock A carrier collaboration problem for less-than-truckload carriers:
+  characteristics and carrier collaboration model.
+\newblock \emph{Transportmetrica A: Transport Science}, 10\penalty0
+  (4):\penalty0 327--349, 2014.
+\newblock \doi{10.1080/23249935.2013.766279}.
 
-\bibitem{HERNANDEZ2014}
-S.~Hernández, S.~Peeta, A carrier collaboration problem for
-  less-than-truckload carriers: characteristics and carrier collaboration
-  model, Transportmetrica A: Transport Science 10~(4) (2014) 327--349.
-\newblock \href {https://doi.org/10.1080/23249935.2013.766279}
-  {\path{doi:10.1080/23249935.2013.766279}}.
+\bibitem[Karp(1972)]{KARP1972}
+Richard~M. Karp.
+\newblock \emph{Reducibility among Combinatorial Problems}, pages 85--103.
+\newblock Springer US, Boston, MA, 1972.
+\newblock \doi{10.1007/978-1-4684-2001-2_9}.
 
-\bibitem{WANG2014}
-X.~Wang, H.~Kopfer, Collaborative transportation planning of
-  less-than-truckload freight, OR Spectrum 36 (03 2014).
-\newblock \href {https://doi.org/10.1007/s00291-013-0331-x}
-  {\path{doi:10.1007/s00291-013-0331-x}}.
+\bibitem[Pan et~al.(2019)Pan, Trentesaux, Ballot, and Huang]{PAN2019}
+Shenle Pan, Damien Trentesaux, Eric Ballot, and George~Q. Huang.
+\newblock Horizontal collaborative transport: survey of solutions and practical
+  implementation issues.
+\newblock \emph{International Journal of Production Research}, 57\penalty0
+  (15-16):\penalty0 5340--5361, 2019.
+\newblock \doi{10.1080/00207543.2019.1574040}.
 
-\bibitem{GANTERER2017}
-M.~Gansterer, R.~Hartl, Collaborative vehicle routing: A survey, European
-  Journal of Operational Research (06 2017).
-\newblock \href {https://doi.org/10.1016/j.ejor.2017.10.023}
-  {\path{doi:10.1016/j.ejor.2017.10.023}}.
+\bibitem[Serrano-Hernandez et~al.(2017)Serrano-Hernandez, Juan, Faulin, and
+  Perez-Bernabeu]{SERRANO2017}
+Adrian Serrano-Hernandez, Angel~A Juan, Javier Faulin, and Elena
+  Perez-Bernabeu.
+\newblock Horizontal collaboration in freight transport: concepts, benefits and
+  environmental challenges.
+\newblock \emph{SORT}, 1:\penalty0 393--414, 2017.
 
-\bibitem{AGARWAL2008520}
-R.~Agarwal, Özlem Ergun, Mechanism design for a multicommodity flow game in
-  service network alliances, Operations Research Letters 36~(5) (2008)
-  520--524.
-\newblock \href {https://doi.org/10.1016/j.orl.2008.04.007}
-  {\path{doi:10.1016/j.orl.2008.04.007}}.
+\bibitem[Shapley(1952)]{SHAPLEY1952}
+Lloyd~S. Shapley.
+\newblock \emph{A Value for N-Person Games}.
+\newblock RAND Corporation, Santa Monica, CA, 1952.
+\newblock \doi{10.7249/P0295}.
 
-\bibitem{ANUPINDI2001}
-R.~Anupindi, Y.~Bassok, E.~Zemel, A general framework for the study of
-  decentralized distribution systems, Manufacturing \& Service Operations
-  Management 3 (2001) 349--368.
-\newblock \href {https://doi.org/10.1287/msom.3.4.349.9973}
-  {\path{doi:10.1287/msom.3.4.349.9973}}.
+\bibitem[Soysal et~al.(2018)Soysal, Bloemhof-Ruwaard, Haijema, and {van der
+  Vorst}]{SOYSAL2018168}
+Mehmet Soysal, Jacqueline~M. Bloemhof-Ruwaard, Rene Haijema, and Jack~G.A.J.
+  {van der Vorst}.
+\newblock Modeling a green inventory routing problem for perishable products
+  with horizontal collaboration.
+\newblock \emph{Computers \& Operations Research}, 89:\penalty0 168--182, 2018.
+\newblock \doi{doi.org/10.1016/j.cor.2016.02.003}.
 
-\bibitem{BRANDENBURGER1996}
-A.~M. Brandenburger, B.~J. Nalebuff, Co-opetition, Crown Business, 1996.
+\bibitem[Vanovermeire and Sörensen(2014)]{VANOVERMEIRE2014125}
+Christine Vanovermeire and Kenneth Sörensen.
+\newblock Integration of the cost allocation in the optimization of
+  collaborative bundling.
+\newblock \emph{Transportation Research Part E: Logistics and Transportation
+  Review}, 72:\penalty0 125--143, 2014.
+\newblock \doi{10.1016/j.tre.2014.09.009}.
 
-\bibitem{AHUJA1993}
-R.~K. Ahuja, T.~L. Magnanti, J.~B. Orlin, Network Flows: Theory, Algorithms,
-  and Applications, Prentice-Hall, Inc., 1993.
+\bibitem[Verdonck et~al.(2013)Verdonck, Caris, Ramaekers, and
+  Janssens]{VERDONCK2013}
+Lotte Verdonck, An~Caris, Katrien Ramaekers, and Gerrit Janssens.
+\newblock Collaborative logistics from the perspective of road transportation
+  companies.
+\newblock \emph{Transport Reviews}, 33:\penalty0 700--719, 10 2013.
+\newblock \doi{10.1080/01441647.2013.853706}.
 
-\bibitem{KARP1972}
-R.~M. Karp, Reducibility among Combinatorial Problems, Springer US, Boston, MA,
-  1972, pp. 85--103.
-\newblock \href {https://doi.org/10.1007/978-1-4684-2001-2_9}
-  {\path{doi:10.1007/978-1-4684-2001-2_9}}.
+\bibitem[Wang and Kopfer(2014)]{WANG2014}
+Xin Wang and Herbert Kopfer.
+\newblock Collaborative transportation planning of less-than-truckload freight.
+\newblock \emph{OR Spectrum}, 36, 03 2014.
+\newblock \doi{10.1007/s00291-013-0331-x}.
 
-\bibitem{MCFPWEB}
-Multicommodity flow problems,
-  \url{http://groups.di.unipi.it/optimize/Data/MMCF.html}, accessed:
-  2021-07-25.
+\bibitem[Zeng et~al.(2015)Zeng, Chen, Dong, and Zheng]{ZENG2015}
+Fue Zeng, Ying Chen, Maggie Dong, and Jinhui Zheng.
+\newblock Understanding distributor opportunism in a horizontal network.
+\newblock \emph{Industrial Marketing Management}, 46, 02 2015.
+\newblock \doi{10.1016/j.indmarman.2015.01.018}.
 
 \end{thebibliography}

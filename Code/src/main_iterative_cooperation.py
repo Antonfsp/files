@@ -11,7 +11,7 @@ from numpy import NaN
 import lib.classes as cl
 import lib.models as mdls
 import lib.functions as fn
-
+import time
 
 # -------------------------------------------------------------------------
 #  INSTANCE DATA
@@ -19,7 +19,8 @@ import lib.functions as fn
 
 
 def iterative_cooperation(instance,order=[0,1]):
-    
+    init_time = time.time()
+    max_time = 5400
     N, V, commodities, edges = fn.read_data(instance)
 
     max_iter = 100
@@ -65,7 +66,7 @@ def iterative_cooperation(instance,order=[0,1]):
 
         # Build the model
         model = mdls.build_iterative_model(V,agents_list[first_agent],info_platform)
-
+        model.set_time_limit(max_time-(time.time()-init_time))
         # Solve the model.
         if model.solve():
             #fn.print_iterative_solution(model)
@@ -74,6 +75,7 @@ def iterative_cooperation(instance,order=[0,1]):
             #agents_list[first_agent].history_solutions[-1].print_data()
         else:
             print("Problem has no solution")
+            return -1
 
         
         # print("----------------------")
@@ -88,7 +90,7 @@ def iterative_cooperation(instance,order=[0,1]):
 
         # Build the model
         model = mdls.build_iterative_model(V,agents_list[second_agent],info_platform)
-
+        model.set_time_limit(max_time-(time.time()-init_time))
         # Solve the model.
         if model.solve():
             #fn.print_iterative_solution(model)
@@ -97,7 +99,7 @@ def iterative_cooperation(instance,order=[0,1]):
             #agents_list[second_agent].history_solutions[-1].print_data()
         else:
             print("Problem has no solution")
-
+            return -1
 
         if(iteration >= 2 and agents_list[first_agent].history_solutions[-1].equal_to(agents_list[first_agent].history_solutions[-2]) and agents_list[second_agent].history_solutions[-1].equal_to(agents_list[second_agent].history_solutions[-2])):
             # print('Equilibrium was found in %d iterations!' %(iteration))
@@ -105,7 +107,7 @@ def iterative_cooperation(instance,order=[0,1]):
             break
     else:
         print('No equilibrium found in %d iterations' %(iteration))
-        coalition_payoff = NaN
+        coalition_payoff = -1
     
     
     return coalition_payoff,iteration

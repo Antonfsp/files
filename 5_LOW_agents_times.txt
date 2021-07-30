@@ -1,0 +1,11 @@
+\begin{tabular}{lrrrr}
+\toprule
+{} &  No\_cooperation &    Full &  Partial &  Residual \\
+\midrule
+5\_low\_0 &            8.12 &  365.40 &    11.34 &      6.36 \\
+5\_low\_1 &            8.79 &  171.46 &    15.28 &      9.26 \\
+5\_low\_2 &            5.35 &   89.85 &     9.28 &      5.88 \\
+5\_low\_3 &            5.83 &  249.20 &    11.33 &      6.38 \\
+5\_low\_4 &            6.41 &  142.05 &    12.18 &      6.69 \\
+\bottomrule
+\end{tabular}
