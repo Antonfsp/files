@@ -1,159 +1,884 @@
-\begin{thebibliography}{21}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\bibitem[MCF()]{MCFPWEB}
-Multicommodity flow problems.
-\newblock \url{http://groups.di.unipi.it/optimize/Data/MMCF.html}.
-\newblock Accessed: 2021-07-25.
 
-\bibitem[Agarwal and Ergun(2008)]{AGARWAL2008175}
-Richa Agarwal and Ozlem Ergun.
-\newblock Ship scheduling and network design for cargo routing in liner
-  shipping.
-\newblock \emph{Transportation Science}, 42\penalty0 (2):\penalty0 175--196,
-  2008.
-\newblock \doi{10.1287/trsc.1070.0205}.
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{BALLOT2010}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=aa13cbc67ccbc6b2faaea12262e1fd76}{%
+           family={Ballot},
+           familyi={B\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=28e5f21bd1661fd638e03777ced367d5}{%
+           family={Fontane},
+           familyi={F\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{fc9781a47be087d920f92d3b67258e75}
+      \strng{fullhash}{fc9781a47be087d920f92d3b67258e75}
+      \strng{bibnamehash}{fc9781a47be087d920f92d3b67258e75}
+      \strng{authorbibnamehash}{fc9781a47be087d920f92d3b67258e75}
+      \strng{authornamehash}{fc9781a47be087d920f92d3b67258e75}
+      \strng{authorfullhash}{fc9781a47be087d920f92d3b67258e75}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Production Planning \& Control}
+      \field{number}{6}
+      \field{title}{Reducing transportation CO2 emissions through pooling of supply networks: perspectives from a case study in French retail chains}
+      \field{volume}{21}
+      \field{year}{2010}
+      \field{pages}{640\bibrangedash 650}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1080/09537287.2010.489276
+      \endverb
+    \endentry
+    \entry{SOYSAL2018168}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=c40ee844385e4dae5ec53b2e5d79e901}{%
+           family={Soysal},
+           familyi={S\bibinitperiod},
+           given={Mehmet},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=75ac5957a7d53869a43f306594420b2d}{%
+           family={Bloemhof-Ruwaard},
+           familyi={B\bibinithyphendelim R\bibinitperiod},
+           given={Jacqueline\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9793bdc01fa31cfd29b884616a360d8f}{%
+           family={Haijema},
+           familyi={H\bibinitperiod},
+           given={Rene},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b16564c822be10bbe7e310f3c548281c}{%
+           family={{van der Vorst}},
+           familyi={v\bibinitperiod},
+           given={Jack\bibnamedelima G.A.J.},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c3c29e66e4a1909600926de78965739e}
+      \strng{fullhash}{b8c8cfdc244caa25b1f8ac70ebbf96ac}
+      \strng{bibnamehash}{c3c29e66e4a1909600926de78965739e}
+      \strng{authorbibnamehash}{c3c29e66e4a1909600926de78965739e}
+      \strng{authornamehash}{c3c29e66e4a1909600926de78965739e}
+      \strng{authorfullhash}{b8c8cfdc244caa25b1f8ac70ebbf96ac}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computers \& Operations Research}
+      \field{title}{Modeling a green inventory routing problem for perishable products with horizontal collaboration}
+      \field{volume}{89}
+      \field{year}{2018}
+      \field{pages}{168\bibrangedash 182}
+      \range{pages}{15}
+      \verb{doi}
+      \verb doi.org/10.1016/j.cor.2016.02.003
+      \endverb
+      \keyw{Inventory routing,Horizontal collaboration,Energy consumption,Perishability,Demand uncertainty}
+    \endentry
+    \entry{AGARWAL2008175}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=0fa0a63c5b4c0b87413f77cf4590c7e9}{%
+           family={Agarwal},
+           familyi={A\bibinitperiod},
+           given={Richa},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=ebf701c26678d0b7cb1e2dc9b995af95}{%
+           family={Ergun},
+           familyi={E\bibinitperiod},
+           given={Ozlem},
+           giveni={O\bibinitperiod},
+           givenun=1}}%
+      }
+      \strng{namehash}{7927da7f7edc4b4e5e10a729225bef0d}
+      \strng{fullhash}{7927da7f7edc4b4e5e10a729225bef0d}
+      \strng{bibnamehash}{7927da7f7edc4b4e5e10a729225bef0d}
+      \strng{authorbibnamehash}{7927da7f7edc4b4e5e10a729225bef0d}
+      \strng{authornamehash}{7927da7f7edc4b4e5e10a729225bef0d}
+      \strng{authorfullhash}{7927da7f7edc4b4e5e10a729225bef0d}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Science}
+      \field{number}{2}
+      \field{title}{Ship Scheduling and Network Design for Cargo Routing in Liner Shipping}
+      \field{volume}{42}
+      \field{year}{2008}
+      \field{pages}{175\bibrangedash 196}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1287/trsc.1070.0205
+      \endverb
+    \endentry
+    \entry{GANTERER2017}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=0947a3ac5d3203b6153d2467837bc764}{%
+           family={Gansterer},
+           familyi={G\bibinitperiod},
+           given={Margaretha},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=63544d0d5befbdc8c74a3156c6bf5e11}{%
+           family={Hartl},
+           familyi={H\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3bcea9a84e3d45a5852ad18ac96f209d}
+      \strng{fullhash}{3bcea9a84e3d45a5852ad18ac96f209d}
+      \strng{bibnamehash}{3bcea9a84e3d45a5852ad18ac96f209d}
+      \strng{authorbibnamehash}{3bcea9a84e3d45a5852ad18ac96f209d}
+      \strng{authornamehash}{3bcea9a84e3d45a5852ad18ac96f209d}
+      \strng{authorfullhash}{3bcea9a84e3d45a5852ad18ac96f209d}
+      \field{sortinit}{4}
+      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{European Journal of Operational Research}
+      \field{month}{06}
+      \field{title}{Collaborative vehicle routing: A survey}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1016/j.ejor.2017.10.023
+      \endverb
+    \endentry
+    \entry{VERDONCK2013}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=04ddb6d75133846e0287fe09f4f34d75}{%
+           family={Verdonck},
+           familyi={V\bibinitperiod},
+           given={Lotte},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=34123c97ca6830d368bf7be67bbb1578}{%
+           family={Caris},
+           familyi={C\bibinitperiod},
+           given={An},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=63fca9a4747688fd78d60284855de123}{%
+           family={Ramaekers},
+           familyi={R\bibinitperiod},
+           given={Katrien},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=45f4449392a9dcf74de735ca223b2930}{%
+           family={Janssens},
+           familyi={J\bibinitperiod},
+           given={Gerrit},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6cf22f31657db376322f79538df1614c}
+      \strng{fullhash}{a35276fc04b45864dab3de6569996258}
+      \strng{bibnamehash}{6cf22f31657db376322f79538df1614c}
+      \strng{authorbibnamehash}{6cf22f31657db376322f79538df1614c}
+      \strng{authornamehash}{6cf22f31657db376322f79538df1614c}
+      \strng{authorfullhash}{a35276fc04b45864dab3de6569996258}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transport Reviews}
+      \field{month}{10}
+      \field{title}{Collaborative Logistics from the Perspective of Road Transportation Companies}
+      \field{volume}{33}
+      \field{year}{2013}
+      \field{pages}{700\bibrangedash 719}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1080/01441647.2013.853706
+      \endverb
+    \endentry
+    \entry{GONZALEZ2010}{book}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=5b09b33d271617efbd72e44308298bc9}{%
+           family={González-Diaz},
+           familyi={G\bibinithyphendelim D\bibinitperiod},
+           given={Julio},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fd8803bba32d5b7ad5658c19dc9dbd54}{%
+           family={García-Jurado},
+           familyi={G\bibinithyphendelim J\bibinitperiod},
+           given={Ignacio},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=70b6e2377797e257f02dea3f75fd922a}{%
+           family={Fiestras-Janeiro},
+           familyi={F\bibinithyphendelim J\bibinitperiod},
+           given={M.\bibnamedelimi Gloria},
+           giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Mathematical Society}%
+      }
+      \strng{namehash}{b153193ba4eeb65d40499170d3a631d3}
+      \strng{fullhash}{b153193ba4eeb65d40499170d3a631d3}
+      \strng{bibnamehash}{b153193ba4eeb65d40499170d3a631d3}
+      \strng{authorbibnamehash}{b153193ba4eeb65d40499170d3a631d3}
+      \strng{authornamehash}{b153193ba4eeb65d40499170d3a631d3}
+      \strng{authorfullhash}{b153193ba4eeb65d40499170d3a631d3}
+      \field{sortinit}{6}
+      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{An Introductory Course on Mathematical Game Theory}
+      \field{year}{2010}
+      \verb{doi}
+      \verb 10.1090/gsm/115
+      \endverb
+    \endentry
+    \entry{SHAPLEY1952}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=aa2b96ffd25f090ad898c0022f7efa12}{%
+           family={Shapley},
+           familyi={S\bibinitperiod},
+           given={Lloyd\bibnamedelima S.},
+           giveni={L\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Santa Monica, CA}%
+      }
+      \list{publisher}{1}{%
+        {RAND Corporation}%
+      }
+      \strng{namehash}{aa2b96ffd25f090ad898c0022f7efa12}
+      \strng{fullhash}{aa2b96ffd25f090ad898c0022f7efa12}
+      \strng{bibnamehash}{aa2b96ffd25f090ad898c0022f7efa12}
+      \strng{authorbibnamehash}{aa2b96ffd25f090ad898c0022f7efa12}
+      \strng{authornamehash}{aa2b96ffd25f090ad898c0022f7efa12}
+      \strng{authorfullhash}{aa2b96ffd25f090ad898c0022f7efa12}
+      \field{sortinit}{7}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A Value for N-Person Games}
+      \field{year}{1952}
+      \verb{doi}
+      \verb 10.7249/P0295
+      \endverb
+    \endentry
+    \entry{DEFRYN2018891}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2ac6ca070d8ea43e0e600f71fd687506}{%
+           family={Defryn},
+           familyi={D\bibinitperiod},
+           given={Christof},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=029683c0f75670b0a53c1f33dc2732d0}{%
+           family={Sörensen},
+           familyi={S\bibinitperiod},
+           given={Kenneth},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9ae01aac5ca1f2533c05ed9cddc2ddaa}
+      \strng{fullhash}{9ae01aac5ca1f2533c05ed9cddc2ddaa}
+      \strng{bibnamehash}{9ae01aac5ca1f2533c05ed9cddc2ddaa}
+      \strng{authorbibnamehash}{9ae01aac5ca1f2533c05ed9cddc2ddaa}
+      \strng{authornamehash}{9ae01aac5ca1f2533c05ed9cddc2ddaa}
+      \strng{authorfullhash}{9ae01aac5ca1f2533c05ed9cddc2ddaa}
+      \field{sortinit}{8}
+      \field{sortinithash}{1b24cab5087933ef0826a7cd3b99e994}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{European Journal of Operational Research}
+      \field{number}{3}
+      \field{title}{Multi-objective optimisation models for the travelling salesman problem with horizontal cooperation}
+      \field{volume}{267}
+      \field{year}{2018}
+      \field{pages}{891\bibrangedash 903}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1016/j.ejor.2017.12.028
+      \endverb
+    \endentry
+    \entry{DEFRYN20191}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=2ac6ca070d8ea43e0e600f71fd687506}{%
+           family={Defryn},
+           familyi={D\bibinitperiod},
+           given={Christof},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=029683c0f75670b0a53c1f33dc2732d0}{%
+           family={Sörensen},
+           familyi={S\bibinitperiod},
+           given={Kenneth},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dde8bd3977d9eb1e59f588dd83284a4e}{%
+           family={Dullaert},
+           familyi={D\bibinitperiod},
+           given={Wout},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c9df087779a7ec8c6865f171e2951f16}
+      \strng{fullhash}{c9df087779a7ec8c6865f171e2951f16}
+      \strng{bibnamehash}{c9df087779a7ec8c6865f171e2951f16}
+      \strng{authorbibnamehash}{c9df087779a7ec8c6865f171e2951f16}
+      \strng{authornamehash}{c9df087779a7ec8c6865f171e2951f16}
+      \strng{authorfullhash}{c9df087779a7ec8c6865f171e2951f16}
+      \field{sortinit}{9}
+      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0305-0483}
+      \field{journaltitle}{Omega}
+      \field{title}{Integrating partner objectives in horizontal logistics optimisation models}
+      \field{volume}{82}
+      \field{year}{2019}
+      \field{pages}{1\bibrangedash 12}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/j.omega.2017.11.008
+      \endverb
+      \keyw{Horizontal logistics cooperation,Multi-objective optimisation,Clustered vehicle routing problem}
+    \endentry
+    \entry{VANOVERMEIRE2014125}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=8be324858d1589b1ebd62e829b55b641}{%
+           family={Vanovermeire},
+           familyi={V\bibinitperiod},
+           given={Christine},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=029683c0f75670b0a53c1f33dc2732d0}{%
+           family={Sörensen},
+           familyi={S\bibinitperiod},
+           given={Kenneth},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7bdc970f41f3de7ea8c0ff46d98c40a7}
+      \strng{fullhash}{7bdc970f41f3de7ea8c0ff46d98c40a7}
+      \strng{bibnamehash}{7bdc970f41f3de7ea8c0ff46d98c40a7}
+      \strng{authorbibnamehash}{7bdc970f41f3de7ea8c0ff46d98c40a7}
+      \strng{authornamehash}{7bdc970f41f3de7ea8c0ff46d98c40a7}
+      \strng{authorfullhash}{7bdc970f41f3de7ea8c0ff46d98c40a7}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part E: Logistics and Transportation Review}
+      \field{title}{Integration of the cost allocation in the optimization of collaborative bundling}
+      \field{volume}{72}
+      \field{year}{2014}
+      \field{pages}{125\bibrangedash 143}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1016/j.tre.2014.09.009
+      \endverb
+    \endentry
+    \entry{SERRANO2017}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=a804aca81f97f7a426ff1a38b07e406d}{%
+           family={Serrano-Hernandez},
+           familyi={S\bibinithyphendelim H\bibinitperiod},
+           given={Adrian},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e619d495aa64ae99b3cc27016d26c405}{%
+           family={Juan},
+           familyi={J\bibinitperiod},
+           given={Angel\bibnamedelima A},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=66b5c8032ed163e0c067d416780b2bdd}{%
+           family={Faulin},
+           familyi={F\bibinitperiod},
+           given={Javier},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7e6c5883f8ef0e34a0cbb276666e40d3}{%
+           family={Perez-Bernabeu},
+           familyi={P\bibinithyphendelim B\bibinitperiod},
+           given={Elena},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Institut d'Estad{ı́}stica de Catalunya}%
+      }
+      \strng{namehash}{6ea9f7d12728868604aaace7f99ea831}
+      \strng{fullhash}{5ff89f125b4611d38cd39261b01a6377}
+      \strng{bibnamehash}{6ea9f7d12728868604aaace7f99ea831}
+      \strng{authorbibnamehash}{6ea9f7d12728868604aaace7f99ea831}
+      \strng{authornamehash}{6ea9f7d12728868604aaace7f99ea831}
+      \strng{authorfullhash}{5ff89f125b4611d38cd39261b01a6377}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SORT}
+      \field{title}{Horizontal collaboration in freight transport: concepts, benefits and environmental challenges}
+      \field{volume}{1}
+      \field{year}{2017}
+      \field{pages}{393\bibrangedash 414}
+      \range{pages}{22}
+    \endentry
+    \entry{ZENG2015}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=14548a36b2f1a80b711170568c32af1d}{%
+           family={Zeng},
+           familyi={Z\bibinitperiod},
+           given={Fue},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d001bce88e27fe293cfaf3708133e2ec}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Ying},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=932fdf33b0a901b0185c13bfa20c2ce6}{%
+           family={Dong},
+           familyi={D\bibinitperiod},
+           given={Maggie},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bafcebf77889b0192c8e9020de252cbb}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Jinhui},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b0a187c709c9d53482c6dacf52c69630}
+      \strng{fullhash}{5da2b0c45f167a28eb2cd3dc9eba7c81}
+      \strng{bibnamehash}{b0a187c709c9d53482c6dacf52c69630}
+      \strng{authorbibnamehash}{b0a187c709c9d53482c6dacf52c69630}
+      \strng{authornamehash}{b0a187c709c9d53482c6dacf52c69630}
+      \strng{authorfullhash}{5da2b0c45f167a28eb2cd3dc9eba7c81}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Industrial Marketing Management}
+      \field{month}{02}
+      \field{title}{Understanding distributor opportunism in a horizontal network}
+      \field{volume}{46}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.1016/j.indmarman.2015.01.018
+      \endverb
+    \endentry
+    \entry{PAN2019}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=d1c980b698f1dd395847a95e2da0ab74}{%
+           family={Pan},
+           familyi={P\bibinitperiod},
+           given={Shenle},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=41ea2a7c1eaef0910ebd90ff889e038d}{%
+           family={Trentesaux},
+           familyi={T\bibinitperiod},
+           given={Damien},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0cd2a435eab9756adaa952307d08bbeb}{%
+           family={Ballot},
+           familyi={B\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ada7b3164207cecd5b7b0e862216e1d6}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={George\bibnamedelima Q.},
+           giveni={G\bibinitperiod\bibinitdelim Q\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor & Francis}%
+      }
+      \strng{namehash}{7b9ccad1c17e75f5f8368612b81970f7}
+      \strng{fullhash}{61a887f5aab647d0340bade764232f2a}
+      \strng{bibnamehash}{7b9ccad1c17e75f5f8368612b81970f7}
+      \strng{authorbibnamehash}{7b9ccad1c17e75f5f8368612b81970f7}
+      \strng{authornamehash}{7b9ccad1c17e75f5f8368612b81970f7}
+      \strng{authorfullhash}{61a887f5aab647d0340bade764232f2a}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Production Research}
+      \field{number}{15-16}
+      \field{title}{Horizontal collaborative transport: survey of solutions and practical implementation issues}
+      \field{volume}{57}
+      \field{year}{2019}
+      \field{pages}{5340\bibrangedash 5361}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1080/00207543.2019.1574040
+      \endverb
+    \endentry
+    \entry{HERNANDEZ2014}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2c483c05729a4a4373670ae3c58c1ea8}{%
+           family={Hernández},
+           familyi={H\bibinitperiod},
+           given={Salvador},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=329f0a10faa54816c851e692eb6a835d}{%
+           family={Peeta},
+           familyi={P\bibinitperiod},
+           given={Srinivas},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor & Francis}%
+      }
+      \strng{namehash}{70043a9fa50e68c95ccb281a9c6c656a}
+      \strng{fullhash}{70043a9fa50e68c95ccb281a9c6c656a}
+      \strng{bibnamehash}{70043a9fa50e68c95ccb281a9c6c656a}
+      \strng{authorbibnamehash}{70043a9fa50e68c95ccb281a9c6c656a}
+      \strng{authornamehash}{70043a9fa50e68c95ccb281a9c6c656a}
+      \strng{authorfullhash}{70043a9fa50e68c95ccb281a9c6c656a}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportmetrica A: Transport Science}
+      \field{number}{4}
+      \field{title}{A carrier collaboration problem for less-than-truckload carriers: characteristics and carrier collaboration model}
+      \field{volume}{10}
+      \field{year}{2014}
+      \field{pages}{327\bibrangedash 349}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1080/23249935.2013.766279
+      \endverb
+    \endentry
+    \entry{AGARWAL2008520}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=0fa0a63c5b4c0b87413f77cf4590c7e9}{%
+           family={Agarwal},
+           familyi={A\bibinitperiod},
+           given={Richa},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=6f617bf9439fe50835fd54a3aae46b5a}{%
+           family={Ergun},
+           familyi={E\bibinitperiod},
+           given={Özlem},
+           giveni={Ö\bibinitperiod},
+           givenun=1}}%
+      }
+      \strng{namehash}{943487722fd97ebabdd77604cd22e578}
+      \strng{fullhash}{943487722fd97ebabdd77604cd22e578}
+      \strng{bibnamehash}{943487722fd97ebabdd77604cd22e578}
+      \strng{authorbibnamehash}{943487722fd97ebabdd77604cd22e578}
+      \strng{authornamehash}{943487722fd97ebabdd77604cd22e578}
+      \strng{authorfullhash}{943487722fd97ebabdd77604cd22e578}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0167-6377}
+      \field{journaltitle}{Operations Research Letters}
+      \field{number}{5}
+      \field{title}{Mechanism design for a multicommodity flow game in service network alliances}
+      \field{volume}{36}
+      \field{year}{2008}
+      \field{pages}{520\bibrangedash 524}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1016/j.orl.2008.04.007
+      \endverb
+      \keyw{Mechanism design,Multicommodity flow game,Inverse optimization}
+    \endentry
+    \entry{WANG2014}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=03d3e23852937fa39b0e34246c4ecd1d}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8aa8dadf05f2cd535abad6d2043a2bb2}{%
+           family={Kopfer},
+           familyi={K\bibinitperiod},
+           given={Herbert},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c1ea242c3a01fe300c019ffe68051ac5}
+      \strng{fullhash}{c1ea242c3a01fe300c019ffe68051ac5}
+      \strng{bibnamehash}{c1ea242c3a01fe300c019ffe68051ac5}
+      \strng{authorbibnamehash}{c1ea242c3a01fe300c019ffe68051ac5}
+      \strng{authornamehash}{c1ea242c3a01fe300c019ffe68051ac5}
+      \strng{authorfullhash}{c1ea242c3a01fe300c019ffe68051ac5}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{OR Spectrum}
+      \field{month}{03}
+      \field{title}{Collaborative transportation planning of less-than-truckload freight}
+      \field{volume}{36}
+      \field{year}{2014}
+      \verb{doi}
+      \verb 10.1007/s00291-013-0331-x
+      \endverb
+    \endentry
+    \entry{ANUPINDI2001}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=4cdb413ab9ea2c908aeaa519ed55de2d}{%
+           family={Anupindi},
+           familyi={A\bibinitperiod},
+           given={Ravi},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=94e99b6e2a9f78582ab4459fe66f450b}{%
+           family={Bassok},
+           familyi={B\bibinitperiod},
+           given={Yehuda},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a4c4b4b6367aae1242e018bc1cd33566}{%
+           family={Zemel},
+           familyi={Z\bibinitperiod},
+           given={Eitan},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{70a0a2193a06c3ce155e32f7f4362141}
+      \strng{fullhash}{70a0a2193a06c3ce155e32f7f4362141}
+      \strng{bibnamehash}{70a0a2193a06c3ce155e32f7f4362141}
+      \strng{authorbibnamehash}{70a0a2193a06c3ce155e32f7f4362141}
+      \strng{authornamehash}{70a0a2193a06c3ce155e32f7f4362141}
+      \strng{authorfullhash}{70a0a2193a06c3ce155e32f7f4362141}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Manufacturing \& Service Operations Management}
+      \field{month}{10}
+      \field{title}{A General Framework for the Study of Decentralized Distribution Systems}
+      \field{volume}{3}
+      \field{year}{2001}
+      \field{pages}{349\bibrangedash 368}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1287/msom.3.4.349.9973
+      \endverb
+    \endentry
+    \entry{BRANDENBURGER1996}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=194311964e1d1992e4bafee46876428a}{%
+           family={Brandenburger},
+           familyi={B\bibinitperiod},
+           given={Adam\bibnamedelima M},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9e997a2af7ed8bb4ed8da5fa799fc9fb}{%
+           family={Nalebuff},
+           familyi={N\bibinitperiod},
+           given={Barry\bibnamedelima J},
+           giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Crown Business}%
+      }
+      \strng{namehash}{5cb7759031866ade7203004f97e96046}
+      \strng{fullhash}{5cb7759031866ade7203004f97e96046}
+      \strng{bibnamehash}{5cb7759031866ade7203004f97e96046}
+      \strng{authorbibnamehash}{5cb7759031866ade7203004f97e96046}
+      \strng{authornamehash}{5cb7759031866ade7203004f97e96046}
+      \strng{authorfullhash}{5cb7759031866ade7203004f97e96046}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{Co-opetition}
+      \field{year}{1996}
+    \endentry
+    \entry{AHUJA1993}{book}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=cd3fb83fec909a1cd40a033a157aa4a9}{%
+           family={Ahuja},
+           familyi={A\bibinitperiod},
+           given={Ravindra\bibnamedelima K.},
+           giveni={R\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f6e8c4984cd7ea26c48dd6fb208edc1b}{%
+           family={Magnanti},
+           familyi={M\bibinitperiod},
+           given={Thomas\bibnamedelima L.},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f03514998efd882b5252b592b58f7dc1}{%
+           family={Orlin},
+           familyi={O\bibinitperiod},
+           given={James\bibnamedelima B.},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice-Hall, Inc.}%
+      }
+      \strng{namehash}{58a1887bfc5aec1d14960e0520ff37be}
+      \strng{fullhash}{58a1887bfc5aec1d14960e0520ff37be}
+      \strng{bibnamehash}{58a1887bfc5aec1d14960e0520ff37be}
+      \strng{authorbibnamehash}{58a1887bfc5aec1d14960e0520ff37be}
+      \strng{authornamehash}{58a1887bfc5aec1d14960e0520ff37be}
+      \strng{authorfullhash}{58a1887bfc5aec1d14960e0520ff37be}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Network Flows: Theory, Algorithms, and Applications}
+      \field{year}{1993}
+    \endentry
+    \entry{KARP1972}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5290385c419686f6312edeb3578dc9cf}{%
+           family={Karp},
+           familyi={K\bibinitperiod},
+           given={Richard\bibnamedelima M.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=61845d8713df720183097da97764018e}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Raymond\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=0c49a2a69eb15e588235d478d36d70ea}{%
+           family={Thatcher},
+           familyi={T\bibinitperiod},
+           given={James\bibnamedelima W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=537f41cb482bc0f5db46135172b12347}{%
+           family={Bohlinger},
+           familyi={B\bibinitperiod},
+           given={Jean\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Springer US}%
+      }
+      \strng{namehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{fullhash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{bibnamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authorbibnamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authornamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authorfullhash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{editorbibnamehash}{1077d79ee83f896243c11f49212c756b}
+      \strng{editornamehash}{1077d79ee83f896243c11f49212c756b}
+      \strng{editorfullhash}{1077d79ee83f896243c11f49212c756b}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Complexity of Computer Computations: Proceedings of a symposium on the Complexity of Computer Computations, held March 20--22, 1972, at the IBM Thomas J. Watson Research Center, Yorktown Heights, New York, and sponsored by the Office of Naval Research, Mathematics Program, IBM World Trade Corporation, and the IBM Research Mathematical Sciences Department}
+      \field{title}{Reducibility among Combinatorial Problems}
+      \field{year}{1972}
+      \field{pages}{85\bibrangedash 103}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1007/978-1-4684-2001-2_9
+      \endverb
+    \endentry
+    \entry{MCFPWEB}{misc}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labeldatesource}{nodate}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://groups.di.unipi.it/optimize/Data/MMCF.html}}
+      \field{note}{Accessed: 2021-07-25}
+      \field{title}{Multicommodity flow problems}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
 
-\bibitem[Agarwal and Özlem Ergun(2008)]{AGARWAL2008520}
-Richa Agarwal and Özlem Ergun.
-\newblock Mechanism design for a multicommodity flow game in service network
-  alliances.
-\newblock \emph{Operations Research Letters}, 36\penalty0 (5):\penalty0
-  520--524, 2008.
-\newblock ISSN 0167-6377.
-\newblock \doi{10.1016/j.orl.2008.04.007}.
-
-\bibitem[Ahuja et~al.(1993)Ahuja, Magnanti, and Orlin]{AHUJA1993}
-Ravindra~K. Ahuja, Thomas~L. Magnanti, and James~B. Orlin.
-\newblock \emph{Network Flows: Theory, Algorithms, and Applications}.
-\newblock Prentice-Hall, Inc., 1993.
-
-\bibitem[Anupindi et~al.(2001)Anupindi, Bassok, and Zemel]{ANUPINDI2001}
-Ravi Anupindi, Yehuda Bassok, and Eitan Zemel.
-\newblock A general framework for the study of decentralized distribution
-  systems.
-\newblock \emph{Manufacturing \& Service Operations Management}, 3:\penalty0
-  349--368, 10 2001.
-\newblock \doi{10.1287/msom.3.4.349.9973}.
-
-\bibitem[Ballot and Fontane(2010)]{BALLOT2010}
-E.~Ballot and F.~Fontane.
-\newblock Reducing transportation co2 emissions through pooling of supply
-  networks: perspectives from a case study in french retail chains.
-\newblock \emph{Production Planning \& Control}, 21\penalty0 (6):\penalty0
-  640--650, 2010.
-\newblock \doi{10.1080/09537287.2010.489276}.
-
-\bibitem[Brandenburger and Nalebuff(1996)]{BRANDENBURGER1996}
-Adam~M Brandenburger and Barry~J Nalebuff.
-\newblock \emph{Co-opetition}.
-\newblock Crown Business, may 1996.
-
-\bibitem[Defryn and Sörensen(2018)]{DEFRYN2018891}
-Christof Defryn and Kenneth Sörensen.
-\newblock Multi-objective optimisation models for the travelling salesman
-  problem with horizontal cooperation.
-\newblock \emph{European Journal of Operational Research}, 267\penalty0
-  (3):\penalty0 891--903, 2018.
-\newblock \doi{10.1016/j.ejor.2017.12.028}.
-
-\bibitem[Defryn et~al.(2019)Defryn, Sörensen, and Dullaert]{DEFRYN20191}
-Christof Defryn, Kenneth Sörensen, and Wout Dullaert.
-\newblock Integrating partner objectives in horizontal logistics optimisation
-  models.
-\newblock \emph{Omega}, 82:\penalty0 1--12, 2019.
-\newblock ISSN 0305-0483.
-\newblock \doi{10.1016/j.omega.2017.11.008}.
-
-\bibitem[Gansterer and Hartl(2017)]{GANTERER2017}
-Margaretha Gansterer and Richard Hartl.
-\newblock Collaborative vehicle routing: A survey.
-\newblock \emph{European Journal of Operational Research}, 06 2017.
-\newblock \doi{10.1016/j.ejor.2017.10.023}.
-
-\bibitem[Gonz{\'{a}}lez-D{\'{\i}}az et~al.(2010)Gonz{\'{a}}lez-D{\'{\i}}az,
-  Garc{\'{\i}}a-Jurado, and Fiestras-Janeiro]{GONZALEZ2010}
-Julio Gonz{\'{a}}lez-D{\'{\i}}az, Ignacio Garc{\'{\i}}a-Jurado, and M.~Gloria
-  Fiestras-Janeiro.
-\newblock \emph{An Introductory Course on Mathematical Game Theory}.
-\newblock American Mathematical Society, may 2010.
-\newblock \doi{10.1090/gsm/115}.
-
-\bibitem[Hernández and Peeta(2014)]{HERNANDEZ2014}
-Salvador Hernández and Srinivas Peeta.
-\newblock A carrier collaboration problem for less-than-truckload carriers:
-  characteristics and carrier collaboration model.
-\newblock \emph{Transportmetrica A: Transport Science}, 10\penalty0
-  (4):\penalty0 327--349, 2014.
-\newblock \doi{10.1080/23249935.2013.766279}.
-
-\bibitem[Karp(1972)]{KARP1972}
-Richard~M. Karp.
-\newblock \emph{Reducibility among Combinatorial Problems}, pages 85--103.
-\newblock Springer US, Boston, MA, 1972.
-\newblock \doi{10.1007/978-1-4684-2001-2_9}.
-
-\bibitem[Pan et~al.(2019)Pan, Trentesaux, Ballot, and Huang]{PAN2019}
-Shenle Pan, Damien Trentesaux, Eric Ballot, and George~Q. Huang.
-\newblock Horizontal collaborative transport: survey of solutions and practical
-  implementation issues.
-\newblock \emph{International Journal of Production Research}, 57\penalty0
-  (15-16):\penalty0 5340--5361, 2019.
-\newblock \doi{10.1080/00207543.2019.1574040}.
-
-\bibitem[Serrano-Hernandez et~al.(2017)Serrano-Hernandez, Juan, Faulin, and
-  Perez-Bernabeu]{SERRANO2017}
-Adrian Serrano-Hernandez, Angel~A Juan, Javier Faulin, and Elena
-  Perez-Bernabeu.
-\newblock Horizontal collaboration in freight transport: concepts, benefits and
-  environmental challenges.
-\newblock \emph{SORT}, 1:\penalty0 393--414, 2017.
-
-\bibitem[Shapley(1952)]{SHAPLEY1952}
-Lloyd~S. Shapley.
-\newblock \emph{A Value for N-Person Games}.
-\newblock RAND Corporation, Santa Monica, CA, 1952.
-\newblock \doi{10.7249/P0295}.
-
-\bibitem[Soysal et~al.(2018)Soysal, Bloemhof-Ruwaard, Haijema, and {van der
-  Vorst}]{SOYSAL2018168}
-Mehmet Soysal, Jacqueline~M. Bloemhof-Ruwaard, Rene Haijema, and Jack~G.A.J.
-  {van der Vorst}.
-\newblock Modeling a green inventory routing problem for perishable products
-  with horizontal collaboration.
-\newblock \emph{Computers \& Operations Research}, 89:\penalty0 168--182, 2018.
-\newblock \doi{doi.org/10.1016/j.cor.2016.02.003}.
-
-\bibitem[Vanovermeire and Sörensen(2014)]{VANOVERMEIRE2014125}
-Christine Vanovermeire and Kenneth Sörensen.
-\newblock Integration of the cost allocation in the optimization of
-  collaborative bundling.
-\newblock \emph{Transportation Research Part E: Logistics and Transportation
-  Review}, 72:\penalty0 125--143, 2014.
-\newblock \doi{10.1016/j.tre.2014.09.009}.
-
-\bibitem[Verdonck et~al.(2013)Verdonck, Caris, Ramaekers, and
-  Janssens]{VERDONCK2013}
-Lotte Verdonck, An~Caris, Katrien Ramaekers, and Gerrit Janssens.
-\newblock Collaborative logistics from the perspective of road transportation
-  companies.
-\newblock \emph{Transport Reviews}, 33:\penalty0 700--719, 10 2013.
-\newblock \doi{10.1080/01441647.2013.853706}.
-
-\bibitem[Wang and Kopfer(2014)]{WANG2014}
-Xin Wang and Herbert Kopfer.
-\newblock Collaborative transportation planning of less-than-truckload freight.
-\newblock \emph{OR Spectrum}, 36, 03 2014.
-\newblock \doi{10.1007/s00291-013-0331-x}.
-
-\bibitem[Zeng et~al.(2015)Zeng, Chen, Dong, and Zheng]{ZENG2015}
-Fue Zeng, Ying Chen, Maggie Dong, and Jinhui Zheng.
-\newblock Understanding distributor opportunism in a horizontal network.
-\newblock \emph{Industrial Marketing Management}, 46, 02 2015.
-\newblock \doi{10.1016/j.indmarman.2015.01.018}.
-
-\end{thebibliography}
