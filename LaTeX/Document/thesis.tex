@@ -3,18 +3,20 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb}
 \usepackage{mathtools}
-\usepackage{tensor}
 \usepackage{adjustbox}
 \usepackage{multirow}
 \usepackage{array}
 \usepackage{threeparttable}
-\usepackage[utf8]{inputenc}
+\usepackage{makecell}
 \usepackage{booktabs, caption, makecell}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit}
 \usepackage[labelfont=bf]{caption} % Package to create caption to the figures
+\usepackage{subcaption} 
 \usepackage[title]{appendix}
-\usepackage[sorting=none,style=authoryear]{biblatex}
+\usepackage[style=authoryear,dashed=false,maxcitenames=2,maxbibnames=99,giveninits=true,uniquename=init]{biblatex}
+\DeclareNameAlias{author}{family-given}
+\renewcommand*{\multinamedelim}{{{\addsemicolon\addspace}}}
 \usepackage{hyperref}
 \bibliography{bibliography.bib}
 
@@ -27,6 +29,17 @@
 \allowdisplaybreaks
 
 \begin{document}
+
+% Two drow edges with double colour
+\tikzset{
+    side by side/.style 2 args={
+        line width=2pt,
+        #1,
+        postaction={
+            clip,postaction={draw,#2}
+        }
+    }
+}
 
 \begin{center}
 
@@ -65,20 +78,20 @@ During the last decades, logistics collaboration, and specially \emph{horizontal
 logistics collaboration}, has gained the attention of many researchers, as it
 has been proofed to be an effective strategy to improve the logistics chain, for
 example, reducing both ecological and economical 
-costs \parencite{BALLOT2010}, \parencite{SOYSAL2018168}. By horizontal logistics collaboration we refer to the
+costs \parencite{BALLOT2010,SOYSAL2018168}. By horizontal logistics collaboration we refer to the
 cooperation between several companies or agents, who playing the same role in
 the logistics chain, form coalitions or alliances to increase the efficiency of
-their logistics operations. For example, in the case of the liner shipping
+their operations. For example, in the case of the liner shipping
 industry, by allowing other companies to use part of the capacity of the own
 ships, increasing the asset utilization ratio \parencite{AGARWAL2008175}.
 
-When creating a new alliance, the involved companies have to agree which type of relation will define their collaboration. Among many others, to main elements have to be taken into consideration at this point: how much information they are willing to share with the other members of the coalition and how much decision power over their own strategies and operational plans they are willing to renounce to.
+When creating a new alliance, the involved companies have to agree which type of relation will define their collaboration. Among many others, two main elements have to be taken into consideration: how much information are they willing to share with the other members of the coalition and how much decision power over their own strategies and operational plans are they willing to renounce to.
 
-Different possibilities have been studied in the horizontal collaboration logistics literature. One of the types of collaboration most studied, representing around the 45\% of the works on the topic \parencite{GANTERER2017}, is the one were agents share with a central authority all their information, to whom they also give all the power of decision. Known in the literature as \emph{central planning} systems, these cooperation mechanisms work aggregating all the assets and all the orders of the members of the coalition into a single bigger problem. That problem is solved using optimization techniques, to then share the benefits or the costs obtained with the cooperation among the members of the alliance. In the other hand, other cooperation mechanisms in which the agents only share part of their information with the central authority have also been studied. An example of these cooperation systems are the auction-based decentralized systems, where the members of the coalition first have to decide which information share with the others. For example, certain orders they cannot serve efficiently. Then the agents can announce their will to get assigned any of that shared orders. Finally a central authority, making use of auction techniques, decides how to allocate the shared orders among the interested agents \parencite{VERDONCK2013}. 
+Different possibilities have been studied in the horizontal collaboration logistics literature. One of the types of collaboration most studied, representing around the 45\% of the works on the topic \parencite{GANSTERER2017}, is the one were agents share with a central authority all their information, to whom they also give all the power of decision. Known in the literature as \emph{central planning} systems, these cooperation mechanisms work aggregating all the assets and all the orders of the members of the coalition into a single bigger problem. That problem is solved using standard (non-cooperative) optimization techniques, to then share the benefits or the costs obtained with the cooperation among the members of the alliance. In the other hand, other cooperation mechanisms in which the agents only share part of their information with the central authority have also been studied. An example of these cooperation systems are the auction-based decentralized systems, where the members of the coalition first have to decide which information share with the others. For example, certain orders they cannot serve efficiently. Then the agents can announce their will to get assigned any of that shared orders. Finally a central authority, making use of auction techniques, decides how to allocate the shared orders among the interested agents \parencite{VERDONCK2013}. 
 
 Comparing the decentralized auction-based systems with the central planning ones, we observe that not only the amount of information shared by the agents differ, but also the degree of power decision given to the central authority. While in the central planning systems the individual agents only have to decide, and reach an agreement, about how to share the benefits of the cooperation, in the auction-based systems the agents not only decide which information to share with the others, but also how to serve the orders once they have been assigned to them. 
 
-In this paper we explore different cooperation systems in the context of the horizontal logistics collaboration, with the intention of studying how the amount of information shared by the members of a coalition and the level of decision power they give to a central authority affects to the result of their collaboration. In section \ref{seq:litreview} we develop a review on the literature we have studied during the development of this work. In section \ref{seq:probdefinition} we define the problem we will use during the rest of this paper to illustrate the different systems we study and present the model for a single agent. In section \ref{seq:allocrule} the allocation rule used to share between the agents the profit obtained with the collaboration is introduced. Section \ref{seq:centrmodels} contains three different cooperation systems which have in common the existence of a central authority with certain level of decision power. In section \ref{seq:itermodel} we introduce a decentralized cooperative mechanism, were all the decision power remains in the agents, while the quantity of information they share is rather limited. Section \ref{seq:results} contains the results of the simulations we have done with the models presented in the two previous section. Section \ref{seq:discussion} is a discussion about the limitations and possible extensions of the models proposed in this paper. We finish with a conclusion in section \ref{seq:conclusion}.
+In this paper we explore different cooperation systems in the context of the horizontal logistics collaboration, with the intention of studying how the amount of information shared by the members of a coalition and the level of decision power they give to a central authority affects to the result of their collaboration. In section \ref{seq:litreview} we present a review on the literature we have studied during the development of this work. In section \ref{seq:probdefinition} we define the problem we will use during the rest of this paper to illustrate the different systems we study and present the model for a single agent. In section \ref{seq:allocrule} the allocation rule used to share between the agents the profit obtained with the collaboration is introduced. Section \ref{seq:centrmodels} contains three different cooperation systems which have in common the existence of a central authority with certain level of decision power. In section \ref{seq:itermodel} we introduce a decentralized cooperative mechanism, were all the decision power remains in the agents, while the quantity of information they share is rather limited. Section \ref{seq:results} contains the results of the simulations we have done with the models presented in the two previous section. Section \ref{seq:discussion} is a discussion about the limitations and possible extensions of the models proposed in this paper. We finish with a conclusion in section \ref{seq:conclusion}.
 
 
 
@@ -90,60 +103,179 @@ centralized or not.
 
 \subsection{Centralized cooperation}
 
-In the case of centralized systems, agents share in a pool all or
-part of the demands that they have to serve as well as the resources they have available. These resources can be vehicles in the case of transportation carriers, but also inventory levels, employees, etc. Then a central planner, taking into account all the demands and/or resources shared in the pool by the agents, solves the problem maximizing the total payoff of the coalition. Finally, the benefits of the cooperation are shared among the members of the coalition, usually using some allocation rule which ideally satisfies some desirable conditions in terms of ``fairness'', as that the resulting allocation is in the \emph{core}, i.e., any subcoalition of the former one could obtain a higher payoff working
+According to \textcite{GANSTERER2017}, the centralized collaboration systems are characterized by the existence of a central authority/planner which has all the decision power, as well as full information about the agents demands as well as the resources they have available. These resources can be vehicles in the case of transportation carriers, but also inventory levels, employees, etc. The central planner solves the aggregated problem, taking into account all the information shared by the agents, maximizing the total payoff of the coalition. Finally, the benefits of the cooperation are shared among the members of the coalition, usually using some allocation rule which ideally satisfies some desirable conditions in terms of ``fairness''. One example of that conditions could be that the resulting allocation is in the \emph{core}, i.e., any subcoalition of the former one could obtain a higher payoff working
 independently \parencite{GONZALEZ2010}. A well known example of an allocation rule fulfilling this conditions is the \emph{Shapley value} \parencite{SHAPLEY1952}.
 
 It has been pointed in \textcite{DEFRYN2018891} that in the centralized planning systems, the individual objectives
 of the agents are often not considered in favour of the coalition objective, what neglects the fact that the agents actually remain independent entities.  Accordingly with this idea,
 these authors propose different mechanisms where both levels of objectives are
-considered. In \cite{DEFRYN20191} a multiobjective approach were the members of a coalition can set up different objectives to the problem to be solved. In \cite{VANOVERMEIRE2014125} the allocation of the payoffs to each agent is integrated in the collaborative optimization problem, ensuring that the final solution accomplish certain predefined satisfaction level for all the agents. Furthermore, it is assumed
-in the literature studying these type of systems that agents share all their private information
-with the central planner, what might be unrealistic or problematic in real world cases \parencite{SERRANO2017}, \parencite{ZENG2015}.
+considered. In \textcite{DEFRYN20191} a multiobjective approach is studied, were the members of a coalition can set up different objectives to the problem to be solved. In \textcite{VANOVERMEIRE2014125} the payoffs allocation of the agents are integrated in the collaborative optimization problem, ensuring that the final solution accomplish certain predefined satisfaction level for all the agents. Furthermore, in \textcite{SERRANO2017}  authors argue that the assume that agents share all their private information with a central authority might be unrealistic or problematic in real world cases.
 
 
 \subsection{Decentralized cooperation}
 
-In \cite{GANTERER2017} the decentralized cooperation systems are subdivided in two subclasses:  the ones based on auction and the rest. 
+Again in \textcite{GANSTERER2017}, the decentralized cooperation systems are subdivided in two subclasses:  the ones based on auctions and the rest. 
 
-In the auction-based systems, the members of the coalition have to decide which of their orders they want to submit to a central pool, allowing the other members of the coalition to bid to be the ones serving that orders at some price. Then, a central planner, the auctioneer, has to resolve which bidder gets assigned which order shared in the pool. In \parencite{PAN2019} two main problems that have to been solve during this process: first, the agents have to find which is their optimal bidding price for a request. In the other hand, the central authority has to solve how to allocate the orders to the agents, which is known as the winner determination problem. 
+In the auction-based systems, the members of the coalition have to decide which of their orders/requests they want to submit to a central pool, allowing the other members of the coalition to bid to be the ones serving that orders at some price. Then, a central planner, the auctioneer, has to resolve which bidder gets assigned which order shared in the pool. In \textcite{PAN2019} two main problems that have to been solve during this process are highlighted: first, the agents have to find which is the optimal bidding price for a shared order. In the other hand, the central authority has to decide how to allocate the orders to the agents, which is known as the winner determination problem. 
 
-In the other hand,non-auction based decentralized systems have also been studied in the literature. In \cite{HERNANDEZ2014} a model where a single carrier can borrow at certain prices capacity to other collaborative carriers in a Less-than-truckload problem. Nevertheless, the model the authors proposed does not consider the possibility were multiple agents borrow and loan capacity at the same time. \cite{AGARWAL2008520}  propose a collaborative system based in a
+In the other hand, non-auction based decentralized systems have also been studied in the literature. In \textcite{HERNANDEZ2014} a model where a single carrier can borrow, at certain prices, capacity to other collaborative carriers is proposed. Nevertheless, this work does not consider the possibility were multiple agents borrow and loan capacity at the same time. \textcite{AGARWAL2008520}  propose a collaborative system based in a
 inverse-optimization mechanism. The authors model a multicommodity flow problem, where agents own certain
 fraction of the capacity of the edges of a network. The agents can collaborate sharing the capacity of the edges with the other members of the coalition, who have to pay some price for using that capacity. This mechanism requires that the agents share all the information with a central authority: how much capacity the agents own on each edge and which demands they have to serve.  Using inverse optimization, the prices at which agents exchange the capacity of their edges are decided by the central authority, in such a way that if the agents adopt that prices policy, when each
-agent selfishly optimizes the flow of his demands through the network, the resulting flow will be the same that if a centralized planning approach was used. Therefore, even if full information is required and some decision power is left to a central planner, the decisions related on how to route the commodities and exchange resources are left to the agents. However, we argue that might be difficult or even unrealistic to implement in the real world a cooperation mechanism were a central authority with full information impose the prices at which the agents can exchange assets. In \cite{WANG2014} agents share orders in a common pool in a preprocessing stage. Then, a iterative process were agents propose routes to serve that orders and a central planner solves a winner determination problem to select the most efficient routes among the proposed ones is conducted. Once certain stop criteria is reached, a last winner determination problem is performed to find the final select routes, and the benefits, if any, of the cooperation are shared among the agents using some allocation rule.
-In \cite{ANUPINDI2001} a novel framework to model decentralized systems is proposed. Based in the concept of \emph{coopetition} \parencite{BRANDENBURGER1996},
+agent selfishly optimizes the flow of his demands through the network, the resulting flow will be the same that if a centralized planning approach was used. Therefore, even if full information is required and some decision power is left to a central planner, the decisions related on how to route the commodities and exchange resources are left to the agents. However, we argue that might be difficult or even unrealistic to implement in the real world a cooperation mechanism were a central authority with full information impose the prices at which the agents can exchange assets. 
+
+\textcite{WANG2014} propose a collaboration system where agents share orders in a common pool in a preprocessing stage. Then, a iterative process were agents propose routes to serve that orders and a central planner solves a winner determination problem to select the most efficient routes among the proposed ones, which are considered the ``temporary" winner. The central planner inform the agents about the results and then the agent can propose new routes based on that information. This process is repeated until certain stop criteria is reached, and a last winner determination problem is solved to find the final winner/selected routes, and the benefits, if any, of the cooperation are shared among the agents using some allocation rule.
+
+In \textcite{ANUPINDI2001} a novel framework to model decentralized systems is proposed. Based in the concept of \emph{coopetition} \parencite{BRANDENBURGER1996},
 the authors proposed a 2-stage mechanism to model the collaboration of agents in
 decentralized distribution systems. In the first stage, agents individually
 take strategic decisions, in their case, fixing their inventory levels. In the
 seconds stage and after all the agents have served their demands in the best way they individually can, they cooperate sharing their residual demands and inventory with the others, obtaining extra profits. They propose sufficient conditions under which a Nash equilibrium in pure strategies exist for the first stage, and for which an allocation rule in the \emph{core} exists for the second stage.
 
-None of the works above presented propose a cooperation system were no decision power at all is given to a central authority. A system with that characteristic, were all the decisions remain on the agents, is something that, to best of our knowledge, has not yet been studied in the current literature on horizontal logistics collaboration.
+We highlight that none of the works above presented propose a cooperation system were no decision power at all is given to a central authority. A system with that characteristic, were all the decisions remain on the agents, is something that, to best of our knowledge, has not yet been studied in the current literature on horizontal logistics collaboration.
 
 
-In this work we analyse and compare several cooperation systems, which differ on the degree of decision power and amount of information is left to a central planner. The first is a centralized planning system, were all information and decision are given to the central authority. The second and third systems we propose are based in a two stage process, which we borrow from \cite{ANUPINDI2001}. On these two systems, the agents start by, individually, making some decisions, after what they cooperate sharing certain information with a central authority which solves a centralized planning problem making use of that information. The last cooperation system we propose in this work is based in an iterative process of optimization and information sharing, which stops when the participants of the cooperation achieve an equilibrium point from which no agent would be interested to unilaterally deviate from. 
+In this work we analyse and compare several cooperation systems, which differ on the degree of decision power and amount of information is left to a central planner. The first is a centralized planning system, were all information and decision are given to the central authority. The second and third systems we propose are based in a two stage process, which we borrow from \textcite{ANUPINDI2001}. On these two systems, the agents start by, individually, making some decisions, after what they cooperate sharing certain information with a central authority which solves a centralized planning problem making use of that information. The last cooperation system we propose in this work is based in an iterative process of optimization and information sharing, which stops when the participants of the cooperation achieve an equilibrium point from which no agent would be interested to unilaterally deviate from. 
 
-The problem we will use as example to implement these systems is a multicommodity flow problem, where each agent have to decide which edges to active on a network at certain price, to then find an efficient flow through them which maximizes their payoff. We select this problem because it captures both tactical and operational decision levels. In this way, we can study and compare the performance of models which differ on who, the agents or a central authority, is responsible of each level of decision making.
+The problem we will use as example to implement these systems is a multicommodity flow problem, where each agent have to decide which edges to active on a network at certain price, to then find an efficient flow through them which maximizes their payoff. We select this problem, which we explain in detail in the next section, because it captures both tactical and operational decision problems. In this way, we can study and compare the performance of models which differ on who, the agents or a central authority, is responsible of the decision making.
 
 \section{Problem statement: A network design - multicommodity flow problem}\label{seq:probdefinition} 
 
-The network design - multicommodity flow problem we propose in this work can be considered a 2-step problem, were an agent first make tactical decision, which edges to activate in a network, and after routes certain commodities through that network in a efficient way.
-The objective of each agent is to maximize the revenues generated by his served commodities and minimize the costs associated with the activation of the edges.
+The network design - multicommodity flow problem we propose in this work can be considered a 2-step problem, were an agent first make tactical decisions, choosing which edges to activate in a network, making them available to then route certain commodities through that network in a efficient way.
+The objective of each agent is to maximize the revenues generated by his served commodities and while minimizing the costs associated with the activation of the edges.
 The decisions which have to be make in each step are intrinsically related: the most efficient flow an agent can find for his commodities depends on which edges he has activated, and to know which edges to activate, the agent need to know how he would route his commodities through any given set of active edges. 
 
-We would model the scenario where the agents can collaborate among them sharing the capacity they do not use in their active edges, allowing others to route their commodities through them at some price. 
+We would consider the collaborative scenario where the agents can cooperate among them sharing the capacity they do not use in their active edges, allowing others to route their commodities through them at some price. 
 
-% On the rest of this section we will introduce the specific characteristics of these problem as well as the notation we will use. We will finish the section modelling the problem that each agent would face in case he does not take part of the collaboration.
+In figure \ref{fig:problemexample} we present a simple graphical example of a network design - multicommodity flow problem with two agents. Let $k^1$ and $k^2$ be two commodities the red agent has to send from node 1 to node 2 and from node 1 to node 4 respectively, and let $k^3$ be a commodity which blue agent has to send from node 2 to node 4. In figure \ref{fig:problemexampleoriginal} we see the original network: agents have not yet activate any edges neither route any commodity. We highlight that both agents, represented by blue and red colours, have access to all the possible edges in the network. In this small example we assume that all the edges have infinity capacity. In figure \ref{fig:problemexamplenotcoop} we see the solution in the case the agents do not cooperate: first the red and blue agents decide which edges to activate and then they route their commodities through that active edges. As they are not collaborating, each agent can only make use of his own active edges. In figure \ref{fig:problemexamplecoop} we can see a cooperative solution to the same problem, were both agents have coordinate themselves: the blue agent has allowed to the red one to route the commodity $k^2$ through his edge, reducing by one the total number of edges necessary to route their commodities.
 
-Let $N=\{1,...,n\}$ be a set of agents. Let $G=(V,E)$ be a directed graph with
+
+\begin{figure}[ht!]
+\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+	\centering	
+	\begin{tikzpicture}
+	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
+		\node (1) at (0,0) {1};
+		\node (2) at (2,0) {2};
+		\node (3) at (0,-2) {3};
+		\node (4) at (2,-2) {4};
+	\end{scope}
+	\begin{scope}[every edge/.style={dotted,draw,bend left=10},blue]
+		\draw[-stealth] (1) edge (2);
+		\draw[-stealth] (2) edge (1);
+		\draw[-stealth] (1) edge (3);
+		\draw[-stealth] (3) edge (1);
+		\draw[-stealth] (1) edge (4);
+		\draw[-stealth] (4) edge (1);
+		\draw[-stealth] (2) edge (3);
+		\draw[-stealth] (3) edge (2);
+		\draw[-stealth] (2) edge (4);
+		\draw[-stealth] (4) edge (2);
+		\draw[-stealth] (3) edge (4);
+		\draw[-stealth] (4) edge (3);
+		
+	\end{scope}
+	\begin{scope}[every edge/.style={dotted,draw,bend left=20},red]
+		\draw[-stealth] (1) edge (2);
+		\draw[-stealth] (2) edge (1);
+		\draw[-stealth] (1) edge (3);
+		\draw[-stealth] (3) edge (1);
+		\draw[-stealth] (1) edge (4);
+		\draw[-stealth] (4) edge (1);
+		\draw[-stealth] (2) edge (3);
+		\draw[-stealth] (3) edge (2);
+		\draw[-stealth] (2) edge (4);
+		\draw[-stealth] (4) edge (2);
+		\draw[-stealth] (3) edge (4);
+		\draw[-stealth] (4) edge (3);
+		
+	\end{scope}
+	\end{tikzpicture}
+	\caption{Original network.\label{fig:problemexampleoriginal}}
+	\end{subfigure}
+	\vskip\baselineskip
+	\begin{subfigure}[b]{0.45\textwidth}
+	\hspace{-1cm}	
+	\begin{tikzpicture}
+	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
+		\node (1) at (0,0) {1};
+		\node[right =1.5cm of 1] (2) {2};
+		\node[below =1.5cm of 1] (3) {3};
+		\node[right =1.5cm of 3] (4) {4};
+		
+		\node[draw=none] (arrow) at (3.3,-1) {$\longrightarrow$};		
+		
+		\node[right =2cm of 2] (1b) {1};
+		\node[right =1.5cm of 1b] (2b) {2};
+		\node[below =1.5cm of 1b] (3b) {3};
+		\node[right =1.5cm of 3b] (4b) {4};
+	\end{scope}
+	\begin{scope}[every edge/.style={draw}]
+		\draw[-stealth] (1) edge[red,bend left=20] node[above] {} (2);
+
+		\draw[-stealth] (1) edge[red,bend left=20] node[above=5pt] {} (4);
+		
+		\draw[-stealth] (2) edge[blue,bend left=10] node[right] {} (4);
+
+		\draw[-stealth] (1b) edge[red,bend left=20] node[above] {$k^1$} (2b);
+
+		\draw[-stealth] (1b) edge[red,bend left=20] node[above=5pt] {$k^2$} (4b);
+		
+		\draw[-stealth] (2b) edge[blue,bend left=10] node[right] {$k^3$} (4b);
+		
+	\end{scope}
+	\end{tikzpicture}
+	\caption{Non-cooperative solution.\label{fig:problemexamplenotcoop}}
+	\end{subfigure}
+	\vskip\baselineskip
+	\begin{subfigure}[b]{0.45\textwidth}
+	\hspace{-1cm}	
+	\begin{tikzpicture}
+	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
+		\node (1) at (0,0) {1};
+		\node[right =1.5cm of 1] (2) {2};
+		\node[below =1.5cm of 1] (3) {3};
+		\node[right =1.5cm of 3] (4) {4};
+		
+		\node[draw=none] (arrow) at (3.3,-1) {$\longrightarrow$};				
+		
+		\node[right =2cm of 2] (1b) {1};
+		\node[right =1.5cm of 1b] (2b) {2};
+		\node[below =1.5cm of 1b] (3b) {3};
+		\node[right =1.5cm of 3b] (4b) {4};
+	\end{scope}
+	\begin{scope}[every edge/.style={draw}]
+
+		\draw[-stealth] (1) edge[red,bend left=20] node[above] {} (2);
+		
+		\draw[-stealth] (2) edge[blue,bend left=10] node[right] {} (4);
+		
+		\draw[-stealth] (1b) edge[red,bend left=20] node[above] {$k^1$\textcolor{black}{,} $k^2$} (2b);
+		
+		\draw[-stealth] (2b) edge[blue,bend left=10] node[right] {$k^3$\textcolor{black}{,} \textcolor{red}{$k^2$}} (4b);
+	\end{scope}
+	\end{tikzpicture}
+	\caption{Cooperative solution.\label{fig:problemexamplecoop}}
+	\end{subfigure}
+	\caption{Example of a network design - multicommodity flow problem. \label{fig:problemexample}}
+\end{figure}
+
+
+On the rest of this section we introduce the specific characteristics of these problem as well as the notation we use during this work. We finish the section modelling the problem that each agent has to solve in case he does not take part of any collaboration alliance with other agents.
+
+Let $N=\{1,...,n\}$ be the set of agents who form a coalition. Let $G=(V,E)$ be a directed graph with
 $V$ and $E$ the sets of nodes and edges respectively. 
-Let $\Theta$ be the set of commodities. Each commodity $k$ has an origin node, $O(k)\in V$ and a destiny node, $T(k)\in V$, and is owner by the agent $W(k)\in N$. Every commodity $k$ has a size of $d_k$ units and has an associated revenue $r_k$ per unit. Thus, the owner of the commodity $k$ earns $d_k\cdot r_k$ if the commodity is successfully delivered from its origin to its terminal nodes. The commodities are unsplitable, i.e., cannot be divided between different edges. For each edge $e \in E$, we note as $O(e)\in V$ its origin node and by $T(e)\in V$ its terminal node. Furtheremore, $W(e)\in N$ is the owner of the edge $e\in E$. Note that could exist as many edges between a pair of nodes as agents in the coalition. Each edge $e \in E$ has certain units of capacity associated $q_e$, and a a fixed activation
-cost $c_e$. This activation cost is the price the owner of the edge has to pay if he wants to use the edge to route any commodity. We will note by $\delta^+(v)\subset E$ the subset of edges whose origin is the node $v\in V$. Similarly, $\delta^-(v)\subset E$ is the subset of edges whose terminal node is $v\in V$. We will note by $E^i \subset E$ and $\Theta^i\subset \Theta$ the subsets of edges and commodities owned by agent $i$.
+Let $\Theta$ be the set of commodities agents have to serve. Each commodity $k$ has an origin node, $o(k)\in V$ and a destiny node, $t(k)\in V$, and is owner by the agent $t(k)\in N$. Every commodity $k\in\Theta$ has a size of $d_k$ units and has an associated revenue $r_k$ per unit. Thus, the owner of the commodity $k$ earns a revenue of $d_k\cdot r_k$ if the commodity is successfully routed from its origin to its terminal node. The commodities are unsplitable, i.e., cannot be divided between different edges. 
+
+For each edge $e \in E$, we note as $o(e)\in V$ its origin node and by $t(e)\in V$ its terminal node. Furtheremore, $w(e)\in N$ is the owner of the edge $e\in E$. Note that could exist as many edges between a pair of nodes as agents in the coalition. Each edge $e \in E$ has certain units of capacity associated $q_e$, and a fixed activation
+cost $c_e$. This activation cost is the price the owner of the edge has to pay if he wants to use the edge to route any commodity. Furthermore, if an edge $e\in E$ has been activated, we note by $q_e^R$ the residual capacity of that edge, the capacity which is still available in that edge, depending on which commodities has been already routed through it. If no commodities has been routed through and active edge $e$, $q_e^R = q_e$.
+
+We will note by $\delta^+(v)\subset E$ the subset of edges whose origin is the node $v\in V$. Similarly, $\delta^-(v)\subset E$ is the subset of edges whose terminal node is $v\in V$. We will note by $E^i \subset E$ and $\Theta^i\subset \Theta$ the subsets of edges and commodities owned by agent $i$.
 
 In table \ref{tb:notation} we summarize the notation we use during this work.
 
 \begin{table}[ht!]
-	\caption{Summary of notation \label{tb:notation}}
+	\caption{Summary of notation. \label{tb:notation}}
 	\begin{tabular}{|l|l|}
 	\hline
 	Symbol & Meaning	 \\ \hline
@@ -159,15 +291,15 @@ In table \ref{tb:notation} we summarize the notation we use during this work.
 	$E_A$ & Subset of edges in $E$ that are active \\
 	$E_R$ & Subset of edges in $E_A$ that have residual capacity.\\
 	$k \in \Theta$ & A commodity\\
-	$O(k)$ & Origin node of commodity $k$\\
-	$T(k)$ & Destiny node of commodity $k$\\
-	$W(k)$ & Agent who owns the commodity $k$\\
+	$o(k)$ & Origin node of commodity $k$\\
+	$t(k)$ & Destiny node of commodity $k$\\
+	$w(k)$ & Agent who owns the commodity $k$\\
 	$d_k$ & Size, on units, of commodity $k$.\\
 	$r_k$ & Revenue, per unit, associated with serving commodity $k$.\\
 	$e\in E$ & An edge\\
-	$O(e)$ & Origin node of edge $e$\\
-	$T(e)$ & Terminal node of edge $e$\\
-	$W(e)$ & Agent who owns the edge $e$\\
+	$o(e)$ & Origin node of edge $e$\\
+	$t(e)$ & Terminal node of edge $e$\\
+	$w(e)$ & Agent who owns the edge $e$\\
 	$c_e$ & Cost of activate edge $e$. \\
 	$q_e$ & Units of capacity of edge $e$. \\
 	$q_e^R$ & Units of residual capacity of edge $e$.\\
@@ -177,23 +309,23 @@ In table \ref{tb:notation} we summarize the notation we use during this work.
 
 \subsection{Single agent model}
 
-The objective of an agent $i \in N$ is to maximize his payoff, by routing his
-commodities, $\Theta^i$, from their origin nodes to their terminal nodes through the edges, $E^i$, he has activated. Note that an agent does not have to necessarily serve all his commodities. In any case, it would be easy to extend the models presented in this work to fulfil that condition. Also we assume that an agent has always the possibility of activate one, and only one, edge between any two pair of nodes. In case we want to model a situation were some agents have not the possibility of activate certain edges, or limit the number of edges he can activate in total, we could simply make the capacity of certain edges equal to 0, or make their activation cost a very big number, making the activation of that edges not profitable under any circumstance. 
+The objective of an agent $i \in N$ is to maximize his payoff, routing his
+commodities, $\Theta^i$, from their origin nodes to their terminal nodes through the edges, $E^i$, he has activated. Note that an agent does not have to necessarily serve all his commodities. In any case, it would be easy to extend the models presented in this work to fulfil that condition. Also we assume that an agent has always the possibility of activate one, and only one, edge between any two pair of nodes. In case we want to model a situation were some agents have not the possibility of activate certain edges, or limit the number of edges he can activate in total, we could simply make the capacity of certain edges equal to 0, or make their activation cost a very big number, making the activation of that edges not profitable under any circumstance.
 
-If the agent does not take part of the collaboration, she will not have any access to other agents' edges, neither the other agents can route their commodities through his edges. Thus, the problem which agent $i\in N$ has to solve can be modelled as the following ILP, that we call $P_i$,
+If the agent does not take part of the collaboration, he has not access to other agents' edges, neither the other agents can route their commodities through his edges. Thus, the problem which agent $i\in N$ has to solve when no cooperating with others can be modelled as the following ILP, that we call $P_i$,
 
     \begin{align}
-        &  P_i: \quad \max  &  \sum_{k\in \Theta^i} \sum_{e \in \delta^+(T(k))\cap E^i} f_e^k \cdot d_k \cdot r_k - \sum_{e\in E^i} u_e\cdot c_e \hspace{20pt} &&   \label{eq:SingleAgentA}
+        &  P_i: \quad \max  &  \sum_{k\in \Theta^i} \sum_{e \in \delta^+(t(k))\cap E^i} f_e^k \cdot d_k \cdot r_k - \sum_{e\in E^i} u_e\cdot c_e \hspace{20pt} &&   \label{eq:SingleAgentA}
     \end{align}
     \begin{align}
         & \text{subject to:}       &  \nonumber\\
-       & \sum_{e \in \delta^-(z)\cap E^i} f_e^k-\sum_{e \in \delta^+(z)\cap E^i} f_e^k = 0,\quad && \forall\ z\in V\setminus\{O(k),T(k)\},\ \forall\ k\in\Theta^i,  \label{eq:SingleAgentB}\\
-        &    \sum_{e \in \delta^+(T(k))\cap E^i} f_e^k \leq 1,  && \forall\ k\in \Theta^i, \label{eq:SingleAgentC} \\
-		& \sum_{e \in \delta^+(T(k))\cap E^i} f_e^k= 0,  && \forall\ k\in \Theta^i, \label{eq:SingleAgentD} \\
+       & \sum_{e \in \delta^-(z)\cap E^i} f_e^k-\sum_{e \in \delta^+(z)\cap E^i} f_e^k = 0,\quad && \forall\ z\in V\setminus\{o(k),t(k)\},\ \forall\ k\in\Theta^i,  \label{eq:SingleAgentB}\\
+        &    \sum_{e \in \delta^+(t(k))\cap E^i} f_e^k \leq 1,  && \forall\ k\in \Theta^i, \label{eq:SingleAgentC} \\
+		& \sum_{e \in \delta^+(t(k))\cap E^i} f_e^k= 0,  && \forall\ k\in \Theta^i, \label{eq:SingleAgentD} \\
 		& \sum_{k \in \Theta^i} f_e^k \cdot d_k \leq u_e\cdot q_e, && \forall\ e \in E^i,\label{eq:SingleAgentE}  \\
-		& \sum_{\substack{e \in E^i\colon \\ O(e),T(e) \in S}} f_e^k \leq |S| -1,   && \forall\ S \subset V,\ \forall\ k \in \Theta^i, \label{eq:SingleAgentF}\\[1em]
+		& \sum_{\substack{e \in E^i\colon \\ o(e),t(e) \in S}} f_e^k \leq |S| -1,   && \forall\ S \subset V,\ \forall\ k \in \Theta^i, \label{eq:SingleAgentF}\\[1em]
 		& f_e^k \in \{0,1\},    && \forall\ e \in E^i,\ \forall\ k \in \Theta^i, \label{eq:SingleAgentG} \\ 
-		&  u_e   \in \{0,1\},           && \forall\ e \in E^i 
+		&  u_e   \in \{0,1\},           && \forall\ e \in E^i,
     \end{align}
 
 where, $\forall\ k\in \Theta^i$ and  $\forall\ e \in E$,
@@ -216,7 +348,7 @@ while minimizing the cost associated to the activation of the edges. Constraints
 (\ref{eq:SingleAgentB}) ensure that, for any commodity, the flow that enters
 and leaves every transit nodes (neither the origin, neither the terminal node of
 that commodity) is equal. Constraints (\ref{eq:SingleAgentC}), together with
-(\ref{eq:SingleAgentG}), guarantee that each commodity is send at most only once
+(\ref{eq:SingleAgentG}), guarantee that each commodity is send at most one time
 from its origin node. Constraints (\ref{eq:SingleAgentD}) ensure that no
 commodity is send from its terminal node to any other node. Constraints (\ref{eq:SingleAgentE})
 ensure that the capacity of edges is not exceed. Finally, constraints
@@ -228,62 +360,32 @@ In a simplifying abuse of notation, we will refer with $P_i^*$ both to the value
 
 \section{An allocation rule for a capacity exchange collaboration}
 \label{seq:allocrule}
-In all four different cooperation systems we present in this work, the members of a coalition can collaborate by sharing the capacity of the edges they have activated at some price. This might allow some agents to serve commodities in a more efficient way with respect to the non-cooperative scenario, and generate extra profit to the owner of the edges which are used by other agents.
+In all four different cooperation systems we present in this work, the members of a coalition can collaborate by sharing at some price the capacity of the edges they have activated. This might allow some agents to serve commodities in a more efficient way with respect to the non-cooperative scenario, and generate extra profit to the owner of the edges which are used by other agents.
 
-In all the models presented in the next two section, a proportional allocation rule is used to share revenues generated by the cooperation among the agents of the coalition. This proportional rule can be easily computed once a solution for the cooperative models is obtained, and it is characterized by the following conditions:
+In all the models presented in the next two sections, a proportional allocation rule is used to share revenues generated by the cooperation among the agents of the coalition. This proportional rule can be easily computed once a solution for the cooperative models is obtained, and it is characterized by the following conditions:
 \begin{enumerate}
     \item The revenues generated by any served commodity are
     allocated to its owner.
     \item The activation cost of any active edge is paid by its owner.
-    \item The price of using an unit of capacity on an edge $e\in E$ owned by agent $W(e)$ for any other member of the coalition, $i\in N\setminus\{W(e)\}$, is equal to $\dfrac{c_e}{q_e}$. Therefore,  if a commodity $k\in \Theta$ is routed through an edge $e	\in E$ and $W(k)\not = W(e)$, the agent who owns the commodity, $W(k)$ makes a side payment equal to $d_k \cdot\dfrac{c_e}{q_e}$ to the agent who owns the edge, $W(e)$.\footnote{The models could easily be adapted to allow the agents to individually choose the prices at which other agents can use capacity of their edges.}
+    \item The price of using an unit of capacity on an edge $e\in E$ owned by agent $w(e)$ for any other member of the coalition, $i\in N\setminus\{w(e)\}$, is equal to $\dfrac{c_e}{q_e}$. Therefore,  if a commodity $k\in \Theta$ is routed through an edge $e	\in E$ and $w(k)\not = w(e)$, the agent who owns the commodity, $w(k)$ makes a side payment equal to $d_k \cdot\dfrac{c_e}{q_e}$ to the agent who owns the edge, $w(e)$.\footnote{The models could easily be adapted to allow the agents to individually choose the prices at which other agents can use capacity of their edges.}
 \end{enumerate}
 
-\section{Three cooperation models with a central authority} \label{seq:centrmodels}
+\section{Three cooperation systems with central authority} \label{seq:centrmodels}
 
-In section \ref{seq:probdefinition} we have presented an ILP that models the network design - multicommodity flow problem of an agent $i\in N$ who works alone. In this section, we present different cooperative systems, where the agents in $N$ collaborate in different ways in order to find synergies among them and increase their payoffs.
+In section \ref{seq:probdefinition} we have presented an ILP that models the network design - multicommodity flow problem of an agent $i\in N$ who works alone. Now we present three different cooperative systems, where the agents in $N$ collaborate in different ways in order to find synergies among them and increase their payoffs.
 
-The three models we propose in these section follow the same structure, composed of two stages, making use of the framework proposed in \cite{ANUPINDI2001}. In the first stage, every agent $i\in N$ solves its own problem without cooperating with the others, $P_i$, and shares with a central authority some information based in the optimal solution he has found (which information is exactly shared depends on the model). Nevertheless, differently to what is done in \cite{ANUPINDI2001}, we assume agents do not have any information about the other agents' commodities and edges. In the second stage, the central authority solves the cooperative problem, which is different in each of the three models, as it depends in the amount of information the edges has shared and in the degree of power decision they have give to him. In figure \ref{fig:generalflowchart} we present the general structure of these systems.
+The three models we propose in these section have in common the existence of a central authority which has some level of decision power. The first one, which we refer as the \emph{Fully centralized cooperation system} (FCCS) is a centralized planning system, where the central authority has full information and all the decision power. The other two models, the \emph{Partial cooperation system} (PCS) and the \emph{Residual cooperation system} (RCS), share a common structure composed of two stages which is based in the framework proposed in \textcite{ANUPINDI2001}. In the first stage, every agent $i\in N$ solves his individual problem without cooperating with the others, $P_i$, and shares with a central authority some information based in the optimal solution he has found (which information is exactly shared depends on the model). In the second stage, the central authority solves the cooperative problem, which is different in each of the two models, as it depends in the amount of information the agents has shared.
 
+In table \ref{tb:summarycentralizedmodels} we summarize which decisions are left to the central authority and which are left to the agents in each model. The Fully centralized cooperation systems assumes that full information is shared with the central authority, and all the decision power is given to him. In the Partial cooperation system, agents decide in the first stage which edges to activate and inform about their decisions as well as about all the commodities they have to serve to the central authority. Then, the central authority find the most efficient flow of all the commodities through the edges the agents have activated. Finally, in the Residual cooperation system, agents first decide which edges to activate and route their commodities through them, maximizing their individual payoffs. Then they share with the central planner the commodities they have not served (residual commodities) as well as their active edges which still have some unused capacity (residual capacity). Then, in the second stage the central planner tries to route the residual commodities using the residual capacity of the active edges.
 
-\begin{figure}[ht!]
-\centering
-\caption{Structure of the three models where the central authority has some decision power \label{fig:generalflowchart}}
-\begin{tikzpicture}
-	\begin{scope}[every node/.style={rectangle,draw,thick,minimum height=16pt,minimum width =30pt}]
-		\node[draw=none,blue] (Stage1) at (1.7,0.7) {Stage 1}	;
-		\node (A1) at (-4,0) {Agent 1 solves $P_1$};
-		\node[right =10pt of A1] (A2) {Agent 2 solves $P_2$};
-		\node[draw=none,right =10pt of A2] (pass) {$\cdots$ };
-		\node[right =10pt of pass] (An) {Agent $n$ solves $P_n$};
-		\node[align = left,text width=7cm] (shares) at (0,-2.5) {Every agent, $i\in N$,  shares required information with the  central authority};
-    		\node[below = of shares] (central) {Central planner solves the correspond cooperative problem};
-    		\node[draw=none,red] (Stage2) at (-1.7,-5) {Stage 2}	;
-
-    		
-    		\node [fit=(A1) (An) (shares),draw,dashed,thick,blue] {};
- 		\node [fit=(central) ,draw,dashed,thick,red] {};
-
-	\end{scope}
-	
-	\begin{scope}
-	\draw[-{Latex[length=2mm]}] (A1.south) |- (shares.west);
-	\draw[-{Latex[length=2mm]}] (A2) edge (A2.south|-shares.north);
-	\draw[-{Latex[length=2mm]}] (An.south) |- (shares.east);
-	\draw[-{Latex[length=2mm]}] (shares) edge (central);
-
-	\end{scope}
-\end{tikzpicture}
-\end{figure}
-
-In table \ref{tb:summarycentralizedmodels} we summarize which decisions are left to the central authority and which are left to the agents in each model. The \emph{fully centralized cooperation system} (FCCS) assumes that full information is shared with the central authority, and all the decision power is given to him. In the \emph{partial cooperation system} (PCS), agents decide in the first stage which edges to activate and inform about their decisions as well as share all the information about the commodities they have to serve with the central authority. Then, the central authority find the most efficient flow of all the commodities through the edges the agents have activated. Finally, in the \emph{residual cooperation system} (RCS), agents first decide which edge to activate and route their commodities through them maximizing their individual payoffs. Then they share with the central planner the commodities they have not served as well as their active edges which still have some unused capacity. Then, in the second stage the central planner tries to route the shared commodities using the available capacity in the shared edges.
-
+In table \ref{tb:summarycentralizedmodels} we summarize which decisions are left to the central authority and which are left to the agents in each model. Also, in table \ref{tb:summarycentralizedmodelsinfo} the exact information each agent has to share with the central authority is specified. The Fully centralized cooperation system (FCCS) requires full information to be shared with the central authority, and all the decision power is given to it. In the Partial cooperation system (PCS), agents decide in the first stage which edges to activate and inform about their decisions as well as about all the commodities they have to serve to the central authority. Then, the central authority find the most efficient flow of all the commodities through the edges the agents have activated. Finally, in the Residual cooperation system, agents first decide which edges to activate and route their commodities through them, maximizing their individual payoffs. Then they share with the central planner the commodities they have not served (residual commodities) as well as their active edges which still have some unused capacity (residual capacity). Then, in the second stage the central planner tries to route the residual commodities using the residual capacity of the active edges. 
 
 \begin{table}[ht!]
 	\centering
-	\caption{Summary of decision power allocation between agents and central authority \label{tb:summarycentralizedmodels}}
+	\caption{Summary of decision power allocation between agents and central authority. \label{tb:summarycentralizedmodels}}
     \begin{threeparttable}
         \begin{tabular}{p{0.1\textwidth}>{\centering}p{0.19\textwidth}>{\centering}p{0.15\textwidth}>{\centering}p{0.1\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}}
-            & &      \multicolumn{3}{c}{Coop. systems with a central authority} \\\cline{3-5}
+            & &      \multicolumn{3}{c}{Coop. systems with central authority} \\\cline{3-5}
             & & FCCS &  PCS & RCS \\ \hline
             \multirow{2}{*}{Agents} & Activate edges & No & Yes & Yes \\
             & Route flow     & No & No & Yes \\\hline
@@ -297,14 +399,39 @@ In table \ref{tb:summarycentralizedmodels} we summarize which decisions are left
     \end{threeparttable}
     \end {table}
 
-In the rest of this section we introduce the three different
-cooperative systems with a central authority with decision power we propose in this work.
+
+\begin{table}[ht!]
+	\centering
+	\caption{Summary of the information the central authority has access to on each cooperative system with central authority. \label{tb:summarycentralizedmodelsinfo}}
+\begin{tabular}{p{0.2\textwidth}p{0.1\textwidth}>{\centering}p{0.15\textwidth}>{\centering}p{0.15\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}}
+ & & \multicolumn{3}{c}{Coop. systems with central authority} \\\cline{3-5}
+ & & FCCS & PCS & RCS \\\toprule
+ \multirow{4}{*}{Commodities}  & $o(k),t(k)$ & $\forall\ k\in \Theta$ & $\forall\ k\in \Theta$  & $\forall\ k\in \Theta_R$  \\
+ & $w(k)$    & " & " & " \\
+ & $d_k$ & " & " & " \\
+ & $r_k$ & " & " & " \\
+
+\midrule
+ \multirow{6}{*}{Edges}		 &  $o(e),t(e)$ & $\forall\ e\in E$ & $\forall\ e\in E_A$ & $\forall\ e\in E_R$\\
+ 			 & $w(e)$ & " & " & " \\
+   			 & $c_e$  & " & " &  |\\
+  			 & $q_e$  & " & " & |\\
+ 			 & $\frac{c_e}{q_e}$  & " & " &  $\forall\ e\in E_R$\\[3pt]
+ 			 & $q_e^R$  & | & | & " \\\bottomrule
+
+\end{tabular}
 
 
-\subsection{Fully centralized cooperation system}
+\end{table}
+
+In the rest of this section we present in a more detailed way the three different
+cooperative systems with central authority with decision power we propose in this work.
+
+
+\subsection{Fully centralized cooperation system (FCCS)}
 
 We start introducing the model where more power is given to the central planner.
-In the fully centralized cooperation system (FCCS), the agents start by solving their individual problems in the non-cooperating scenario, $P_i\  \forall i \in N$. Then they share all their commodities and edges the central authority. Each agent also inform to the central planner about which is the maximum payoff they can obtain without cooperating. In the second stage the central authority solves a new ILP, $\Gamma_F$, which is almost identical to $P_ i$, the ILP that an agent $i\in N$ has to solve when no cooperating. Both problems only differ in
+In the Fully centralized cooperation system (FCCS), the agents share all their commodities and edges the central authority. Each agent also inform to the central planner about which is the maximum payoff they can obtain without cooperating. This is something that can be computed by the agents, or by the central planner itself since it has all the required information to do it. Then, the central authority solves a new ILP, $\Gamma_F$, which is almost identical to $P_ i$, the ILP that an agent $i\in N$ has to solve when no cooperating. Both problems only differ in
 two aspects (see Appendix \ref{seq:appendixilpfull} for a complete overview of the ILP):
 
 \begin{enumerate}
@@ -313,7 +440,7 @@ all the agents, $\Theta$ and $E$, while without cooperation an agent $i$ only ha
 	\item The following two new constraints are added to the problem:
 
 \begin{equation}
-\sum_{e \in \delta^-(T(k))}  f_e^k \cdot d_k \cdot r_k - \sum_{\substack{e \in E^j\colon \\ j\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\geq 0,  \forall\ k \in \Theta, \label{eq:commodirevenue}
+\sum_{e \in \delta^-(t(k))}  f_e^k \cdot d_k \cdot r_k - \sum_{\substack{e \in E^j\colon \\ j\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\geq 0,  \forall\ k \in \Theta, \label{eq:commodirevenue}
 \end{equation}
 \begin{equation}
 \varphi_i(\Gamma_F) \geq P_i^*,  \forall\ i\in N; \label{eq:newconstraintFullCooperation}
@@ -337,52 +464,14 @@ For each agent $i\in N$, we define its final payoff as
 The first term of equation (\ref{eq:FullCooperationPayoff}) is the sum of the profit associated with the commodities of the agent, which for each commodity is equal to the revenue it
 generates when it is served minus the cost the agent has to pay to other agents if the commodity passes through edges which does not belong to him. The second sum is the payments that other agents make to him when routing their commodities through his edges. The last term is the sum of the costs of the active edges.
 
-In figure \ref{fig:centralizedmodel} we present a flowchart with the structure of this model.
+\subsection{Partial cooperation system (PCS)}
+
+In the Partial cooperation system (PCS), the central authority has to optimize once again the flow of all the commodities of all the agents through the network, maximizing the total generated revenue. Nevertheless, the decision of which edges to activate remains as an individual decision of each agent.
 
 
 \begin{figure}[ht!]
 \centering
-\caption{Flowchart of the centralized partial cooperation system \label{fig:centralizedmodel}}
-\begin{tikzpicture}
-	\begin{scope}[every node/.style={rectangle,draw,thick,minimum height=16pt,minimum width =30pt}]
-		\node (A1) at (-4,0) {Agent 1 solves $P_1$};
-		\node[right =10pt of A1] (A2) {Agent 2 solves $P_2$};
-		\node[draw=none,right =10pt of A2] (pass) {$\cdots$ };
-		\node[right =10pt of pass] (An) {Agent $n$ solves $P_n$};
-		\node[align = left,text width=7cm] (shares) at (0,-2.5) {Each agent, $i\in N$,  shares with  the  central planner:\vspace{-10pt}
-		\begin{itemize}
-			\itemsep-3pt 
-        		\item Payoff of $P_i^*$
-        		\item $E_i$ 
-        		\item $\Theta^i$
-   		 \end{itemize}
-    };
-    \node[below = of shares,align = left,text width=7cm] (central) {Central planner solves $\Gamma_P$, deciding which edges in $E=\cup_{i=1}^n E^i$ to activate to then route the commodities in $\Theta=\cup_{i=1}^n \Theta^i$ in the most efficient way. Each agent $i\in N$ must obtain a payoff greater or equal to $P_i^*$.};
-    
-    \node [fit=(A1) (An) (shares),draw,dashed,thick,blue] {};
-    \node[draw=none,blue] (Stage1) at (1.7,0.7) {Stage 1}	;
- 	\node [fit=(central) ,draw,dashed,thick,red] {};
- 	\node[draw=none,red] (Stage2) at (-1.7,-4.2) {Stage 2}	;
-	\end{scope}
-	
-	\begin{scope}
-	\draw[-{Latex[length=2mm]}] (A1.south) |- (shares.west);
-	\draw[-{Latex[length=2mm]}] (A2) edge (A2.south|-shares.north);
-	\draw[-{Latex[length=2mm]}] (An.south) |- (shares.east);
-	\draw[-{Latex[length=2mm]}] (shares) edge (central);
-
-	\end{scope}
-\end{tikzpicture}
-\end{figure}
-
-\subsection{Partial cooperation system}
-
-In the partial cooperation system (PCS), the central authority has to optimize once again the flow of all the commodities of all the agents through the network, maximizing the total generated revenue. Nevertheless, the decision of which edges to activate remains as an individual decision of each agent.
-
-
-\begin{figure}[ht!]
-\centering
-\caption{Flowchart of the central routing cooperation system \label{fig:partialmodel}}
+\caption{Flowchart of the Partial cooperation system. \label{fig:partialmodel}}
 \begin{tikzpicture}
 	\begin{scope}[every node/.style={rectangle,draw,thick,minimum height=16pt,minimum width =30pt}]
 		\node (A1) at (-4,0) {Agent 1 solves $P_1$};
@@ -416,46 +505,47 @@ In the partial cooperation system (PCS), the central authority has to optimize o
 \end{tikzpicture}
 \end{figure}
 
-In the first stage, every agent $i \in N$ solves his own $P_i$ problem. Then, each agent $i\in N$, shares with the central authority all his commodities, $\Theta^i$, and inform him about which is the maximum payoff he can obtain without cooperating, $P_ i^*$ and which edges he would activate in that case, $E_A^i$. In the second stage, the central authority solves a new ILP, $\Gamma_P$, routing all the commodities of all the agents, $\Theta=\cup_{i=1}^n \Theta^i$, through all the edges agents would have activated in the non-cooperation scenario, $E_A=\cup_{i=1}^n E_A^i$, and ensuring no agent $i\in N$ get a payoff lower than $P_i^*$. In figure \ref{fig:partialmodel} we present a flowchart summarizing these steps.
+In a first stage, every agent $i \in N$ solves his own $P_i$ problem. Then, each agent $i\in N$, shares with the central authority all his commodities, $\Theta^i$, and inform him about which is the maximum payoff he can obtain without cooperating, $P_ i^*$ and which edges he would activate in that case, $E_A^i$. In the second stage, the central authority solves a new ILP, $\Gamma_P$, routing all the commodities of all the agents, $\Theta=\cup_{i=1}^n \Theta^i$, through all the edges agents would have activated in the non-cooperation scenario, $E_A=\cup_{i=1}^n E_A^i$, and ensuring no agent $i\in N$ get a payoff lower than $P_i^*$. In figure \ref{fig:partialmodel} we present a flowchart summarizing these steps.
 
 Therefore the ILP, $\Gamma_P$, that the central planner has to solve in this \emph{central routing cooperation system} is
 
 \begin{align}
-        &  \Gamma_P: \max  & \sum_{k \in \Theta} \sum_{e \in \delta^-(T(k))\cap E_A}  f_e^k \cdot d_k \cdot r_k  &&   \label{eq:PartialCooperationA} 
+        &  \Gamma_P: \max  & \sum_{k \in \Theta} \sum_{e \in \delta^-(t(k))\cap E_A}  f_e^k \cdot d_k \cdot r_k  &&   \label{eq:PartialCooperationA} 
     \end{align}
     \begin{align}
         & \text{subject to:}       && \nonumber\\
-        & \sum_{e \in \delta^-(z)\cap E_A} f_e^k-\sum_{e \in \delta^+(z)\cap E_A} f_{e}^k = 0,            \quad && \forall\ z\in V\setminus\{O(k),T(k)\},\nonumber\\
+        & \sum_{e \in \delta^-(z)\cap E_A} f_e^k-\sum_{e \in \delta^+(z)\cap E_A} f_{e}^k = 0,            \quad && \forall\ z\in V\setminus\{o(k),t(k)\},\nonumber\\
 & && \forall\ k\in\Theta,  \label{eq:PartialCooperationB}\\[1em]
-& \sum_{e \in \delta^+(O(k))\cap E_A} f_e^k \leq 1,  && \forall\ k\in \Theta, \label{eq:PartialCooperationC} \\
-& \sum_{e \in \delta^+(T(k))\cap E_A} f_e^k = 0,  && \forall\ k\in \Theta, \label{eq:PartialCooperationD} \\
+& \sum_{e \in \delta^+(o(k))\cap E_A} f_e^k \leq 1,  && \forall\ k\in \Theta, \label{eq:PartialCooperationC} \\
+& \sum_{e \in \delta^+(t(k))\cap E_A} f_e^k = 0,  && \forall\ k\in \Theta, \label{eq:PartialCooperationD} \\
  & \sum_{k \in \Theta} f_e^k\cdot d_k \leq q_e     && \forall\ e \in E_A, \label{eq:PartialCooperationE}  \\
- & \sum_{\substack{e \in E_A\colon \\ O(e),T(e) \in S}} f_e^k  \leq |S| -1,    && \forall\ S \subset V,\ \forall\ k \in \Theta, \label{eq:PartialCooperationF}\\
-&\sum_{e \in \delta^-(T(k))\cap E_A}  f_e^k \cdot d_k \cdot r_kk
+ & \sum_{\substack{e \in E_A\colon \\ o(e),t(e) \in S}} f_e^k  \leq |S| -1,    && \forall\ S \subset V,\ \forall\ k \in \Theta, \label{eq:PartialCooperationF}\\
+&\sum_{e \in \delta^-(t(k))\cap E_A}  f_e^k \cdot d_k \cdot r_kk
  -\sum_{\substack{e \in E_A^j\colon \\ j\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\geq 0, && \forall\ k \in \Theta, \label{eq:PartialCooperationG} \\
 & \varphi_i(\Gamma_P)   \geq P_i^*,     && \forall\ i\in N \label{eq:PartialCooperationH}\\
  & f_e^k  \in \{0,1\},    && \forall\ e \in E_A, \forall\ k \in \Theta, \label{eq:PartialCooperationI}
     \end{align}
 
-Note that, this model differs from the previously presented in this work in the absence of decisions variables for the activation of the edges, since this decision is previously make by the agents and not left to the central planner. Also, as in the \emph{full cooperation system}, we include the constraints (\ref{eq:PartialCooperationG}) and (\ref{eq:PartialCooperationH})
-which are equivalent to the constraints (\ref{eq:commodirevenue}) and (\ref{eq:newconstraintFullCooperation}). In this case, because the absence of the decision variables $u_e$ in the model, we redefine the payoff allocate to each agent $i\in N$ as follows
+Note that, this model differs from the previously presented in this work in the absence of decisions variables for the activation of the edges, since this decision is previously make by the agents and not left to the central planner. Also, we include the constraints (\ref{eq:PartialCooperationG}) and (\ref{eq:PartialCooperationH})
+which are equivalent to the constraints (\ref{eq:commodirevenue}) and (\ref{eq:newconstraintFullCooperation}) in FCCS. In this case, because the absence of the decision variables $u_e$ in the model, we redefine the payoffs allocate to each agent $i\in N$ as follows:
 
 \begin{equation}
     \begin{split}
     & \varphi_i(\Gamma_P) =\label{eq:PartialCooperationPayoff} \\
-    & = \sum_{k\in \Theta^i} \left[ \sum_{e \in \delta^-(T(k))\cap E_A} f_e^k \cdot d_k \cdot r_k -  \sum_{\substack{e\in E_A \colon\\ W(e)\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e} \right] + \\
-    & + \sum_{\substack{k \in \Theta  \colon \\ W(k) \not = i}} \left[\sum_{e \in E_A^i} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\right] - \sum_{e \in E_A^i} c_e.
+    & = \sum_{k\in \Theta^i} \left[ \sum_{e \in \delta^-(t(k))\cap E_A} f_e^k \cdot d_k \cdot r_k -  \sum_{\substack{e\in E_A \colon\\ w(e)\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e} \right] + \\
+    & + \sum_{\substack{k \in \Theta  \colon \\ t(k) \not = i}} \left[\sum_{e \in E_A^i} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\right] - \sum_{e \in E_A^i} c_e.
     \end{split}
 \end{equation}
 
-\subsection{Residual cooperation system}
+\subsection{Residual cooperation system (RCS)}
 
-In the residual cooperation system (RCS), the agents would once again start by solving their individual problems, $P_i$ for each $i\in N$. Nevertheless, this time the agents  would actually implement the optimal solution they found for this problems, $P_i^*$ for each $i\in N$. Then, they would inform the central authority about which commodities they were not able to serve when working alone, $\Theta_R^i$, as well as which edges they have activated still have some residual capacity $E_R^i$. In the second stage, the central authority routes the residual commodities of all the agents $\Theta_R = \cup_{i=1}^n \Theta_R^i$ through the edges with residual capacity, $E_R=\cup_{i=1}^n E_R^i$. Furtheremore, the sum of the sizes of the commodities the central planner route through an edge $e\in E_R$ cannot exceed the residual capacity, which we note by $q_e^R$, that the owner of that edge, $W(e)\in N$, has left unused after implementing $P_{(W(e)}^*$.
+In the Residual cooperation system (RCS), the agents would once again start by solving their individual problems, $P_i$ for each $i\in N$. Nevertheless, this time the agents  would actually implement the optimal solution they found for those problems, $P_i^*$ for each $i\in N$. Then, they would inform the central authority about which commodities they were not able to serve when working alone, $\Theta_R^i$, as well as which edges they have activated still have some residual capacity $E_R^i$. In the second stage, the central authority routes the residual commodities of all the agents $\Theta_R = \cup_{i=1}^n \Theta_R^i$ through the edges with residual capacity, $E_R=\cup_{i=1}^n E_R^i$. Furtheremore, the sum of the sizes of the commodities the central authority routes through an edge $e\in E_R$ cannot exceed the residual capacity of that edge, which we note by $q_e^R$. That residual capacity is equal to the capacity that the owner of that edge, $w(e)\in N$, has not used after implementing $P_{w(e)}^*$.
+Figure \ref{fig:residualmodel} shows an overview of the structure of this system.
 
 
 \begin{figure}[ht!]
 \centering
-\caption{Flowchart of the centralized residual cooperation system \label{fig:residualmodel}}
+\caption{Flowchart of the Residual cooperation system. \label{fig:residualmodel}}
 \begin{tikzpicture}
 	\begin{scope}[every node/.style={rectangle,draw,thick,minimum height=16pt,minimum width =30pt}]
 		\node (A1) at (-4,0) {Agent 1 solves $P_1$};
@@ -495,34 +585,34 @@ In the residual cooperation system (RCS), the agents would once again start by s
 \end{tikzpicture}
 \end{figure}
 
-The ILP the central planner has to solve in this central residuals routing cooperation system, $\Gamma_R$, is equivalent to $\Gamma_P$, where the commodities and edges the central planner manages are $\Theta_R$ and $E_R$ instead of $\Theta$ and $E_A$. Also, as the central planner cannot route commodities through an edge $e\in E_R$ exceeding the residual capacity of that edge, $q_e^R$, the constraints (\ref{eq:PartialCooperationE}) are substituted by
+The ILP the central planner has to solve in the residuals cooperation system, $\Gamma_R$, is equivalent to $\Gamma_P$, but the commodities and edges the central planner manages are $\Theta_R$ and $E_R$ instead of $\Theta$ and $E_A$. Also, as the central planner cannot route commodities through an edge $e\in E_R$ exceeding the residual capacity of that edge, $q_e^R$, the constraints (\ref{eq:PartialCooperationE}) are substituted by
 
 \begin{equation}
 \sum_{k \in \Theta_R} f_e^k\cdot d_k \leq q_e^R,\quad \forall\ e \in E_R.
 \end{equation}
-in this model (see Appendix \ref{seq:appendixilpresidual} for a full overview of this ILP).
+in this model (see Appendix \ref{seq:appendixilpresidual} for a full overview of the ILP).
     
-In this system, it is guaranteed by design that each agent receives  payoff greater or equal than the payoff they could obtain by their own, as they always first implement the best solution they can achieve without cooperating, and therefore they can only increase their payoffs with respect to that value. Therefore, constraints equivalent to (\ref{eq:PartialCooperationH}) are not included. Under the residual cooperation system we define the final payoff of an agent $i\in N$ as
+In this system, it is guaranteed by design that each agent receives  payoff greater or equal than the payoff they could obtain by their own, as they always first implement the best solution they can achieve without cooperating, and therefore they can only increase their payoffs with respect to that value. Thus, constraints equivalent to (\ref{eq:PartialCooperationH}) are not included. Under the Residual cooperation system we define the final payoff of an agent $i\in N$ as
 
 \begin{equation}
     \begin{split}
     & \varphi_i(\Gamma_R) =\label{eq:ResidualCooperationPayoff} \\
-    & = \sum_{k\in \Theta^i_R} \left[ \sum_{e \in \delta^-(T(k))\cap E_R} f_e^k \cdot d_k \cdot r_k -  \sum_{\substack{e\in E_R \colon\\ W(e)\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e} \right] + \\
-    & + \sum_{\substack{k \in \Theta_R  \colon \\ W(k) \not = i}} \left[\sum_{e \in E_R^i} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\right] - P_i^*
+    & = \sum_{k\in \Theta^i_R} \left[ \sum_{e \in \delta^-(t(k))\cap E_R} f_e^k \cdot d_k \cdot r_k -  \sum_{\substack{e\in E_R \colon\\ w(e)\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e} \right] + \\
+    & + \sum_{\substack{k \in \Theta_R  \colon \\ w(k) \not = i}} \left[\sum_{e \in E_R^i} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\right] - P_i^*
     \end{split}
 \end{equation}
 
 
 \section{An fully decentralized iterative cooperation system for two agents} \label{seq:itermodel}
 
-In this section we propose a fully decentralized iterative cooperation system (FDICS) for two agents, where all the decisions are left to the agents, who make use of an \emph{information platform} to interact with each other.
+In this section we propose a fully decentralized iterative cooperation system (FDICS) for two agents, where all the decisions are left to the members of the coalition, and there is not any central authority, but the members of the coalition make use of an \emph{information platform} to interact with each other.
 
 The idea behind this mechanism is that the agents exchange information in an iterative process, informing to the other agent about the residual capacity they have in their own active edges, allowing the other agent to use that residual capacity to route his commodities at some price.
 
 Before going in more detail about how the cooperation mechanism works, we introduce how the information platform works. Each agent $i\in N$ has two different ``pools" to share information:
 
 \begin{description}
-	\item[Shared edges:] Agent $i$ can share a subset of his active edges which still have some residual capacity, $\widehat{E}_R^i\subseteq E_R^i$. He also has to share how many units of residual capacity has each edge $e\in \widehat{E}_R^i$, $q_e^R$, and which is the cost of each of that units, $\frac{c_e}{q_e}$
+	\item[Shared edges:] Agent $i$ can share a subset of his active edges which still have some residual capacity, $\widehat{E}_R^i\subseteq E_R^i$. He also has to share how many units of residual capacity has each edge $e\in \widehat{E}_R^i$, $q_e^R$, and at which price the other agent can use each of that units, $\frac{c_e}{q_e}$
 	\item[Demanded edges:] If agent $j$ has previously shared a set of edges in the platform, agent $i$ can make use those edges when routing his commodities. If agent $i$ actually decides to route a subset of his commodities, $\widehat{\Theta}^i\subset \Theta ^i$ through some of that edges, he has to share in the information platform:
 	\begin{enumerate}
 		\item How much units of capacity he requires (or demands) in total on each edge $e$ shared by agent $j$, what we note by $q_e^D$.
@@ -534,18 +624,18 @@ Before going in more detail about how the cooperation mechanism works, we introd
 Making use of the information platform just introduced, both agents iteratively solve an ILP. In each iteration both agents, sequentially and not in parallel, decide which edges to activate, and how to route their commodities through the network, as they do in $P_i$, but this time, they can route their commodities, through the edges shared in the platform by the other agent with the corresponding costs and respecting the available capacities on that edges. Furthermore, when deciding if activate or not an edge, each agent does not only have to account for the activation cost, but also for the side payments the other agent is willing to make to him if he activates certain combinations of edges and leaves on them certain residual capacities. The ILP, $\Upsilon_i$, agent $i\in N$ has to solve in each iteration is the following:
 
     \begin{align}
-        &  \Upsilon_i: \hspace{10pt} \max  &&  \sum_{k\in \Theta^i} \sum_{e \in \delta^-(T(k))\cap (E^i\cup \widehat{E}_R^j)} f_e^k \cdot d_k \cdot r_k - \sum_{e\in E^i} u_e\cdot c_e \hspace{20pt} -  \nonumber  \label{eq:IterativeA}\\
+        &  \Upsilon_i: \hspace{10pt} \max  &&  \sum_{k\in \Theta^i} \sum_{e \in \delta^-(t(k))\cap (E^i\cup \widehat{E}_R^j)} f_e^k \cdot d_k \cdot r_k - \sum_{e\in E^i} u_e\cdot c_e \hspace{20pt} -  \nonumber  \label{eq:IterativeA}\\
         & 								  && - \sum_{k \in \Theta^i} \sum_{\substack{e \in \widehat{E}_R^j\colon \\ j\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}   + \sum_{\substack{L^k \in \mathcal{L}^j \colon \\j\not = i}} p_{L^k} \cdot t_{L^k}
     \end{align}
     \begin{align}
         & \text{subject to:}       && \nonumber\\
-& \sum_{e \in \delta^-(z)\cap (E^i\cup \widehat{E}_R^j)} f_e^k-\sum_{e \in \delta^+(z)\cap (E^i\cup \widehat{E}_R^j)} f_{e}^k  = 0,                                   && \forall\ z\in V\setminus\{O(k),T(k)\},\nonumber\\[-1em]
+& \sum_{e \in \delta^-(z)\cap (E^i\cup \widehat{E}_R^j)} f_e^k-\sum_{e \in \delta^+(z)\cap (E^i\cup \widehat{E}_R^j)} f_{e}^k  = 0,                                   && \forall\ z\in V\setminus\{o(k),t(k)\},\nonumber\\[-1em]
 & && \forall\ k\in\Theta^i,  \label{eq:IterativeB}\\[1em]
-& \sum_{e \in \delta^+(O(k))\cap (E^i\cup \widehat{E}_R^j)} f_e^k  \leq 1, && \forall\ k\in \Theta^i, \label{eq:IterativeC} \\
-& \sum_{e \in \delta^+(T(k))\cap (E^i\cup \widehat{E}_R^j)} f_e^k  = 0,  && \forall\ k\in \Theta^i, \label{eq:IterativeD} \\
+& \sum_{e \in \delta^+(o(k))\cap (E^i\cup \widehat{E}_R^j)} f_e^k  \leq 1, && \forall\ k\in \Theta^i, \label{eq:IterativeC} \\
+& \sum_{e \in \delta^+(t(k))\cap (E^i\cup \widehat{E}_R^j)} f_e^k  = 0,  && \forall\ k\in \Theta^i, \label{eq:IterativeD} \\
 & \sum_{k \in \Theta^i} f_e^k\cdot d_k \leq u_e\cdot q_e, && \forall\ e \in E^i, \label{eq:IterativeE}  \\
 & \sum_{k \in \Theta^i} f_e^k\cdot d_k \leq  q_e^R, && \forall\ e \in \widehat{E}_R^j,\label{eq:IterativeF}  \\
-& \sum_{\substack{e \in E^i\cup \widehat{E}_R^j\colon \\ O(e),T(e) \in S}}  f_e^k  \leq |S| -1, && \forall\ S \subset V,\ \forall\ k \in \Theta^i, \label{eq:IterativeG}\\
+& \sum_{\substack{e \in E^i\cup \widehat{E}_R^j\colon \\ o(e),t(e) \in S}}  f_e^k  \leq |S| -1, && \forall\ S \subset V,\ \forall\ k \in \Theta^i, \label{eq:IterativeG}\\
 &\sum_{k\in \Theta^i} f_e^k \cdot d_k \leq (q_e - q_e^D) +M(1-b_e),\quad && \forall e \in L^{\bar{k}},\ \forall L^{\bar{k}} \in \mathcal{L}^j, \label{eq:IterativeH}\\[5pt]
 &b_e \leq u_e, && \forall e\in L^k,\ \forall L^k \in \mathcal{L}^j, \label{eq:IterativeI}\\[5pt]
 & t_{L^k} \leq 1 -  (|L^k|-\sum_{e \in L^k} b_e), && \forall L^k \in \mathcal{L}^j \label{eq:IterativeJ}\\
@@ -560,15 +650,15 @@ In $\Upsilon_i$, the first term of the objective function of the agent $i$, equa
 
 Constraints (\ref{eq:IterativeB}), (\ref{eq:IterativeC}), (\ref{eq:IterativeD}) and (\ref{eq:IterativeG}) are equivalent to constraints (\ref{eq:SingleAgentB}),(\ref{eq:SingleAgentC}),(\ref{eq:SingleAgentD}) and (\ref{eq:SingleAgentF}) in $P_i$, with the difference that now the agent $i$ can use the edges shared in the information platform by the agent $j$, $\widehat{E}_R^j$. Constraint (\ref{eq:IterativeE}) is identical to constraint (\ref{eq:SingleAgentE}) and constraint (\ref{eq:IterativeF}) is an extension of it, ensuring that the agent does not exceed the residual capacity of the edges shared by agent $j$ when routing his commodities.
 
-Constraints (\ref{eq:IterativeH}),  (\ref{eq:IterativeI}) and (\ref{eq:IterativeJ}) together with the ``technical" decision variables (\ref{eq:IterativeM}) and (\ref{eq:IterativeN}), are related with the side payments agent $i$ receives from agent $j$. Recall that each $L^k \in \mathcal{L}^j$ is a set which contains the edges of agent $i$ that agent $j$ has indicated in the previous iteration he would like to use to route commodity $k$. He has also indicates that if and only if for every $e \in L^k$, $q_e^R$ units of capacity are available to him, he would make a side payment to agent $i$ equal to $p_{L^k}$. Thus, in order to get the side payment $p_{L^k}$, the technical decision variable $t_{L^k}$ must be equal to 1. Constraints (\ref{eq:IterativeJ}) and (\ref{eq:IterativeN}) ensures that $t_{L^k}$ only can be 1 if all the technical decision variables $b_e$ for $e \in L^k$ are also equal to 1. Finally, constraints (\ref{eq:IterativeH})  making use of the \emph{big M} coefficient, and (\ref{eq:IterativeI}), ensures that if $b_e$ is equal to one, agent $i$ must leave at least $q_e^D$ units of residual capacity on that edge and the edge $e$ must be active. Note that these constraints are too restrictive. Agent $j$ might be planning to route 2 or more commodities through the edge $e$, and even if agent $i$ left less than $q_e^R$ units of capacity available, he might be possible to route, not all, but some of that commodities through it. However, these constraint assume that none of the commodities could be routed and therefore, any side payment associated with a commodity passing through that edge would be done. We argue that capture with exactitude this behaviour would make the model too complex, as the problem of deciding which commodities can still be routed and which cannot is a \emph{knapsack problem}, which has been proven to be NP-complete \parencite{KARP1972}.
+Constraints (\ref{eq:IterativeH}),  (\ref{eq:IterativeI}) and (\ref{eq:IterativeJ}) together with the ``technical" decision variables (\ref{eq:IterativeM}) and (\ref{eq:IterativeN}), are related with the side payments agent $i$ receives from agent $j$. Recall that each $L^k \in \mathcal{L}^j$ is a set which contains the edges of agent $i$ that agent $j$ has indicated in the previous iteration he would like to use to route commodity $k$. He has also indicates that if and only if for every $e \in L^k$, $q_e^R$ units of capacity are available to him, he would make a side payment to agent $i$ equal to $p_{L^k}$. Thus, in order to get the side payment $p_{L^k}$, the technical decision variable $t_{L^k}$ must be equal to 1. Constraints (\ref{eq:IterativeJ}) and (\ref{eq:IterativeN}) ensures that $t_{L^k}$ only can be 1 if all the technical decision variables $b_e$ for $e \in L^k$ are also equal to 1. Finally, constraints (\ref{eq:IterativeH})  making use of the \emph{big M} coefficient, and (\ref{eq:IterativeI}), ensures that if $b_e$ is equal to one, agent $i$ must leave at least $q_e^D$ units of residual capacity on that edge and the edge $e$ must be active. Note that these constraints are too restrictive. Agent $j$ might be planning to route 2 or more commodities through the edge $e$, and even if agent $i$ left less than $q_e^R$ units of capacity available, he might be possible to route, not all, but some of that commodities through it. However, these constraint assume that none of the commodities could be routed and therefore, any side payment associated with a commodity passing through that edge would be done. We argue that capture with exactitude this behaviour would make the model too complex, as the problem of deciding which commodities to include in the routed is a \emph{knapsack problem}, which has been proven to be NP-complete \parencite{KARP1972}.
 
 In figure \ref{fig:iterflowchart} we present a flow chart illustrating the structure of these cooperation mechanism.
-In the first iteration, as the information platform is empty, agent 1 is in practice solving $P^1$. Indeed, if the no information was shared in the platform, $\Upsilon^i=P^i$. For the same reason, in the first iteration agent 2 does not expect any side payments from agent 1 (he have not got yet the opportunity of demanding any edges, since no edges were shared for agent 2 in the platform yet). The iterative process continues until an equilibrium is found or the maximum number of iteration allowed is reached or an equilibrium is found. We define an \emph{equilibrium} as the situation were the solutions of $\Upsilon^1$ and $\Upsilon^2$ found in the iteration $h$ are exactly the same than the solutions found in the iteration $h-1$. This is equivalent to the definition of the \emph{Nash equilibrum}: given the actions of the others, an agent cannot individually improve their payoff by changing his strategy \parencite{GONZALEZ2010}. If the maximum number of iterations is reached without equilibrium, the mechanism considers that no solution was found.
+In the first iteration, as the information platform is empty, agent 1 is in practice solving $P^1$. Indeed, if the no information was shared in the platform, $\Upsilon^i=P^i$. For the same reason, in the first iteration agent 2 does not expect any side payments from agent 1 (he have not got yet the opportunity of demanding any edges, since no edges were shared for agent 2 in the platform yet). The iterative process continues until an equilibrium is found or the maximum number of iteration allowed is reached or an equilibrium is found. We define an \emph{equilibrium} as the situation were the solutions of $\Upsilon^1$ and $\Upsilon^2$ found in the iteration $h$ are exactly the same than the solutions found in the iteration $h-1$. This is equivalent to the definition of the \emph{Nash equilibrum}: given the strategies of all the agents, an agent cannot individually improve their payoffs by changing his own strategy \parencite{GONZALEZ2010}. If no equilibrium is reached in the maximum number of iterations allowed, the system considers that no solution for the cooperation was found.
 
 
 \begin{figure}[ht!]
 \centering
-\caption{Flowchart of the decentralized cooperation mechanism for two agents\label{fig:iterflowchart}}
+\caption{Flowchart of the decentralized cooperation mechanism for two agents.\label{fig:iterflowchart}}
 \begin{tikzpicture}
 \begin{scope}[every node/.style={rectangle,draw,thick}]
 	\node[align = center] (init) at (0,0)  {Empty information platform.\\
@@ -592,7 +682,7 @@ In the first iteration, as the information platform is empty, agent 1 is in prac
 	\draw[-{Latex[length=2mm]}] (itquestion.east)  -- ++(4cm,0) |- node[above] {No}
 	 (iteration.east);
 	\draw[-{Latex[length=2mm]}] (itquestion.west) -| node[left] {Yes} (equiquestion);
-	\draw[-{Latex[length=2mm]}] (equiquestion)  edge node[above,left] {No} (maxit);
+	\draw[-{Latex[length=2mm]}] (equiquestion)  edge node[above] {No} (maxit);
 	\draw[-{Latex[length=2mm]}] (equiquestion) edge node[right] {Yes} (End);
 	\draw[-{Latex[length=2mm]}] (maxit.south) |- node[right] {Yes} (End);
 	\draw[-] (maxit.east)  -- ++(0.98cm,0) |- (iteration.east);
@@ -627,11 +717,11 @@ Only in the decentralize iterative cooperation mechanism there is a parameter, a
 
 \subsection{Comparision 3 coopeation systems with a central autority}
 
-In table \ref{tb:centralauthoritypayoff} we presented the results of the three different cooperation models with a central authority tested over the 10 instances with 5 agents. The first column corresponds to the total payoff (the sum of the payoff of all the agents) when agent do not cooperate at all. Columns 2,2 and 4 are the total payoffs for the full centralized, partial and residual cooperation systems (FCCS, PCS and RCS respectively). Columns 5,6 and 7 indicate the percentage of improvement in the total payoff of the coalition each of the three systems achieves in comparison with the no cooperation scenario.
+In table \ref{tb:centralauthoritypayoff} we presented the results of the three different cooperation models with central authority tested over the 10 instances with 5 agents. The first column corresponds to the total payoff (the sum of the payoff of all the agents) when agent do not cooperate at all. Columns 2,2 and 4 are the total payoffs for the Fully centralized, Partial and Residual cooperation systems (FCCS, PCS and RCS respectively). Columns 5,6 and 7 indicate the percentage of improvement in the total payoff of the coalition each of the three systems achieves in comparison with the no cooperation scenario.
 
 \begin{table}[ht!]
 \centering
-\caption{Total payoffs of the three cooperation systems with central authority \label{tb:centralauthoritypayoff}}
+\caption{Total payoffs of the three cooperation systems with central authority. \label{tb:centralauthoritypayoff}}
 \begin{tabular}{lrrrrrrr}
 \toprule
  & \multicolumn{4}{c|}{Total payoffs} & \multicolumn{3}{c}{\% Improvement}\\
@@ -651,12 +741,12 @@ In table \ref{tb:centralauthoritypayoff} we presented the results of the three d
 \end{tabular}
 \end{table}
 
-The running times of the three cooperation system with a central authority are given in table \ref{tb:centralauthoritytimes}. We want to remark that thhese running times correspond to the whole cooperation system, and not only to the resolution of the cooperative problems $\Gamma_F,\Gamma_P$ or $\Gamma_R$. Furthermore, the running times of the three systems could be considered to be overestimated. This is because the individual problems of each agent corresponding to the non cooperation scenario has been solved sequentially and not in parallel. 
+The running times of the three cooperation system with central authority are given in table \ref{tb:centralauthoritytimes}. We want to remark that thhese running times correspond to the whole cooperation system, and not only to the resolution of the cooperative problems $\Gamma_F,\Gamma_P$ or $\Gamma_R$. Furthermore, the running times of the three systems could be considered to be overestimated. This is because the individual problems of each agent corresponding to the non cooperation scenario has been solved sequentially and not in parallel. 
 
 \begin{table}[ht!]
 \centering
 \setlength{\tabcolsep}{12pt}
-\caption{Running times of the three cooperation systems with a central authority \label{tb:centralauthoritytimes}}
+\caption{Running times of the three cooperation systems with central authority. \label{tb:centralauthoritytimes}}
 \begin{threeparttable}
 \begin{tabular}{lrrrr}
 \toprule
@@ -696,7 +786,7 @@ First of all, in table \ref{tb:iter_order_comparition} we compare the results ob
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{lrrrrrr}
 \toprule
-{} & \multicolumn{2}{c}{Total payoffs} & \multirow{2}{*}{\%Dif} & \multicolumn{2}{c}{Nº iterations} & \multirow{2}{*}{\%Dif} \\
+{} & \multicolumn{2}{c}{Total payoffs} & \multirow{2}{*}{\% Dif.} & \multicolumn{2}{c}{Nº iterations} & \multirow{2}{*}{\% Dif.} \\
 {} &  Order1 &  Order2 &       &  Order1 &  Order2 & \\
 \midrule
 2\_low\_0  &           25.0 &           25.0 &  0.00 &        4.0 &        3.0 &     1.0 \\
@@ -715,11 +805,11 @@ First of all, in table \ref{tb:iter_order_comparition} we compare the results ob
 \end{table}
 
 
-Tables \ref{tb:2_payoffs}, and \ref{tb:2_times} are equivalent to tables \ref{tb:centralauthoritypayoff}, and \ref{tb:centralauthoritytimes} with the difference that the decentralized iterative cooperation mechanism is now included. For this mechanism, we have reported in table \ref{tb:2_payoffs} the lower total payoff among the two possible one depending in the order in which the agents participate on it, i.e., for each instance the minimum among the values in column 1 and 2 of table \ref{tb:iter_order_comparition}.
+Tables \ref{tb:2_payoffs} and \ref{tb:2_times} are equivalent to tables \ref{tb:centralauthoritypayoff} and \ref{tb:centralauthoritytimes} but presenting the results for the instances with 2 agents, and also including the fully decentralized iterative cooperation system (FDICS). For this system, we have reported in table \ref{tb:2_payoffs} the lower total payoff among the two possible one depending in the order in which the agents participate on it, i.e., for each instance the minimum among the values in column 1 and 2 of table \ref{tb:iter_order_comparition}.
 
 \begin{table}[ht!]
 \centering
-\caption{Comparision of the payoff obtained by each cooperative mechanism for instances with two agents \label{tb:2_payoffs}}
+\caption{Comparison of the payoff obtained by each cooperative mechanism for instances with two agents. \label{tb:2_payoffs}}
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{lrrrrrrrrr}
 \toprule & \multicolumn{5}{c}{Total payoffs}            & \multicolumn{4}{|c}{\% Improvement} \\
@@ -742,7 +832,7 @@ Tables \ref{tb:2_payoffs}, and \ref{tb:2_times} are equivalent to tables \ref{tb
 
 \begin{table}[ht!]
 \centering
-\caption{Comparision of the running times of each cooperative mechanism for instances with two agents\label{tb:2_times}}
+\caption{Comparison of the running times of each cooperative mechanism for instances with two agents.\label{tb:2_times}}
 \begin{tabular}{lrrrrr}
 \toprule
 {} &     FCCS &  PCS &  RCS &  FDICS \\
@@ -773,22 +863,20 @@ In this section we comment different aspects about the mechanism we have studied
 
 The analysis of the simulations we have performed to test the different cooperation systems we have studied in this work shows some interesting results.
 
-In table \ref{tb:centralauthoritypayoff} we observe how increasing the amount of information shared with the central planner as well as the degree of decision power left to it increases the total payoff obtained by the coalition. This is normal, as by allowing the central authority to make more decisions increases the numbers of opportunities for cooperation between the agents that are actually exploited in the final solution. In the other hand, in table \ref{tb:centralauthoritytimes} we see how the running times of the systems increase significantly when the central authority has more decision power. Once again, this is normal since when combining the information of the different agents, the solution space the central authority has to explore increases drastically. We highlight that when testing the fully centralized cooperation system in the instances with five agents and edges with high capacity, the optimal solution of the cooperative problem was never found before reaching the maximum allowed time.
+In table \ref{tb:centralauthoritypayoff} we observe how increasing the amount of information shared with the central planner as well as the degree of decision power left to it increases the total payoff obtained by the coalition. This is normal, as by allowing the central authority to make more decisions increases the numbers of opportunities for cooperation between the agents that are actually exploited in the final solution. In the other hand, in table \ref{tb:centralauthoritytimes} we see how the running times of the systems increase significantly when the central authority has more decision power. Once again, this is normal since when combining the information of the different agents, the solution space the central authority has to explore increases drastically. We highlight that when testing the Fully centralized cooperation system in the instances with five agents and edges with high capacity, the optimal solution of the cooperative problem was never found before reaching the maximum allowed time.
 
-Table \ref{tb:2_payoffs} show us how the fully decentralized iterative cooperation system (FDICS) cannot compete with fully centralized and partial cooperation system in terms of total payoffs. Furthermore, the PCS is also faster in terms of running time. In the other hand, the FDICS is able to find better solutions than the residual cooperation system (RCS) in nine of the ten instances (instance ``\texttt{2\_high\_2}" is the exception) in exchange for slightly longer running times.
+Table \ref{tb:2_payoffs} show us how the fully decentralized iterative cooperation system (FDICS) cannot compete with  the Fully centralized and Partial cooperation system sin terms of total payoffs. Furthermore, the PCS is also faster in terms of running time. In the other hand, the FDICS is able to find better solutions than the Residual cooperation system (RCS) in nine of the ten instances (instance ``\texttt{2\_high\_2}" is the exception) in exchange for slightly longer running times.
 
-We can observe in table \ref{tb:iter_order_comparition} that even if the order of the agents does not appear to affect in general to the number of iterations necessary to reach an equilibrium (with the exception of instance ``\texttt{2\_LOW\_0}"), it can have an impact in the total payoff obtained. This seems specially relevant in the instances were the capacity of the edges is higher. A first hypothesis to justify this could be that, a higher capacity in the edges of the graph could mean a bigger number of possibilities to cooperate, as it is more frequent that the agents have residual capacity in their active edges, thus making the order in which the agents participate in the process more relevant. Nevertheless, the number of iterations necessary to reach an equilibrium does not grows with the capacity of the edges, what could be a counter proof of the just proposed explanation. Therefore more experiments are necessary in order to find the reason of this behaviour. 
-
-Another interesting results is that an equilibrium was always found in the 10 studied instances, and that the number of iterations required to find is is relatively constant, varying between 3 and 4 iterations in all the cases.
+We can observe in table \ref{tb:iter_order_comparition} that even if the order of the agents does not appear to affect in general to the number of iterations necessary to reach an equilibrium (with the exception of instance ``\texttt{2\_LOW\_0}"), it can have an impact in the total payoff obtained. This seems specially relevant in the instances were the capacity of the edges is higher. A first hypothesis to justify this could be that, a higher capacity in the edges of the graph could mean a bigger number of possibilities to cooperate, as it is more frequent that the agents have residual capacity in their active edges, thus making the order in which the agents participate in the process more relevant. Nevertheless, the number of iterations necessary to reach an equilibrium does not grows with the capacity of the edges, what could be a counter proof of the just proposed explanation. Therefore more experiments are necessary in order to find the reason of this behaviour.  Another interesting result is that an equilibrium is always reached in the 10 tested instances, and that the number of iterations required to find is is relatively constant, varying between 3 and 4 iterations in all the cases.
 
 \subsection{Possible extensions and future work}
 
 Several extensions can be done in order to make this work more complete. Probably the most obvious is to extend the decentralized iterative cooperation mechanism to more than 2 agents. Nevertheless, a direct extension could derive in requiring more iterations in order to reach an equilibrium, or even making that equilibrium unlikely to exist. Also, might be possible that if the number of agents increases, the relevance of the order in which that agents participate in the iterative process increases too. In any case, more work is required in order to confirm or not the above hypothesis.
 
-Another possibility we considered and finally we did not include in this work because of time limitations, is to study a version of the 
-decentralized iterative cooperation mechanism where the agents cannot change their decision, both respect to the design of their network neither the flow of their commodities, if they have already share information in the platform related with them. For example, if an agent has shared an edge with residual capacity in the previous iteration and the other agent has requested to use it, he would not be allowed to change his mind and deactivate it in future iterations. We hypothesize that this could reduce the number of iterations required  to reach an equilibrium and maybe make the extension to more than 2 agents easier. In the other hand,a system like this could generate less quality solutions from the point of view of the whole coalition and increase the relevance of the order in which the agents participate in the iterative process. Once again, more work and further experiments are necessary to can confirm these hypothesis.
+It would be interesting to study the version of the 
+decentralized iterative cooperation mechanism where the agents cannot change their decisions, both respect to the design of their network neither the flow of their commodities, if they have already share information in the platform related with them. For example, if an agent has shared an edge with residual capacity in the previous iteration and the other agent has requested to use it, he would not be allowed to change his mind and deactivate it in future iterations. We hypothesize that this could reduce the number of iterations required  to reach an equilibrium and maybe make the extension to more than 2 agents easier. In the other hand,a system like this could generate less quality solutions from the point of view of the whole coalition and increase the relevance of the order in which the agents participate in the iterative process. Once again, more work and further experiments are necessary to can confirm these hypothesis.
 
-In the other hand, the centralized cooperation systems proposed in this work could be also improved. For example, in the partial cooperation systems, the agents might follow different or even better strategies for deciding which edges to activate than simply solve their individuals optimization problem, $P^i$ for $i\in N$, and choosing the edges that are activate in the respective solutions. Also, more constraints could be added to the three centralized cooperation models, in order to make the solutions not only individually rational, but to force them to be in the core. Other open question is which solution should selected in case that exist multiple optimal solutions for the problem that the central planner has to solve in any of these three mechanism. For instance, multiobjectives approaches could be investigated.
+In the other hand, the centralized cooperation systems proposed in this work could also be improved. For example, in the Partial cooperation system, the agents might want to follow different strategies for deciding which edges to activate, instead of simply solving their individuals optimization problem, $P^i$ for $i\in N$, and choosing the edges that are activate in the found solutions. Also, more constraints could be added to the three cooperation systems with central authority, in order to make the solutions not only individually rational, but to force them to be in the core. Other open question is which solution should selected in case that multiple optimal solutions exist for the problem that the central planner has to solve. For instance, multiobjectives approaches could be investigated.
 
 
 \section{Conclusion} \label{seq:conclusion}
@@ -800,40 +888,40 @@ In this work we have proposed three difference centralized cooperation systems a
 \begin{appendices}
 \section{ILP's}
 
-\subsection{ILP to be solved by the central planner in the fully centralized cooperation system.}
+\subsection{ILP to be solved by the central planner in the Fully centralized cooperation system.}
 \label{seq:appendixilpfull}
     \begin{align}
-        &  \Gamma_F: \max  & \hspace{22pt} \sum_{k\in \Theta} \sum_{e \in \delta^-(T(k))\cap E}  f_e^k \cdot d_k \cdot r_k - \sum_{e\in E} u_{e}\cdot c_{e} \hspace{40pt} && 
+        &  \Gamma_F: \max  & \hspace{22pt} \sum_{k\in \Theta} \sum_{e \in \delta^-(t(k))\cap E}  f_e^k \cdot d_k \cdot r_k - \sum_{e\in E} u_{e}\cdot c_{e} \hspace{40pt} && 
     \end{align}
     \begin{align}
         & \text{subject to:}       && \nonumber \\
-        & \sum_{e \in \delta^-(z)\cap E} f_e^k -\sum_{e \in \delta^+(z)\cap E} f_{e}^k = 0,\quad && \forall\ z\in V\setminus\{O(k),T(k)\},\nonumber\\
+        & \sum_{e \in \delta^-(z)\cap E} f_e^k -\sum_{e \in \delta^+(z)\cap E} f_{e}^k = 0,\quad && \forall\ z\in V\setminus\{o(k),t(k)\},\nonumber\\
         & && \forall\ k\in\Theta, \\
-& \sum_{e \in \delta^+(O(k))\cap E} f_e^k \leq 1, && \forall\ k\in \Theta, \\
- & \sum_{e \in \delta^+(T(k))\cap E} f_e^k = 0,  && \forall\ k\in \Theta,  \\
+& \sum_{e \in \delta^+(o(k))\cap E} f_e^k \leq 1, && \forall\ k\in \Theta, \\
+ & \sum_{e \in \delta^+(t(k))\cap E} f_e^k = 0,  && \forall\ k\in \Theta,  \\
 & \sum_{k \in \Theta} f_e^k\cdot d_k  \leq u_e\cdot q_e, && \forall\ e \in E,   \\
- & \sum_{\substack{e \in E\colon \\ O(e),T(e) \in S}} f_e^k \leq |S| -1, && \forall\ S \subset V,\ \forall\ k \in \Theta,\\
-&\sum_{e \in \delta^-(T(k))\cap E}  f_e^k  \cdot d_k \cdot r_k - \sum_{\substack{e \in E^j\colon \\ j\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\geq 0, && \forall\ k \in \Theta, \\
+ & \sum_{\substack{e \in E\colon \\ o(e),t(e) \in S}} f_e^k \leq |S| -1, && \forall\ S \subset V,\ \forall\ k \in \Theta,\\
+&\sum_{e \in \delta^-(t(k))\cap E}  f_e^k  \cdot d_k \cdot r_k - \sum_{\substack{e \in E^j\colon \\ j\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\geq 0, && \forall\ k \in \Theta, \\
 & \varphi_i(\Gamma_F) \geq P_i^*,  && \forall\ i\in N, \\
 & f_e^k \in \{0,1\},  && \forall\ e \in E,\ \forall\ k \in \Theta,  \\
 &  u_e  \in \{0,1\},  && \forall\ e \in E.
    \end{align}
 
-\subsection{ILP to be solved by the central planner in the central  residuals routing cooperation system.}
+\subsection{ILP to be solved by the central planner in the Residual routing cooperation system.}
 \label{seq:appendixilpresidual}
 
   \begin{align}
-        &  \Gamma_R: \max  & \sum_{k \in \Theta_R} \sum_{e \in \delta^-(T(k))\cap E_R}  f_e^k \cdot d_k \cdot r_k &&   
+        &  \Gamma_R: \max  & \sum_{k \in \Theta_R} \sum_{e \in \delta^-(t(k))\cap E_R}  f_e^k \cdot d_k \cdot r_k &&   
     \end{align}
     \begin{align}
         & \text{subject to:}       && \nonumber\\
-        & \sum_{e \in \delta^-(z)\cap E_R} f_e^k-\sum_{e \in \delta^+(z)\cap E_R} f_{e}^k  = 0,           \quad && \forall\ z\in V\setminus\{O(k),T(k)\},\nonumber\\
+        & \sum_{e \in \delta^-(z)\cap E_R} f_e^k-\sum_{e \in \delta^+(z)\cap E_R} f_{e}^k  = 0,           \quad && \forall\ z\in V\setminus\{o(k),t(k)\},\nonumber\\
         & && \forall\ k\in\Theta_R, \\[1em]
-& \sum_{e \in \delta^+(O(k))\cap E_R} f_e^k\leq 1, && \forall\ k\in \Theta_R,  \\
-& \sum_{e \in \delta^+(T(k))\cap E_R} f_e^k  = 0, && \forall\ k\in \Theta_R,  \\
+& \sum_{e \in \delta^+(o(k))\cap E_R} f_e^k\leq 1, && \forall\ k\in \Theta_R,  \\
+& \sum_{e \in \delta^+(t(k))\cap E_R} f_e^k  = 0, && \forall\ k\in \Theta_R,  \\
  & \sum_{k \in \Theta_R} f_e^k\cdot d_k \leq q_e^R   &&\forall\ e \in E_R,   \\
-& \sum_{\substack{e\in E_R\colon\\O(e),T(e)\in S }} f_e^k \leq |S| -1,  && \forall\ S \subset V, \ \forall\ k \in \Theta_R, \\
-& \sum_{e \in \delta^-(T(k))\cap E_R}  f_e^k  \cdot d_k \cdot r_k -\sum_{\substack{e \in E_R^j\colon \\ j\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\geq 0, && \forall\ k \in \Theta_R, \\
+& \sum_{\substack{e\in E_R\colon\\o(e),t(e)\in S }} f_e^k \leq |S| -1,  && \forall\ S \subset V, \ \forall\ k \in \Theta_R, \\
+& \sum_{e \in \delta^-(t(k))\cap E_R}  f_e^k  \cdot d_k \cdot r_k -\sum_{\substack{e \in E_R^j\colon \\ j\not = i}} f_e^k \cdot d_k \cdot \frac{c_e}{q_e}\geq 0, && \forall\ k \in \Theta_R, \\
 & f_e^k \in \{0,1\},    && \forall\ e \in E_R, \forall\ k \in \Theta_R.
     \end{align}
 

@@ -91,15 +91,15 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxbibnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>99</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>2</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>99</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxitems</bcf:key>
@@ -163,7 +163,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
-      <bcf:value>none</bcf:value>
+      <bcf:value>nyt</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortsets</bcf:key>
@@ -175,7 +175,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>full</bcf:value>
+      <bcf:value>init</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -2184,45 +2184,67 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1">BALLOT2010</bcf:citekey>
-    <bcf:citekey order="2">SOYSAL2018168</bcf:citekey>
-    <bcf:citekey order="3">AGARWAL2008175</bcf:citekey>
-    <bcf:citekey order="4">GANTERER2017</bcf:citekey>
-    <bcf:citekey order="5">VERDONCK2013</bcf:citekey>
+    <bcf:citekey order="1">SOYSAL2018168</bcf:citekey>
+    <bcf:citekey order="2">AGARWAL2008175</bcf:citekey>
+    <bcf:citekey order="3">GANSTERER2017</bcf:citekey>
+    <bcf:citekey order="4">VERDONCK2013</bcf:citekey>
+    <bcf:citekey order="5">GANSTERER2017</bcf:citekey>
     <bcf:citekey order="6">GONZALEZ2010</bcf:citekey>
     <bcf:citekey order="7">SHAPLEY1952</bcf:citekey>
     <bcf:citekey order="8">DEFRYN2018891</bcf:citekey>
     <bcf:citekey order="9">DEFRYN20191</bcf:citekey>
     <bcf:citekey order="10">VANOVERMEIRE2014125</bcf:citekey>
     <bcf:citekey order="11">SERRANO2017</bcf:citekey>
-    <bcf:citekey order="12">ZENG2015</bcf:citekey>
-    <bcf:citekey order="13">GANTERER2017</bcf:citekey>
-    <bcf:citekey order="14">PAN2019</bcf:citekey>
-    <bcf:citekey order="15">HERNANDEZ2014</bcf:citekey>
-    <bcf:citekey order="16">AGARWAL2008520</bcf:citekey>
-    <bcf:citekey order="17">WANG2014</bcf:citekey>
-    <bcf:citekey order="18">ANUPINDI2001</bcf:citekey>
-    <bcf:citekey order="19">BRANDENBURGER1996</bcf:citekey>
-    <bcf:citekey order="20">ANUPINDI2001</bcf:citekey>
-    <bcf:citekey order="21">AHUJA1993</bcf:citekey>
-    <bcf:citekey order="22">ANUPINDI2001</bcf:citekey>
-    <bcf:citekey order="23">ANUPINDI2001</bcf:citekey>
-    <bcf:citekey order="24">VANOVERMEIRE2014125</bcf:citekey>
+    <bcf:citekey order="12">GANSTERER2017</bcf:citekey>
+    <bcf:citekey order="13">PAN2019</bcf:citekey>
+    <bcf:citekey order="14">HERNANDEZ2014</bcf:citekey>
+    <bcf:citekey order="15">AGARWAL2008520</bcf:citekey>
+    <bcf:citekey order="16">WANG2014</bcf:citekey>
+    <bcf:citekey order="17">ANUPINDI2001</bcf:citekey>
+    <bcf:citekey order="18">BRANDENBURGER1996</bcf:citekey>
+    <bcf:citekey order="19">ANUPINDI2001</bcf:citekey>
+    <bcf:citekey order="20">AHUJA1993</bcf:citekey>
+    <bcf:citekey order="21">ANUPINDI2001</bcf:citekey>
+    <bcf:citekey order="22">VANOVERMEIRE2014125</bcf:citekey>
+    <bcf:citekey order="23">GONZALEZ2010</bcf:citekey>
+    <bcf:citekey order="24">KARP1972</bcf:citekey>
     <bcf:citekey order="25">GONZALEZ2010</bcf:citekey>
-    <bcf:citekey order="26">KARP1972</bcf:citekey>
-    <bcf:citekey order="27">GONZALEZ2010</bcf:citekey>
-    <bcf:citekey order="28">MCFPWEB</bcf:citekey>
+    <bcf:citekey order="26">MCFPWEB</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
-  <bcf:sortingtemplate name="none">
+  <bcf:sortingtemplate name="nyt">
     <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
+      <bcf:sortitem order="1">presort</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="2" final="1">
+      <bcf:sortitem order="1">sortkey</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="3">
+      <bcf:sortitem order="1">sortname</bcf:sortitem>
+      <bcf:sortitem order="2">author</bcf:sortitem>
+      <bcf:sortitem order="3">editor</bcf:sortitem>
+      <bcf:sortitem order="4">translator</bcf:sortitem>
+      <bcf:sortitem order="5">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="6">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="4">
+      <bcf:sortitem order="1">sortyear</bcf:sortitem>
+      <bcf:sortitem order="2">year</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="5">
+      <bcf:sortitem order="1">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="2">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="6">
+      <bcf:sortitem order="1">volume</bcf:sortitem>
+      <bcf:sortitem literal="1" order="2">0</bcf:sortitem>
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
   <bcf:datalist section="0"
-                name="none/global//global/global"
+                name="nyt/global//global/global"
                 type="entry"
-                sortingtemplatename="none"
+                sortingtemplatename="nyt"
                 sortingnamekeytemplatename="global"
                 labelprefix=""
                 uniquenametemplatename="global"
