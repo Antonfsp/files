@@ -3,22 +3,23 @@
 \BOOKMARK [2][-]{subsection.2.1}{Centralized cooperation}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Decentralized cooperation}{section.2}% 4
 \BOOKMARK [1][-]{section.3}{Problem statement: A network design - multicommodity flow problem}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Single agent model}{section.3}% 6
-\BOOKMARK [1][-]{section.4}{An allocation rule for a capacity exchange collaboration}{}% 7
-\BOOKMARK [1][-]{section.5}{Three cooperation systems with central authority}{}% 8
-\BOOKMARK [2][-]{subsection.5.1}{Fully centralized cooperation system \(FCCS\)}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.2}{Partial cooperation system \(PCS\)}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.3}{Residual cooperation system \(RCS\)}{section.5}% 11
-\BOOKMARK [1][-]{section.6}{An fully decentralized iterative cooperation system for two agents}{}% 12
-\BOOKMARK [1][-]{section.7}{Results}{}% 13
-\BOOKMARK [2][-]{subsection.7.1}{Instance generation}{section.7}% 14
-\BOOKMARK [2][-]{subsection.7.2}{Parameter selection}{section.7}% 15
-\BOOKMARK [2][-]{subsection.7.3}{Comparision 3 coopeation systems with a central autority}{section.7}% 16
-\BOOKMARK [2][-]{subsection.7.4}{Comparision centralized mechanisms and iterative one, all for 2 agents}{section.7}% 17
-\BOOKMARK [1][-]{section.8}{Discussion}{}% 18
-\BOOKMARK [2][-]{subsection.8.1}{Results discussion}{section.8}% 19
-\BOOKMARK [2][-]{subsection.8.2}{Possible extensions and future work}{section.8}% 20
-\BOOKMARK [1][-]{section.9}{Conclusion}{}% 21
-\BOOKMARK [1][-]{appendix.a.A}{ILP's}{}% 22
-\BOOKMARK [2][-]{subsection.a.A.1}{ILP to be solved by the central planner in the Fully centralized cooperation system.}{appendix.a.A}% 23
-\BOOKMARK [2][-]{subsection.a.A.2}{ILP to be solved by the central planner in the Residual routing cooperation system.}{appendix.a.A}% 24
+\BOOKMARK [2][-]{subsection.3.1}{Notation and detailed characteristics of the network design - multicomodity flow problem definition}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Single agent model}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{An allocation rule for a capacity exchange collaboration}{}% 8
+\BOOKMARK [1][-]{section.5}{Three cooperation systems with central authority}{}% 9
+\BOOKMARK [2][-]{subsection.5.1}{Fully centralized cooperation system \(FCCS\)}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.2}{Partial cooperation system \(PCS\)}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.3}{Residual cooperation system \(RCS\)}{section.5}% 12
+\BOOKMARK [1][-]{section.6}{An fully decentralized iterative cooperation system for two agents}{}% 13
+\BOOKMARK [1][-]{section.7}{Results}{}% 14
+\BOOKMARK [2][-]{subsection.7.1}{Instance generation}{section.7}% 15
+\BOOKMARK [2][-]{subsection.7.2}{Parameter selection}{section.7}% 16
+\BOOKMARK [2][-]{subsection.7.3}{Comparison 3 cooperation systems with central autority}{section.7}% 17
+\BOOKMARK [2][-]{subsection.7.4}{Comparison of the cooperation mechanisms with central authority and the fully decentralized iterative cooperation mechanism}{section.7}% 18
+\BOOKMARK [1][-]{section.8}{Discussion}{}% 19
+\BOOKMARK [2][-]{subsection.8.1}{Results discussion}{section.8}% 20
+\BOOKMARK [2][-]{subsection.8.2}{Possible extensions and future work}{section.8}% 21
+\BOOKMARK [1][-]{section.9}{Conclusion}{}% 22
+\BOOKMARK [1][-]{appendix.a.A}{ILP's}{}% 23
+\BOOKMARK [2][-]{subsection.a.A.1}{ILP to be solved by the central planner in the Fully centralized cooperation system.}{appendix.a.A}% 24
+\BOOKMARK [2][-]{subsection.a.A.2}{ILP to be solved by the central planner in the Residual routing cooperation system.}{appendix.a.A}% 25
