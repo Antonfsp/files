@@ -71,7 +71,7 @@ Maastricht Univeristy
 
 \noindent In this Msc Thesis we study different cooperation systems in horizontal logistics collaboration. In our analysis, we put the focus on the amount of information agents have to make public and share with the other members of the coalition, as well as the degree of decision power which is left to a central authority. 
 
-In this paper we propose a, to the best of our knowledge, novel cooperative system for two agents were all the decisions are made in a decentralized manner and only a limited amount of information is made public. In the system, agents, in an iterative process, make decisions based on the data the other agent has communicated by means of a information platform. We compare this system with other three cooperative mechanism, which differ in the number and type of decision which are made by a central authority. Our computational results shows that even the cooperative systems were a big part of the decisions are made by a central planner outperforms the completely decentralize system, the last can obtain good results with respect to the system were the central authority exists, but has not a lot of decision power.
+We propose a decentralized cooperative system for two agents were all the decisions are made in a decentralized manner and only a limited amount of information is made public. In this system agents take part of an iterative process, making decisions based on the data the other agent has communicated before by means of a information platform. We compare this system with other three cooperative mechanisms were some decisions are left to a central authority. How much decision power the central authority has and the amount of information the agent have to share varies among those three systems. Our computational results show that the decentralized iterative cooperative mechanism can compete, even requiring less information to be make public by the agents, with systems where the degree of decision power given to the central authority is rather limited.
 
 
 \bigskip
@@ -268,9 +268,9 @@ $V$ and $E$ its sets of nodes and edges respectively.
 Let $\Theta$ be the set of commodities the agents in the coalition have to serve. Each commodity $k$ has an origin node, $o(k)\in V$ and a destination node, $t(k)\in V$, and is owned by the agent $w(k)\in N$. Every commodity $k\in\Theta$ has a size of $d_k$ units and has an associated revenue $r_k$ per unit. Thus, the owner of the commodity $k$ earns a revenue of $d_k\cdot r_k$ if the commodity is successfully routed from its origin to its terminal node. The commodities are unsplitable, i.e., cannot be divided between different edges. Also, an agent do not necessary have to serve all his commodities.
 
 For each edge $e \in E$, we note as $o(e)\in V$ its origin node and by $t(e)\in V$ its terminal node. Furtheremore, $w(e)\in N$ is the owner of the edge $e\in E$. Note that there can exist as many edges connecting a pair of nodes in an specific direction as agents in the coalition. Each edge $e \in E$ has certain units of capacity associated $q_e$, and a fixed activation
-cost $c_e$. This activation cost is the price the owner of the edge has to pay if he wants to use the edge to route any commodity through it. Furthermore, if an edge $e\in E$ has been activated, we note by $q_e^R$ the residual capacity of that edge. We define the residual capacity of an edge as the capacity which is still available in that edge, depending on which commodities have been already routed through it. If no commodities has been routed through an active edge $e$, then $q_e^R = q_e$.
+cost $c_e$. This activation cost is the price the owner of the edge has to pay if he wants to use the edge to route any commodity through it.
 
-We will note by $\delta^+(v)\subset E$ the subset of edges whose origin is the node $v\in V$. Similarly, $\delta^-(v)\subset E$ is the subset of edges whose terminal node is $v\in V$. We will note by $E^i \subset E$ and $\Theta^i\subset \Theta$ the subsets of edges and commodities owned by agent $i$. Furthermore, $E_A\subset E$ is the subset of active edges, and $E_R\subset E_A$ the subset of active edges with a positive residual capacity. 
+We will note by $\delta^+(v)\subset E$ the subset of edges whose origin is the node $v\in V$. Similarly, $\delta^-(v)\subset E$ is the subset of edges whose terminal node is $v\in V$. We will note by $E^i \subset E$ and $\Theta^i\subset \Theta$ the subsets of edges and commodities owned by agent $i$.
 
 In table \ref{tb:notation} we summarize all the above introduced notation.
 
@@ -288,18 +288,18 @@ In table \ref{tb:notation} we summarize all the above introduced notation.
 	$\delta^-(v)$ & Subset of edges in $E$ which arrive to node $v$.\\	
 	$\Theta^i$ & Set of commodities owned by agent $i$. \\	
 	$E^i$ & Set of edges owned by agent $i$.\\
-	$E_A$ & Subset of edges in $E$ that are active \\
+	$E_A$ & Subset of edges in $E$ that are active. \\
 	$E_R$ & Subset of edges in $E_A$ that have residual capacity.\\
-	$k \in \Theta$ & A commodity\\
-	$o(k)$ & Origin node of commodity $k$\\
-	$t(k)$ & Destination node of commodity $k$\\
-	$w(k)$ & Agent who owns the commodity $k$\\
+	$k \in \Theta$ & A commodity.\\
+	$o(k)$ & Origin node of commodity $k$.\\
+	$t(k)$ & Destination node of commodity $k$.\\
+	$w(k)$ & Agent who owns the commodity $k$.\\
 	$d_k$ & Size, on units, of commodity $k$.\\
 	$r_k$ & Revenue, per unit, associated with serving commodity $k$.\\
-	$e\in E$ & An edge\\
-	$o(e)$ & Origin node of edge $e$\\
-	$t(e)$ & Terminal node of edge $e$\\
-	$w(e)$ & Agent who owns the edge $e$\\
+	$e\in E$ & An edge.\\
+	$o(e)$ & Origin node of edge $e$.\\
+	$t(e)$ & Terminal node of edge $e$.\\
+	$w(e)$ & Agent who owns the edge $e$.\\
 	$c_e$ & Cost of activate edge $e$. \\
 	$q_e$ & Units of capacity of edge $e$. \\
 	$q_e^R$ & Units of residual capacity of edge $e$.\\
@@ -356,7 +356,7 @@ ensure that the capacity of edges is not exceed. Finally, constraints
 
 %We have included it in our model because, first of all, it makes sense to assume that an agent would not want to create subtours when routing his commodities. Note that subtours could be possible without this constraint because once an edge is activated, there is no extra costs for routing more commodities through it. Furthermore, without the subtour elimination constraints, the other constraints are not sufficient to ensure that all the feasible solution of the ILP are admissible, since the flow of a commodity could contain a subtour disconneted from the origin and terminal nodes of that commodity, without impacting the objective but making the solution not valid for the problem we are modelling.
 
-In a simplifying abuse of notation, we will refer with $P_i^*$ both to the value of the objective function for the optimal solution of $P_i$ as well as to the values that the decision variables have in that optimal solution. For instance, we can say that the edge $e\in E^i$ is active in the optimal solution of $P_i$ if $u_e=1$ in $P_i^*$. At the same time, we say that $P_i^*$ is the maximum payoff agent $i$ can obtain without collaborating with other agents.
+In a simplifying abuse of notation, we will refer with $P_i^*$ both to the value of the objective function for the optimal solution of $P_i$ as well as to the values that the decision variables have in that optimal solution. For instance, we can say that the edge $e\in E^i$ is active in the optimal solution of $P_i$ if $u_e=1$ in $P_i^*$. At the same time, we say that $P_i^*$ is the maximum payoff agent $i$ can obtain without collaborating with other agents. Furthermore, for any solution of $P_i$, if an edge $e\in E$ has been activated, we note by $q_e^R$ the residual capacity of that edge. We define the residual capacity of an active edge as the capacity which is still available in that edge after the routes of the commodities has been decided. If no commodities has been routed through an active edge $e$, then $q_e^R = q_e$. Furthermore, also for any solution of a network design - multicommodity flow problem. $E_A^i\subset E^i$ is the subset of active edges owned by the agent $i$, and $E_R^i\subset E_A^i$ the subset of active edges owned by agent $i$ with a positive residual capacity. 
 
 \section{An allocation rule for a capacity exchange collaboration}
 \label{seq:allocrule}
@@ -613,8 +613,8 @@ Before going in more detail about the cooperation mechanism structure, we introd
 	\item[Demanded edges:] If agent $j\in N$ has previously shared a set of edges in the platform, agent $i\in N\setminus\{j\}$ can use those edges when routing his commodities. If agent $i$ actually decides to route a subset of his commodities, $\widehat{\Theta}^i\subset \Theta ^i$ through some of that edges, he has to share in the information platform:
 	\begin{enumerate}
 		\item How much units of capacity he requires (or demands) in total on each edge $e$ shared by agent $j$, what we note by $q_e^D$.
-	\item For each commodity $k\in \widehat{\Theta}^i$, a set $L^k$, containing the edges shared by agent $j$ through which the commodity $k$ would be routed. Also he has to share which is the size of that commodity, allowing agent $j$ to know which would be the side payment he would receive if finally all the edges $e$ in $L^k$ are active and he can make use of $q_e^D$ units of capacity in each of them\footnote{\label{ft:sidepaymentexplanation}
-Note that the information agent $j$ receives is that to receive the side payment associated with commodity $k$, $p_{L^k}$, he has to left available the total capacity agent $i$ has demanded in each $e\in L^k$, $q_e^D$, even if it is possible that $q_e^D\geq d_k$ for some $e$, as agent $i$ can want to route several commodities through that edge. We explain why we have model like this the information exchange between agents after explaining the structure of the cooperation system.}.
+	\item For each commodity $k\in \widehat{\Theta}^i$, a set $L^k$, containing the edges shared by agent $j$ through which the commodity $k$ would be routed. Note that a commodity $k\in \widehat{\Theta}^i$ might be routed through edges owned by agent $i$ and/or trough edges shared by agent $j$. The latter are the ones which must be included in $L^k$. Also he has to share which is the size of that commodity, allowing agent $j$ to know which would be the side payment he would receive if finally all the edges $e$ in $L^k$ are active and he can make use of $q_e^D$ units of capacity in each of them\footnote{\label{ft:sidepaymentexplanation}
+Note that the condition agent $j$ has to accomplish in order to receive the side payment associated with a commodity $k\in\widehat{\Theta}^i$, $p_{L^k}$, is to left available the total capacity agent $i$ has demanded in each $e\in L^k$, $q_e^D$, even if it is possible that $q_e^D\geq d_k$ for some $e\in L ^k$, as agent $i$ might be willing to route several commodities through that edge.}.
 That side payment associated to the commodity $k\in \Theta^i$ is computed as $p_k=\sum_{e \in L^k} d_k\cdot \frac{c_e}{q_e}$. 
 	\end{enumerate}
 		
@@ -643,13 +643,27 @@ Making use of the information platform just introduced, both agents iteratively 
 & b_e \in \{0,1\}, && \forall e \in L^k,\ \forall k\in \widehat{\Theta}^j,\label{eq:IterativeM}\\
 & t_k \in \{0,1\}, && k \in \widehat{\Theta}^j, \label{eq:IterativeN}
     \end{align}
-where $M$ is a very large value and $p_k=\sum_{e \in L^k} d_k\cdot \frac{c_e}{q_e}\ \forall k\in \Theta^j$.
+where $M$ is a very large value and $\forall\ k\in \widehat{\Theta}^j$ and $\forall\ e \in L^k$, $b_e$ and $t_k$ are decision variables such that
+\[
+\begin{array}{rl}
+b_e = & \begin{cases}
+    1 & \text{if edge } e \text{ is active and its residual capacity, } q_e^R\text{, is not greater} \\[-2pt]
+    & \text{than the total capacity demanded by the other agent, } q_e^D,\\
+    0 & \text{otherwise;}
+\end{cases}  \\[20pt]
+t_k = &\begin{cases}
+    1 & \text{if } \forall e \in L^k \text{ the conditions to receive the side payment } p_k \text{ are} \\[-2pt]
+    & \text{fulfilled},\\
+    0 & \text{otherwise.}    
+\end{cases}
+\end{array}
+\]
 
 In $\Upsilon_i$, the first term of the objective function of the agent $i$, equation (\ref{eq:IterativeA}), is the sum of the revenue generated by the commodities which are served. The second term is the sum of the costs of the edges he has activate. The third term is the sum of the side payments he has to do when routing commodities through the edges shared by the other agent. Finally, the fourth term is the sum of the side payments he receives from the other agent for making use of the edges he has shared in the previous iteration, if they remain available in the conditions the other agent has demanded.
 
 Constraints (\ref{eq:IterativeB}), (\ref{eq:IterativeC}), (\ref{eq:IterativeD}) and (\ref{eq:IterativeG}) are equivalent to constraints (\ref{eq:SingleAgentB}),(\ref{eq:SingleAgentC}),(\ref{eq:SingleAgentD}) and (\ref{eq:SingleAgentF}) in $P_i$, with the difference that now the agent $i$ can use the edges shared in the information platform by the agent $j$, $\widehat{E}_R^j$. Constraints (\ref{eq:IterativeE}) are identical to constraints (\ref{eq:SingleAgentE}) and constraints (\ref{eq:IterativeF}) are an extension of them, ensuring that the agent does not exceed the residual capacity of the edges shared by agent $j$ when routing his commodities.
 
-Constraints (\ref{eq:IterativeH}),  (\ref{eq:IterativeI}) and (\ref{eq:IterativeJ}) together with the decision variables (\ref{eq:IterativeM}) and (\ref{eq:IterativeN}), are related with the side payments agent $i$ receives from agent $j$. Recall for each commodity $k\in \widehat{\Theta}^j$, $L^k$ is the set which contains the edges of agent $i$ that agent $j$ has indicated in the previous iteration he would like to use to route commodity $k$. He has also indicates that if and only if in each $e \in L^k$, $q_e^D$ units of capacity are available, he would be able to route the commodity $k$ using that edges, and consequently make the associated side payment, $p_k$, to agent $i$. Constraints (\ref{eq:IterativeJ}) and (\ref{eq:IterativeN}) ensure that $t_k$ can only be equal to 1 if all the decision variables $b_e$ for $e \in L^k$ are also equal to 1. At the same time, constraints (\ref{eq:IterativeH}),  making use of the \emph{big M} coefficient, and (\ref{eq:IterativeI}) ensures that if $b_e$ is equal to one, indeed agent $i$ leaves at least $q_e^D$ units of residual capacity on that edge and activates the edge $e$. Note that these constraints are actually too restrictive. As already introduced in the footnote of page \pageref{ft:sidepaymentexplanation}, agent $j$ might be planning to route 2 or more commodities through the edge $e$, and even if agent $i$ left less than $q_e^R$ units of capacity available, he might be able to route, not all, but some of that commodities through it. However, these constraint assume that none of the commodities could be routed and therefore, any side payment associated with a commodity passing through that edge would be done. We argue that capture with accuracy this behaviour would make the model too complex. Remark that if agent $i$ decides to leave less available capacity in an edge, $q_e^R$, than the total capacity demanded by agent $j$, $q_e^D$, the problem of deciding which commodities to include in the routed is a \emph{knapsack problem}, which has been proven to be NP-complete \parencite{KARP1972}.
+Constraints (\ref{eq:IterativeH}),  (\ref{eq:IterativeI}) and (\ref{eq:IterativeJ}) together with the decision variables (\ref{eq:IterativeM}) and (\ref{eq:IterativeN}), are related with the side payments agent $i$ receives from agent $j$. Recall for each commodity $k\in \widehat{\Theta}^j$, $L^k$ is the set which contains the edges of agent $i$ that agent $j$ has indicated in the previous iteration he would like to use to route commodity $k$. He has also indicates that if and only if in each $e \in L^k$, $q_e^D$ units of capacity are available, he would be able to route the commodity $k$ using that edges, and consequently make the associated side payment, $p_k$, to agent $i$. Constraints (\ref{eq:IterativeJ}) and (\ref{eq:IterativeN}) ensure that $t_k$ can only be equal to 1 if all the decision variables $b_e$ for $e \in L^k$ are also equal to 1. At the same time, constraints (\ref{eq:IterativeH}),  making use of the \emph{big M} coefficient, and (\ref{eq:IterativeI}) ensures that if $b_e$ is equal to 1, indeed agent $i$ leaves at least $q_e^D$ units of residual capacity on that edge and activates the edge $e$. Note that these constraints are actually too restrictive. As already introduced in the footnote of page \pageref{ft:sidepaymentexplanation}, agent $j$ might be planning to route 2 or more commodities through the edge $e$, and even if agent $i$ left less than $q_e^R$ units of capacity available, he might be able to route, not all, but some of that commodities through it. However, these constraint assume that none of the commodities could be routed and therefore, any side payment associated with a commodity passing through that edge would be done. We argue that capture with accuracy this behaviour would make the model too complex. Remark that if agent $i$ decides to leave less available capacity in an edge, $q_e^R$, than the total capacity demanded by agent $j$, $q_e^D$, the problem of deciding which commodities to include in the routed is a \emph{knapsack problem}, which has been proven to be NP-complete \parencite{KARP1972}.
 
 In figure \ref{fig:iterflowchart} we present a flow chart illustrating the global structure of these cooperation mechanism.
 In the first iteration, as the information platform is empty, agent 1 is in practice solving $P^1$. Indeed, if the no information was shared in the platform, $\Upsilon^i=P^i$. For the same reason, in the first iteration agent 2 does not expect any side payments from agent 1 (he have not got yet the opportunity of demanding any edges, since no edges were shared for agent 2 in the platform yet). The iterative process continues until an equilibrium is found or a fixed maximum number of iterations allowed is reached. We define an \emph{equilibrium} as the situation were the solutions of $\Upsilon^1$ and $\Upsilon^2$ found in the iteration $h$ are exactly the same than the solutions found in the iteration $h-1$. This is equivalent to the definition of the \emph{Nash equilibrum}: given the strategies of all the agents, an agent cannot individually improve their payoffs by changing his own strategy \parencite{GONZALEZ2010}. If no equilibrium is reached in the maximum number of iterations allowed, the system considers that no solution for the cooperation was found.
