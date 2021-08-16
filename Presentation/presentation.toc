@@ -7,4 +7,4 @@
 \beamer@subsectionintoc {4}{3}{Residual cooperation system (RCS)}{22}{0}{4}
 \beamer@sectionintoc {5}{Fully Decentralized Iterative Cooperative System}{24}{0}{5}
 \beamer@sectionintoc {6}{Results}{25}{0}{6}
-\beamer@sectionintoc {7}{Discussion}{26}{0}{7}
+\beamer@sectionintoc {7}{Discussion}{27}{0}{7}
