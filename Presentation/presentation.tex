@@ -11,12 +11,15 @@
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{mathtools} 
 \usepackage{multicol}
+\usepackage{threeparttable}
+\usepackage{booktabs, caption, makecell}
+\usepackage{multirow}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit}
 \usepackage{xcolor}
 \usepackage{bm}
 \usepackage{adjustbox}
-
+\usepackage{graphicx}
 
 % First slide info
 \author{Antón de la Fuente Suárez-Pumariega}
@@ -40,7 +43,6 @@
 %Table of contents
 \begin{frame}{Agenda}
 \setbeamertemplate{section in toc}[sections numbered]
-\setbeamertemplate{subsection in toc}[subsections numbered]
 	\tableofcontents
 \end{frame}
 
@@ -54,7 +56,7 @@
 \item Central planning
 \item Decentralized systems $\begin{cases}
 \text{Auction-based}\\[5pt]
-\text{\only<2>{\color{blue}}Non auction-based}
+\text{\alert<2>{Non auction-based}}
 \end{cases}$
 \end{itemize}
 
@@ -325,17 +327,17 @@ $\forall e \in E$ & 2 & 5 \\
 \end{itemize}
 \end{frame}
 
-\subsection{Fully centralized cooperative system (FCCS)} 
+\subsection*{Fully centralized cooperative system (FCCS)} 
 \begin{frame}{\subsecname}
 \begin{itemize}
 \setlength\itemsep{1em}
-\item A central planning system $\Longrightarrow$ Central authority with \textcolor{blue}{full information} and \textcolor{blue}{all the decision power.}
+\item A central planning system $\Longrightarrow$ Central authority with \alert{full information} and \alert{all the decision power.}
 \item Commodities and edges of all the agents are aggregated into a single bigger problem.
-\item Final profit allocation must be \textcolor{red}{individually rational}.
+\item Final profit allocation must be \alert{individually rational}.
 \end{itemize}
 \end{frame}
 
-\subsection{Partial cooperative system (PCS)}
+\subsection*{Partial cooperative system (PCS)}
 
 %\begin{frame}{\subsecname}
 %Agents solve the network design - problem in two stages:
@@ -360,7 +362,7 @@ $\forall e \in E$ & 2 & 5 \\
 		\node[align = left,text width=7cm] (shares) at (0,-2.5) {Agents share with  the  central planner:
 		\begin{itemize}
 			\itemsep-3pt 
-        		\item No-cooperation payoff, $P^*_i \forall i \in N$.
+        		\item No-cooperation payoff, $P^*_i\  \forall i \in N$.
         		\item The edges they activate.
         		\item All their commodities.
    		 \end{itemize}
@@ -386,7 +388,7 @@ $\forall e \in E$ & 2 & 5 \\
 \end{figure}
 \end{frame}
 
-\subsection{Residual cooperation system (RCS)}
+\subsection*{Residual cooperation system (RCS)}
 \begin{frame}{\subsecname}
 
 \begin{figure}[ht!]
@@ -432,12 +434,141 @@ $\forall e \in E$ & 2 & 5 \\
 \end{adjustbox}
 \end{figure}
 \end{frame}
-
+%
+%\begin{frame}{Differences}
+%
+%\textbf{Allocation of the decision power.}
+%
+%\begin{table}[ht!]
+%	\centering
+%    \begin{threeparttable}
+%        \begin{tabular}{p{0.1\textwidth}>{\centering}p{0.19\textwidth}>{\centering}p{0.15\textwidth}>{\centering}p{0.1\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}}
+%            & &      \multicolumn{3}{c}{Coop. systems with central authority} \\\cline{3-5}
+%            & & FCCS &  PCS & RCS \\ \hline
+%            \multirow{2}{*}{Agents} & Activate edges & No & Yes & Yes \\
+%            & Route flow     & No & No & Yes \\\hline
+%            \multicolumn{1}{c}{Central} & Activate edges & Yes & No & No \\
+% \multicolumn{1}{c}{Authority}          & Route flow & Yes & Yes & Yes\tnote{*} \\\bottomrule
+%        \end{tabular}
+%    \begin{tablenotes}\footnotesize
+%        \item[*] Only the residual commodities through the residual capacities
+%        of the active edges.
+%        \end{tablenotes}
+%    \end{threeparttable}
+%    \end {table}
+%\end{frame}
+%
+%\begin{frame}{Differences}
+%
+%\textbf{Information to be shared by the agent with the central authority}
+%
+%\begin{table}[ht!]
+%	\centering
+%\begin{tabular}{p{0.2\textwidth}p{0.1\textwidth}>{\centering}p{0.15\textwidth}>{\centering}p{0.15\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}}
+% & & \multicolumn{3}{c}{Coop. systems with central authority} \\\cline{3-5}
+% & & FCCS & PCS & RCS \\\toprule
+% \multirow{4}{*}{Commodities}  & $o(k),t(k)$ & $\forall\ k\in \Theta$ & $\forall\ k\in \Theta$  & $\forall\ k\in \Theta_R$  \\
+% & $w(k)$    & " & " & " \\
+% & $d_k$ & " & " & " \\
+% & $r_k$ & " & " & " \\
+%
+%\midrule
+% \multirow{6}{*}{Edges}		 &  $o(e),t(e)$ & $\forall\ e\in E$ & $\forall\ e\in E_A$ & $\forall\ e\in E_R$\\
+% 			 & $w(e)$ & " & " & " \\
+%   			 & $c_e$  & " & " &  --- \\
+%  			 & $q_e$  & " & " & ---\\
+% 			 & $\frac{c_e}{q_e}$  & " & " &  $\forall\ e\in E_R$\\[3pt]
+% 			 & $q_e^R$  & --- & --- & " \\\bottomrule
+%\end{tabular}
+%\end{table}
+%
+%\end{frame}
 
 \section{Fully Decentralized Iterative Cooperative System}
 
-a
-\section{Results}
+\begin{frame}{\secname}
+\textbf{Some characteristics:}
+
+\begin{itemize}
+\setlength\itemsep{1em}
+\item Developed \alert{only for two agents}.
+\item There is NOT a central authority with decision power, but only an information platform.
+\item Agents exchange information and make decisions in an iterative process.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Information platform}
+
+\textbf{An agent can share in the information platform:}
+
+\begin{enumerate}
+\setlength\itemsep{1em}
+\item Which edges he is planning to active leaving residual capacity on them.
+\item Which edges previously shared by the other agent he would like to use, indicating:
+
+\begin{itemize}
+\setlength\itemsep{1em}
+\item The capacity he would like to use in each edge.
+\item Which ``combinations" of that edges he requires for each commodity, as well as the size of that commodity.
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{\secname}
+\begin{figure}[ht!]
+\centering
+\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+\begin{tikzpicture}
+\begin{scope}[every node/.style={rectangle,draw,thick}]
+	\node[align = center] (init) at (0,0)  {Empty information platform.\\
+	iteration = 0};
+	\node (iteration) at (0,-1.5){iteration += 1};
+	\node[align =left] (main) at (0,-3) {Agent 1 solves $\Upsilon_1$  and updates the information platform.\\
+	Agent 2 solves $\Upsilon_2$  and updates the information platform.};
+	\node (itquestion) at (0,-4.5) {iteration $\geq$ 2 ?};
+
+	\node (equiquestion) at (-4,-6) {An equilibrium was reached?};
+
+	\node (maxit) at (2,-6) {iteration = max iterations ?};
+
+	\node (End) at (-4,-7.5) {End};
+\end{scope}
+
+\begin{scope}
+	\draw[-{Latex[length=2mm]}] (init) edge (iteration);
+	\draw[-{Latex[length=2mm]}] (iteration) edge (main);
+	\draw[-{Latex[length=2mm]}] (main) edge (itquestion);
+	\draw[-{Latex[length=2mm]}] (itquestion.east)  -- ++(4cm,0) |- node[above] {No}
+	 (iteration.east);
+	\draw[-{Latex[length=2mm]}] (itquestion.west) -| node[left] {Yes} (equiquestion);
+	\draw[-{Latex[length=2mm]}] (equiquestion)  edge node[above] {No} (maxit);
+	\draw[-{Latex[length=2mm]}] (equiquestion) edge node[right] {Yes} (End);
+	\draw[-{Latex[length=2mm]}] (maxit.south) |- node[right] {Yes} (End);
+	\draw[-] (maxit.east)  -- ++(0.92cm,0) |- (iteration.east);
+\end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{figure}
+
+\end{frame}
+
+\section{Computationally results}
+
+\begin{frame}{Instances}
+	\begin{itemize}
+		\setlength\itemsep{1em}
+		\item Instances with 2 and 5 agents.
+		\item In all, graphs with 7 nodes.
+		\item All the parameters selected from uniform distribution.
+		\item Instances with edges with LOW or HIGH capacity.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Results}
+	\centering
+	\includegraphics[scale=0.5]{percentage_improv}
+\end{frame}
 
 \section{Discussion}
 
