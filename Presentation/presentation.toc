@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{The network design - multicommodity flow problem}{6}{0}{2}
+\beamer@sectionintoc {3}{Allocation rule}{14}{0}{3}
+\beamer@sectionintoc {4}{Three systems with central authority}{16}{0}{4}
+\beamer@subsectionintoc {4}{1}{Fully centralized cooperative system (FCCS)}{18}{0}{4}
+\beamer@subsectionintoc {4}{2}{Partial cooperative system (PCS)}{20}{0}{4}
+\beamer@subsectionintoc {4}{3}{Residual cooperation system (RCS)}{22}{0}{4}
+\beamer@sectionintoc {5}{Fully Decentralized Iterative Cooperative System}{24}{0}{5}
+\beamer@sectionintoc {6}{Results}{25}{0}{6}
+\beamer@sectionintoc {7}{Discussion}{26}{0}{7}

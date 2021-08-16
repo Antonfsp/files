@@ -272,7 +272,7 @@ cost $c_e$. This activation cost is the price the owner of the edge has to pay i
 
 We will note by $\delta^+(v)\subset E$ the subset of edges whose origin is the node $v\in V$. Similarly, $\delta^-(v)\subset E$ is the subset of edges whose terminal node is $v\in V$. We will note by $E^i \subset E$ and $\Theta^i\subset \Theta$ the subsets of edges and commodities owned by agent $i$.
 
-In table \ref{tb:notation} we summarize all the above introduced notation.
+In table \ref{tb:notation} we summarize most of the notation used in this work.
 
 \begin{table}[ht!]
 	\caption{Summary of notation. \label{tb:notation}}
@@ -643,7 +643,7 @@ Making use of the information platform just introduced, both agents iteratively 
 & b_e \in \{0,1\}, && \forall e \in \bigcup_{k\in \widehat{\Theta}^j}L^k,\label{eq:IterativeM}\\
 & t_k \in \{0,1\}, && k \in \widehat{\Theta}^j, \label{eq:IterativeN}
     \end{align}
-where $M$ is a very large value  and $\forall\ e \in \cup_{k\in\widehat{\Theta}^j}L^k$ and $\forall\ k\in \widehat{\Theta}^j$, $b_e$ and $t_k$ are decision variables such that
+where $M$ is a very large value  and $\forall\ e \in \cup_{k\in\widehat{\Theta}^j}L^k$ and $\forall\ k\in \widehat{\Theta}^j$, $b_e$ and $t_k$ are new decision variables such that
 \[
 \begin{array}{rl}
 b_e = & \begin{cases}
@@ -666,7 +666,7 @@ Constraints (\ref{eq:IterativeB}), (\ref{eq:IterativeC}), (\ref{eq:IterativeD}) 
 Constraints (\ref{eq:IterativeH}),  (\ref{eq:IterativeI}) and (\ref{eq:IterativeJ}) together with the decision variables (\ref{eq:IterativeM}) and (\ref{eq:IterativeN}), are related with the side payments agent $i$ receives from agent $j$. Recall for each commodity $k\in \widehat{\Theta}^j$, $L^k$ is the set which contains the edges of agent $i$ that agent $j$ has indicated in the previous iteration he would like to use to route commodity $k$. Note agent $j$ could be interested in routing multiple commodities through the same edge $e$ of agent $i$, therefore $e$ could be an element of multiple sets $L^k$. He has also indicates how many units of capacity in total, $q_e^D$ he requires in each edge $e\in \cup_{k\in\widehat{\Theta}^j}L^k$. If and only if in each edge $e \in L^k$, all the units of capacity  he has demanded are available, he would route the commodity $k$ using that edges, and consequently make the associated side payment, $p_k$, to agent $i$. Constraints (\ref{eq:IterativeJ}) and (\ref{eq:IterativeN}) ensure that $t_k$ can only be equal to 1 if all the decision variables $b_e$ for $e \in L^k$ are also equal to 1. At the same time, constraints (\ref{eq:IterativeH}),  making use of the \emph{big M} coefficient, and (\ref{eq:IterativeI}) ensures that if $b_e$ is equal to 1, indeed agent $i$ leaves at least $q_e^D$ units of residual capacity on edge $e$ and activates it. Note that these constraints are actually too restrictive: as already introduced in the footnote of page \pageref{ft:sidepaymentexplanation}, agent $j$ might be planning to route 2 or more commodities through the edge $e$, and even if agent $i$ leaves less units of capacity available than the demanded ones, $q_e^D$, he might be able to route, not all, but some of that commodities through it. However, these constraints assume that none of the commodities could be routed and therefore, ensuring that  agent $i$ does not expect to receive any side payment associated with the commodities agent $j$ wanted to route through that edge. We argue that capture with accuracy a more realistic behaviour, computing which commodities could still be routed through an edge with a residual capacity available smaller than the total demanded capacity by the other agent would make the model too complex. Indeed if agent $i$ decides to leave less available capacity in an edge, $q_e^R$, than the total capacity demanded by agent $j$, $q_e^D$, the problem of deciding which commodities to include in the route is a \emph{knapsack problem}, which has been proven to be NP-complete \parencite{KARP1972}.
 
 In figure \ref{fig:iterflowchart} we present a flow chart illustrating the global structure of these cooperation mechanism.
-In each iteration and in order, after solving $\Upsilon^1$ or $\Upsilon^2$ respectively, agents update the information they share in the information platform. The iterative process continues until an equilibrium is found or a fixed maximum number of iterations allowed is reached. We define an \emph{equilibrium} as the situation were the solutions of $\Upsilon^1$ and $\Upsilon^2$ found in the iteration $h$ are exactly the same than the solutions found in the iteration $h-1$. This is equivalent to the definition of the \emph{Nash equilibrum}: given the strategies of all the agents, an agent cannot individually improve their payoffs by changing his own strategy \parencite{GONZALEZ2010}. If no equilibrium is reached in the maximum number of iterations allowed, the system considers that no solution for the cooperation was found. Note that in the first iteration, as the information platform is empty, agent 1 is in practice solving $P^1$. Indeed, at any moment if no information was shared in the platform, $\Upsilon^i=P^i$. For the same reason, in the first iteration agent 2 does not expect any side payments from agent 1, since he have not got yet the opportunity of demanding any edges, as no edges were shared by agent 2 in the platform when agent 1 solved $\Upsilon^1$ in the first iteration. 
+In each iteration and in order, after solving $\Upsilon_1$ or $\Upsilon_2$ respectively, agents update the information they share in the information platform. The iterative process continues until an equilibrium is found or a fixed maximum number of iterations allowed is reached. We define an \emph{equilibrium} as the situation were the solutions of $\Upsilon_1$ and $\Upsilon_2$ found in the iteration $h$ are exactly the same than the solutions found in the iteration $h-1$. This is equivalent to the definition of the \emph{Nash equilibrum}: given the strategies of all the agents, an agent cannot individually improve their payoffs by changing his own strategy \parencite{GONZALEZ2010}. If no equilibrium is reached in the maximum number of iterations allowed, the system considers that no solution for the cooperation was found. Note that in the first iteration, as the information platform is empty, agent 1 is in practice solving $P^1$. Indeed, at any moment if no information was shared in the platform, $\Upsilon_i=P_i$. For the same reason, in the first iteration agent 2 does not expect any side payments from agent 1, since he have not got yet the opportunity of demanding any edges, as no edges were shared by agent 2 in the platform when agent 1 solved $\Upsilon_1$ in the first iteration. 
 
 
 \begin{figure}[ht!]
@@ -677,8 +677,8 @@ In each iteration and in order, after solving $\Upsilon^1$ or $\Upsilon^2$ respe
 	\node[align = center] (init) at (0,0)  {Empty information platform.\\
 	Iteration = 0};
 	\node (iteration) at (0,-1.5){iteration += 1};
-	\node[align =left] (main) at (0,-3) {Agent 1 solves $\Upsilon^1$  and updates the information platform.\\
-	Agent 2 solves $\Upsilon^2$  and updates the information platform.};
+	\node[align =left] (main) at (0,-3) {Agent 1 solves $\Upsilon_1$  and updates the information platform.\\
+	Agent 2 solves $\Upsilon_2$  and updates the information platform.};
 	\node (itquestion) at (0,-4.5) {iteration $\geq$ 2 ?};
 
 	\node (equiquestion) at (-4,-6) {An equilibrium was reached?};
@@ -756,7 +756,7 @@ The running times of the three cooperation systems with central authority are gi
 \begin{table}[ht!]
 \centering
 \setlength{\tabcolsep}{12pt}
-\caption{Running times, in seconds, of the three cooperation systems with central authority. \label{tb:centralauthoritytimes}}
+\caption{Running times, in seconds, of the three cooperation systems with central authority for instances with 5 agents. \label{tb:centralauthoritytimes}}
 \begin{threeparttable}
 \begin{tabular}{lrrrr}
 \toprule

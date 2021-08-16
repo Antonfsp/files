@@ -1,19 +1,19 @@
 [0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'thesis.blg'
-[75] biber:322> INFO - === mar ago 10, 2021, 12:18:11
-[89] Biber.pm:415> INFO - Reading 'thesis.bcf'
-[159] Biber.pm:943> INFO - Found 20 citekeys in bib section 0
-[172] Biber.pm:4256> INFO - Processing section 0
-[173] Utils.pm:75> INFO - Globbing data source 'bibliography.bib'
-[173] Utils.pm:91> INFO - Globbed data source 'bibliography.bib' to bibliography.bib
-[183] Biber.pm:4455> INFO - Looking for bibtex format file 'bibliography.bib' for section 0
-[184] bibtex.pm:1653> INFO - LaTeX decoding ...
-[212] bibtex.pm:1471> INFO - Found BibTeX data source 'bibliography.bib'
-[333] Utils.pm:293> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[371] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[371] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[371] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[371] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[401] bbl.pm:652> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[417] bbl.pm:755> INFO - Output to thesis.bbl
-[418] Biber.pm:128> INFO - WARNINGS: 1
+[106] biber:322> INFO - === mar ago 10, 2021, 21:59:04
+[123] Biber.pm:415> INFO - Reading 'thesis.bcf'
+[205] Biber.pm:943> INFO - Found 20 citekeys in bib section 0
+[233] Biber.pm:4256> INFO - Processing section 0
+[234] Utils.pm:75> INFO - Globbing data source 'bibliography.bib'
+[234] Utils.pm:91> INFO - Globbed data source 'bibliography.bib' to bibliography.bib
+[248] Biber.pm:4455> INFO - Looking for bibtex format file 'bibliography.bib' for section 0
+[250] bibtex.pm:1653> INFO - LaTeX decoding ...
+[283] bibtex.pm:1471> INFO - Found BibTeX data source 'bibliography.bib'
+[430] Utils.pm:293> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[475] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[475] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[475] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[475] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[506] bbl.pm:652> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[522] bbl.pm:755> INFO - Output to thesis.bbl
+[523] Biber.pm:128> INFO - WARNINGS: 1
