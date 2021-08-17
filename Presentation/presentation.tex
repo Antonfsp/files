@@ -37,8 +37,8 @@
 
 % I few lines selecting some parameters of the beamer theme
 \metroset{block=fill}
-\metroset{sectionpage=progressbar}
-\metroset{subsectionpage=progressbar}
+\metroset{sectionpage=simple}
+\metroset{subsectionpage=simple}
 
 %Tittle slide
 \maketitle
@@ -74,123 +74,6 @@
 \end{frame}
 
 \section{The network design - multicommodity flow problem}
-
-%\begin{frame}{\secname}
-%
-%\begin{columns}
-%\begin{column}{0.5\textwidth}
-%\vspace{1cm}
-%
-%\textbf{Commodities:}
-%\vspace{-0.5cm}
-%\begin{table}
-%\begin{tabular}{ccccc}
-%& Origin & Terminal & Size & Revenue \\\hline
-%$\color{red}k^1$ & 1 & 2 & 1 & 10 \\
-%$\color{red}k^2$ & 1 & 4 & 1 & 10 \\
-%$\color{red}k^3$ & 3 & 1 & 1 & 10 
-%\end{tabular}
-%\end{table}
-%\bigskip
-%
-%\textbf{Edges:}
-%\vspace{-0.5cm}
-%\begin{table}
-%\begin{tabular}{ccc}
-%& Capacity & \makecell{Activation \\ cost} \\\hline
-%$\forall$ edge & 2 & 5 \\
-%\end{tabular}
-%\end{table}
-%\end{column}
-%
-%\begin{column}{0.5\textwidth}
-%\only<1>{
-%\begin{figure}
-%	\centering	
-%	\begin{tikzpicture}
-%	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
-%		\node (1) at (0,0) {1};
-%		\node (2) at (3,0) {2};
-%		\node (3) at (0,-3) {3};
-%		\node (4) at (3,-3) {4};
-%	\end{scope}
-%	\begin{scope}[every edge/.style={dashed,draw,bend left=10}]
-%		\draw[-stealth] (1) edge node[above] {\phantom{$k^1$}} (2);
-%		\draw[-stealth] (2) edge (1);
-%		\draw[-stealth] (1) edge (3);
-%		\draw[-stealth] (3) edge node[left] {\phantom{$k^3$}} (1);
-%		\draw[-stealth] (1) edge node[right=9pt] {\phantom{$k^2$}} (4);
-%		\draw[-stealth] (4) edge (1);
-%		\draw[-stealth] (2) edge (3);
-%		\draw[-stealth] (3) edge (2);
-%		\draw[-stealth] (2) edge (4);
-%		\draw[-stealth] (4) edge (2);
-%		\draw[-stealth] (3) edge (4);
-%		\draw[-stealth] (4) edge (3);
-%	\end{scope}
-%	\end{tikzpicture}
-%	\caption{Original network.}
-%	\end{figure}
-%}
-%
-%\only<2>{
-%\begin{figure}
-%	\centering	
-%	\begin{tikzpicture}
-%	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
-%		\node (1) at (0,0) {1};
-%		\node (2) at (3,0) {2};
-%		\node (3) at (0,-3) {3};
-%		\node (4) at (3,-3) {4};
-%	\end{scope}
-%	\begin{scope}[every edge/.style={draw,bend left=10}]
-%		\draw[-stealth,red] (1) edge node[above] {\phantom{$k^1$}}(2);
-%	
-%		\draw[-stealth,red] (3) edge node[left] {\phantom{$k^3$}} (1);
-%		\draw[-stealth,red] (1) edge node[right=9pt] {\phantom{$k^2$}} (4);
-%	
-%	\end{scope}Example
-%	\end{tikzpicture}
-%	\caption{Design of the network.}
-%	\end{figure}
-%}
-%
-%\only<3>{
-%\begin{figure}
-%	\centering	
-%	\begin{tikzpicture}
-%	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
-%		\node (1) at (0,0) {1};
-%		\node (2) at (3,0) {2};
-%		\node (3) at (0,-3) {3};
-%		\node (4) at (3,-3) {4};
-%	\end{scope}
-%	\begin{scope}[every edge/.style={draw,bend left=10}]
-%		\draw[-stealth,red] (1) edge node[above] {$k^1$} (2);
-%		\draw[-stealth,red] (3) edge node[left] {$k^3$} (1);
-%		\draw[-stealth,red] (1) edge node[right=9pt] {$k^2$} (4);
-%		
-%	\end{scope}
-%	\end{tikzpicture}
-%	\caption{Route the commodities.}
-%	\end{figure}
-%}
-%\end{column}
-%
-%\end{columns}
-%\end{frame}
-
-%\begin{frame}{\secname: ILP}
-%\begin{itemize}
-%\item We model the problem as an ILP, $\quad \pmb{P_i}\ \forall i \in N$.
-%
-%\begin{align}
-%        &  P_i: \quad \max  &  \sum_{k\in \Theta^i} \sum_{e \in \delta^+(t(k))\cap E^i} f_e^k \cdot d_k \cdot r_k - \sum_{e\in E^i} u_e\cdot c_e \hspace{20pt} &&
-%	\end{align}
-%	
-%\item Subject to different constraints
-%\end{itemize}
-%\end{frame}
 
 \begin{frame}{\secname}
 
@@ -352,54 +235,6 @@ $\forall$ edge & 2 & 5 \\
 
 \subsection*{Partial cooperative system (PCS)}
 
-%\begin{frame}{\subsecname}
-%Agents solve the network design - problem in two stages:
-%\begin{enumerate}
-%	\setlength\itemsep{1em}
-%	\item Agents decide which edges to activate
-%	\item The central authority routes the commodities %through the active edges
-%\end{enumerate}
-%\end{frame}
-
-%\begin{frame}{\subsecname}
-%
-%\begin{figure}[ht!]
-%\centering
-%\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
-%\begin{tikzpicture}
-%	\begin{scope}[every node/.style={rectangle,draw,thick,minimum height=16pt,minimum width =30pt}]
-%		\node (A1) at (-4,0) {Agent 1 solves $P_1$};
-%		\node[right =10pt of A1] (A2) {Agent 2 solves $P_2$};
-%		\node[draw=none,right =10pt of A2] (pass) {$\cdots$ };
-%		\node[right =10pt of pass] (An) {Agent $n$ solves $P_n$};
-%		\node[align = left,text width=7cm] (shares) at (0,-2.5) {Agents share with  the  central planner:
-%		\begin{itemize}
-%			\itemsep-3pt 
-%        		\item No-cooperation payoff, $P^*_i\  \forall i \in N$.
-%        		\item The edges they activate.
-%        		\item All their commodities.
-%   		 \end{itemize}
-%    };
-%    \node[below = of shares,align = center,text width=6cm] (central) {Central planner routes all the commodities through the edges the agents have activated.};
-%    
-%    \node [fit=(A1) (An) (shares),draw,dashed,thick,blue] {};
-%    \node[draw=none,blue] (Stage1) at (-6.8,-1.8) {Stage 1}	;
-% 	\node [fit=(central) ,draw,dashed,thick,red] {};
-% 	\node[draw=none,red] (Stage2) at (-4.3,-5.5) {Stage 2}	;
-%	
-%	\end{scope}
-%	
-%	\begin{scope}
-%	\draw[-{Latex[length=2mm]}] (A1.south) |- (shares.west);
-%	\draw[-{Latex[length=2mm]}] (A2) edge (A2.south|-shares.north);
-%	\draw[-{Latex[length=2mm]}] (An.south) |- (shares.east);
-%	\draw[-{Latex[length=2mm]}] (shares) edge (central);
-%
-%	\end{scope}
-%\end{tikzpicture}
-%\end{adjustbox}
-%\end{figure}
-%\end{frame}
 
 
 \begin{frame}{\subsecname}
@@ -438,52 +273,6 @@ $\forall$ edge & 2 & 5 \\
 
 \subsection*{Residual cooperation system (RCS)}
 
-%\begin{frame}{\subsecname}
-%\begin{figure}[ht!]
-%\centering
-%\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
-%\begin{tikzpicture}
-%	\begin{scope}[every node/.style={rectangle,draw,thick,minimum height=16pt,minimum width =30pt}]
-%		\node (A1) at (-4,0) {Agent 1 solves $P_1$};
-%		\node[right =10pt of A1] (A2) {Agent 2 solves $P_2$};
-%		\node[draw=none,right =10pt of A2] (pass) {$\cdots$ };
-%		\node[right =10pt of pass] (An) {Agent $n$ solves $P_n$};
-%		\node[below = of A1,align = center] (A1impl) {Agent 1 \\ implements $P_1^*$};
-%		\node[below = of A2,align = center] (A2impl) {Agent 2 \\ implements $P_2^*$};
-%		\node[draw=none,below =35pt of pass] (pass2) {$\cdots$ };
-%		\node[below = of An,align = center] (Animpl) {Agent n \\ implements $P_n^*$};
-%		\node[align = left,text width=7.2cm] (shares) at (0,-4.5){Agents share with  the  central planner:
-%		\begin{itemize}
-%
-%        		\item Edges with residual capacity.
-%        		\item Residual commodities.
-%   		 \end{itemize}
-%    };
-%    \node[below = of shares,align = center,text width=8cm] (central) {Central planner routes the residual commodities through the edges with residual capacity.};
-%    
-%	  \node [fit=(A1) (An) (shares),draw,dashed,thick,blue] {};
-%    \node[draw=none,blue] (Stage1) at (-6.7,-3) {Stage 1}	;
-% 	\node [fit=(central) ,draw,dashed,thick,red] {};
-% 	\node[draw=none,red] (Stage2) at (-5.3,-7) {Stage 2}	;    
-%    
-%	\end{scope}
-%	
-%	\begin{scope}
-%	\draw[-{Latex[length=2mm]}] (A1) edge (A1impl);
-%	\draw[-{Latex[length=2mm]}] (A2) edge (A2impl);
-%	\draw[-{Latex[length=2mm]}] (An) edge (Animpl);
-%	\draw[-{Latex[length=2mm]}] (A1impl.south) |- (shares.west);
-%	\draw[-{Latex[length=2mm]}] (A2impl) edge (A2.south|-shares.north);
-%	\draw[-{Latex[length=2mm]}] (Animpl.south) |- (shares.east);
-%	\draw[-{Latex[length=2mm]}] (shares) edge (central);
-%
-%	\end{scope}
-%\end{tikzpicture}
-%\end{adjustbox}
-%\end{figure}
-%\end{frame}
-
-
 \begin{frame}{\subsecname}
 \begin{figure}[ht!]
 \centering
@@ -518,57 +307,6 @@ $\forall$ edge & 2 & 5 \\
 \end{figure}
 \end{frame}
 
-
-%
-%\begin{frame}{Differences}
-%
-%\textbf{Allocation of the decision power.}
-%
-%\begin{table}[ht!]
-%	\centering
-%    \begin{threeparttable}
-%        \begin{tabular}{p{0.1\textwidth}>{\centering}p{0.19\textwidth}>{\centering}p{0.15\textwidth}>{\centering}p{0.1\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}}
-%            & &      \multicolumn{3}{c}{Coop. systems with central authority} \\\cline{3-5}
-%            & & FCCS &  PCS & RCS \\ \hline
-%            \multirow{2}{*}{Agents} & Activate edges & No & Yes & Yes \\
-%            & Route flow     & No & No & Yes \\\hline
-%            \multicolumn{1}{c}{Central} & Activate edges & Yes & No & No \\
-% \multicolumn{1}{c}{Authority}          & Route flow & Yes & Yes & Yes\tnote{*} \\\bottomrule
-%        \end{tabular}
-%    \begin{tablenotes}\footnotesize
-%        \item[*] Only the residual commodities through the residual capacities
-%        of the active edges.
-%        \end{tablenotes}
-%    \end{threeparttable}
-%    \end {table}
-%\end{frame}
-%
-%\begin{frame}{Differences}
-%
-%\textbf{Information to be shared by the agent with the central authority}
-%
-%\begin{table}[ht!]
-%	\centering
-%\begin{tabular}{p{0.2\textwidth}p{0.1\textwidth}>{\centering}p{0.15\textwidth}>{\centering}p{0.15\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}}
-% & & \multicolumn{3}{c}{Coop. systems with central authority} \\\cline{3-5}
-% & & FCCS & PCS & RCS \\\toprule
-% \multirow{4}{*}{Commodities}  & $o(k),t(k)$ & $\forall\ k\in \Theta$ & $\forall\ k\in \Theta$  & $\forall\ k\in \Theta_R$  \\
-% & $w(k)$    & " & " & " \\
-% & $d_k$ & " & " & " \\
-% & $r_k$ & " & " & " \\
-%
-%\midrule
-% \multirow{6}{*}{Edges}		 &  $o(e),t(e)$ & $\forall\ e\in E$ & $\forall\ e\in E_A$ & $\forall\ e\in E_R$\\
-% 			 & $w(e)$ & " & " & " \\
-%   			 & $c_e$  & " & " &  --- \\
-%  			 & $q_e$  & " & " & ---\\
-% 			 & $\frac{c_e}{q_e}$  & " & " &  $\forall\ e\in E_R$\\[3pt]
-% 			 & $q_e^R$  & --- & --- & " \\\bottomrule
-%\end{tabular}
-%\end{table}
-%
-%\end{frame}
-
 \section{Fully Decentralized Iterative Cooperative System}
 
 \begin{frame}{\secname}
@@ -579,6 +317,8 @@ $\forall$ edge & 2 & 5 \\
 \item Developed \alert{only for two agents}.
 \item There is NOT a central authority with decision power, but only an information platform.
 \item Agents exchange information and make decisions in an iterative process.
+\item In each iteration, agents solve an optimization problem and update the information platform.
+
 \end{itemize}
 
 \end{frame}
@@ -643,29 +383,216 @@ $\forall$ edge & 2 & 5 \\
 \begin{frame}{Instances}
 	\begin{itemize}
 		\setlength\itemsep{1em}
-		\item Instances with 2 and 5 agents.
-		\item Graph with 7 nodes.
-		\item Complete graph for all the agents.
+		\item 10 instances with 2 agents and 10 with 5 agents.
+		%\item Graph with 7 nodes.
+		%\item Complete graph for all the agents.
 		\item All the parameters selected from uniform distributions.
 		\item Instances with edges with LOW or HIGH capacity.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Results: Instances with 2 agents}
+
 \only<1>{
-\begin{figure}
-\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
-\includegraphics[scale=1]{graphs.pdf}
-\end{adjustbox}
-\end{figure}
-}
-\only<2>{
 \begin{figure}
 \begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
 \includegraphics[scale=1]{graphs_log.pdf}
 \end{adjustbox}
 \end{figure}
 }
+\end{frame}
+
+
+
+
+\section{Conclusions}
+
+\begin{frame}{\secname}
+\begin{itemize}
+\setlength\itemsep{1em}
+\item<1-> In terms of solution quality: FCCS > PCS > \alert{FDICS > RCS}.
+\item<2-> Relevance of amount of information shared and decision power allocation.
+\item<3-> Extension of FDICS to more agents might be interesting.
+\end{itemize}
+\end{frame}
+
+\metroset{numbering=none}
+\begin{frame}[noframenumbering]
+\begin{center}
+  \Large{Thank you for the attention.}
+\end{center}
+\end{frame}
+
+\begin{frame}{Extra slides}
+
+Extra slides.
+
+\end{frame}
+
+\begin{frame}{Example}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\vspace{1cm}
+
+\textbf{Commodities:}
+\vspace{-0.5cm}
+\begin{table}
+\begin{tabular}{ccccc}
+& Origin & Terminal & Size & Revenue \\\hline
+$\color{red}k^1$ & 1 & 2 & 1 & 10 \\
+$\color{red}k^2$ & 1 & 4 & 1 & 10 \\
+$\color{red}k^3$ & 3 & 1 & 1 & 10 
+\end{tabular}
+\end{table}
+\bigskip
+
+\textbf{Edges:}
+\vspace{-0.5cm}
+\begin{table}
+\begin{tabular}{ccc}
+& Capacity & \makecell{Activation \\ cost} \\\hline
+$\forall$ edge & 2 & 5 \\
+\end{tabular}
+\end{table}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\only<1>{
+\begin{figure}
+	\centering	
+	\begin{tikzpicture}
+	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
+		\node (1) at (0,0) {1};
+		\node (2) at (3,0) {2};
+		\node (3) at (0,-3) {3};
+		\node (4) at (3,-3) {4};
+	\end{scope}
+	\begin{scope}[every edge/.style={dashed,draw,bend left=10}]
+		\draw[-stealth] (1) edge node[above] {\phantom{$k^1$}} (2);
+		\draw[-stealth] (2) edge (1);
+		\draw[-stealth] (1) edge (3);
+		\draw[-stealth] (3) edge node[left] {\phantom{$k^3$}} (1);
+		\draw[-stealth] (1) edge node[right=9pt] {\phantom{$k^2$}} (4);
+		\draw[-stealth] (4) edge (1);
+		\draw[-stealth] (2) edge (3);
+		\draw[-stealth] (3) edge (2);
+		\draw[-stealth] (2) edge (4);
+		\draw[-stealth] (4) edge (2);
+		\draw[-stealth] (3) edge (4);
+		\draw[-stealth] (4) edge (3);
+	\end{scope}
+	\end{tikzpicture}
+	\caption{Original network.}
+	\end{figure}
+}
+
+\only<2>{
+\begin{figure}
+	\centering	
+	\begin{tikzpicture}
+	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
+		\node (1) at (0,0) {1};
+		\node (2) at (3,0) {2};
+		\node (3) at (0,-3) {3};
+		\node (4) at (3,-3) {4};
+	\end{scope}
+	\begin{scope}[every edge/.style={draw,bend left=10}]
+		\draw[-stealth,red] (1) edge node[above] {\phantom{$k^1$}}(2);
+	
+		\draw[-stealth,red] (3) edge node[left] {\phantom{$k^3$}} (1);
+		\draw[-stealth,red] (1) edge node[right=9pt] {\phantom{$k^2$}} (4);
+	
+	\end{scope}Example
+	\end{tikzpicture}
+	\caption{Design of the network.}
+	\end{figure}
+}
+
+\only<3>{
+\begin{figure}
+	\centering	
+	\begin{tikzpicture}
+	\begin{scope}[every node/.style={circle,draw,align=center,text width = 5pt}]
+		\node (1) at (0,0) {1};
+		\node (2) at (3,0) {2};
+		\node (3) at (0,-3) {3};
+		\node (4) at (3,-3) {4};
+	\end{scope}
+	\begin{scope}[every edge/.style={draw,bend left=10}]
+		\draw[-stealth,red] (1) edge node[above] {$k^1$} (2);
+		\draw[-stealth,red] (3) edge node[left] {$k^3$} (1);
+		\draw[-stealth,red] (1) edge node[right=9pt] {$k^2$} (4);
+		
+	\end{scope}
+	\end{tikzpicture}
+	\caption{Route the commodities.}
+	\end{figure}
+}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}{Differences}
+
+\textbf{Allocation of the decision power.}
+
+\begin{table}[ht!]
+	\centering
+    \begin{threeparttable}
+        \begin{tabular}{p{0.1\textwidth}>{\centering}p{0.19\textwidth}>{\centering}p{0.15\textwidth}>{\centering}p{0.1\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}}
+            & &      \multicolumn{3}{c}{Coop. systems with central authority} \\\cline{3-5}
+            & & FCCS &  PCS & RCS \\ \hline
+            \multirow{2}{*}{Agents} & Activate edges & No & Yes & Yes \\
+            & Route flow     & No & No & Yes \\\hline
+            \multicolumn{1}{c}{Central} & Activate edges & Yes & No & No \\
+ \multicolumn{1}{c}{Authority}          & Route flow & Yes & Yes & Yes\tnote{*} \\\bottomrule
+        \end{tabular}
+    \begin{tablenotes}\footnotesize
+        \item[*] Only the residual commodities through the residual capacities
+        of the active edges.
+        \end{tablenotes}
+    \end{threeparttable}
+    \end {table}
+\end{frame}
+
+\begin{frame}{Differences}
+
+\textbf{Information to be shared by the agent with the central authority}
+
+
+\begin{table}[ht!]
+	\centering
+\begin{adjustbox}{width=\textwidth, totalheight=0.9\textheight-2\baselineskip,keepaspectratio}
+\begin{tabular}{p{0.2\textwidth}p{0.1\textwidth}>{\centering}p{0.15\textwidth}>{\centering}p{0.15\textwidth}>{\centering\arraybackslash}p{0.15\textwidth}}
+ & & \multicolumn{3}{c}{Coop. systems with central authority} \\\cline{3-5}
+ & & FCCS & PCS & RCS \\\toprule
+ \multirow{4}{*}{Commodities}  & $o(k),t(k)$ & $\forall\ k\in \Theta$ & $\forall\ k\in \Theta$  & $\forall\ k\in \Theta_R$  \\
+ & $w(k)$    & " & " & " \\
+ & $d_k$ & " & " & " \\
+ & $r_k$ & " & " & " \\
+
+\midrule
+ \multirow{6}{*}{Edges}		 &  $o(e),t(e)$ & $\forall\ e\in E$ & $\forall\ e\in E_A$ & $\forall\ e\in E_R$\\
+ 			 & $w(e)$ & " & " & " \\
+   			 & $c_e$  & " & " &  --- \\
+  			 & $q_e$  & " & " & ---\\
+ 			 & $\frac{c_e}{q_e}$  & " & " &  $\forall\ e\in E_R$\\[3pt]
+ 			 & $q_e^R$  & --- & --- & " \\\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+\end{frame}
+
+\begin{frame}{Results}
+\begin{figure}
+\begin{adjustbox}{width=\textwidth, totalheight=\textheight-2\baselineskip,keepaspectratio}
+\includegraphics[scale=1]{graphs.pdf}
+\end{adjustbox}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Results: Analysis of order relevance in FDICS}
@@ -692,25 +619,6 @@ $\forall$ edge & 2 & 5 \\
 \end{tabular}
 \end{adjustbox}
 \end{table}
-\end{frame}
-
-
-\section{Conclusions}
-
-\begin{frame}{\secname}
-\begin{itemize}
-\setlength\itemsep{1em}
-\item<1-> In terms of solution quality: FCCS > PCS > \alert{FDICS > RCS}.
-\item<2-> Relevance of amount of information shared and decision power allocation.
-\item<3-> Extension of FDICS to more agents might be interesting.
-\end{itemize}
-\end{frame}
-
-\metroset{numbering=none}
-\begin{frame}[noframenumbering]
-\begin{center}
-  \Large{Thank you for the attention.}
-\end{center}
 \end{frame}
 
 \end{document}
