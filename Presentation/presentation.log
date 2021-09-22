@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2021.8.13)  18 AUG 2021 00:16
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2021.8.13)  18 AUG 2021 10:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1468,7 +1468,11 @@ File: graphs_log.pdf Graphic file (type pdf)
 <use graphs_log.pdf>
  [27
 
-] [28
+]
+Overfull \vbox (19.18922pt too high) detected at line 429
+ []
+
+[28
 
 ] [29
 
@@ -1480,29 +1484,31 @@ File: graphs_log.pdf Graphic file (type pdf)
 
 ] [33
 
+] [34
+
 ]
-Overfull \hbox (3.7691pt too wide) in paragraph at lines 535--535
+Overfull \hbox (3.7691pt too wide) in paragraph at lines 559--559
  [] 
  []
 
 
-Overfull \hbox (0.6721pt too wide) in paragraph at lines 535--535
+Overfull \hbox (0.6721pt too wide) in paragraph at lines 559--559
  [][]\TU/FiraSansLight(0)/m/n/10.95 4 
  []
 
 
-Overfull \vbox (6.81361pt too high) detected at line 535
+Overfull \vbox (6.81361pt too high) detected at line 559
  []
 
-[34
+[35
 
 ]
-Overfull \hbox (3.7691pt too wide) in paragraph at lines 535--535
+Overfull \hbox (3.7691pt too wide) in paragraph at lines 559--559
  [] 
  []
 
 
-Overfull \hbox (0.6721pt too wide) in paragraph at lines 535--535
+Overfull \hbox (0.6721pt too wide) in paragraph at lines 559--559
  [][]\TU/FiraSansLight(0)/m/n/10.95 4 
  []
 
@@ -1514,57 +1520,51 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 
-Overfull \vbox (6.81361pt too high) detected at line 535
- []
-
-[35
-
-]
-Overfull \hbox (3.7691pt too wide) in paragraph at lines 535--535
- [] 
- []
-
-
-Overfull \hbox (0.6721pt too wide) in paragraph at lines 535--535
- [][]\TU/FiraSansLight(0)/m/n/10.95 4 
- []
-
-
-Overfull \vbox (6.81361pt too high) detected at line 535
+Overfull \vbox (6.81361pt too high) detected at line 559
  []
 
 [36
 
-] [37
+]
+Overfull \hbox (3.7691pt too wide) in paragraph at lines 559--559
+ [] 
+ []
+
+
+Overfull \hbox (0.6721pt too wide) in paragraph at lines 559--559
+ [][]\TU/FiraSansLight(0)/m/n/10.95 4 
+ []
+
+
+Overfull \vbox (6.81361pt too high) detected at line 559
+ []
+
+[37
+
+] [38
 
 ]
-Overfull \hbox (3.46004pt too wide) in paragraph at lines 588--588
+Overfull \hbox (3.46004pt too wide) in paragraph at lines 612--612
 []|$[]\OT1/cmss/m/n/10.95 ([])\OML/cmm/m/it/10.95 ; []\OT1/cmss/m/n/10.95 ([])$
 | 
  []
 
 
-Overfull \hbox (3.24104pt too wide) in paragraph at lines 588--588
+Overfull \hbox (3.24104pt too wide) in paragraph at lines 612--612
 []|$[]\OT1/cmss/m/n/10.95 ([])\OML/cmm/m/it/10.95 ; []\OT1/cmss/m/n/10.95 ([])$
 | 
  []
 
 
-Overfull \vbox (11.50551pt too high) detected at line 588
+Overfull \vbox (11.50551pt too high) detected at line 612
  []
 
-[38
+[39
 
 ]
 File: graphs.pdf Graphic file (type pdf)
 <use graphs.pdf>
- [39
-
-]
-Overfull \vbox (19.18922pt too high) detected at line 622
- []
-
-[40
+ [40
 
 ]
 \tf@nav=\write6
@@ -1587,7 +1587,7 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 Here is how much of TeX's memory you used:
  30233 strings out of 481165
  618463 string characters out of 5922185
- 945545 words of memory out of 5000000
+ 945547 words of memory out of 5000000
  46566 multiletter control sequences out of 15000+600000
  548299 words of font info for 124 fonts, out of 8000000 for 9000
  398 hyphenation exceptions out of 8191

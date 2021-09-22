@@ -4,4 +4,4 @@
 \beamer@sectionintoc {4}{Three systems with central authority}{13}{0}{4}
 \beamer@sectionintoc {5}{Fully Decentralized Iterative Cooperative System}{21}{0}{5}
 \beamer@sectionintoc {6}{Computationally results}{25}{0}{6}
-\beamer@sectionintoc {7}{Conclusions}{28}{0}{7}
+\beamer@sectionintoc {7}{Conclusions}{29}{0}{7}
